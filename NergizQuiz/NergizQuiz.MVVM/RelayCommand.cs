@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-namespace BaseM.MVVM
+namespace NergizQuiz.MVVM
 {
     /// <summary>
     /// A command whose only purpose is to relay functionality to other
