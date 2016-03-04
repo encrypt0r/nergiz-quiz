@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BaseM.Shared
+namespace NergizQuiz.Logic
 {
     public enum NumberSystem
     {

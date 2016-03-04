@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace BaseM.MVVM
+namespace NergizQuiz.MVVM
 {
     public class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
@@ -68,6 +68,8 @@ namespace BaseM.MVVM
         }
 
         #endregion // INotifyPropertyChanged members
+
+
 
         #region IDisposable members
         /// <summary>
