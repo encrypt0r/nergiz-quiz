@@ -1,10 +1,11 @@
-﻿<Controls:MetroWindow x:Class="NergizQuiz.UI.MainWindow"
+﻿<Controls:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NergizQuiz.UI"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" x:Class="NergizQuiz.UI.MainWindow"
         mc:Ignorable="d"
         Title="Nergiz Quiz" Height="600" Width="800"
         GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="icon_small.png"
@@ -14,6 +15,9 @@
             <RowDefinition Height="35*"/>
             <RowDefinition Height="537*"/>
         </Grid.RowDefinitions>
+        <Grid.DataContext>
+            <ViewModels:MainWindowViewModel/>
+        </Grid.DataContext>
         <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" >
             <MenuItem Header="_File" >
                 <MenuItem Header="E_xit"/>
@@ -23,6 +27,7 @@
                 <MenuItem Header="_About"/>
             </MenuItem>
         </Menu>
+        <ContentPresenter x:Name="presenter" Content="{Binding Page}" Grid.Row="1"/>
 
     </Grid>
 </Controls:MetroWindow>

@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-
+using NergizQuiz.UI.ViewModels;
 namespace NergizQuiz.UI
 {
     /// <summary>
@@ -12,5 +12,6 @@ namespace NergizQuiz.UI
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
