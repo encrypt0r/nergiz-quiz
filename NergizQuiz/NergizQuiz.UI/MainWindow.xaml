@@ -7,9 +7,22 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="Nergiz Quiz" Height="600" Width="800"
-        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="icon_small.png"
         >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="537*"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" >
+            <MenuItem Header="_File" >
+                <MenuItem Header="E_xit"/>
+            </MenuItem>
+            <MenuItem Header="_Help" >
+                <MenuItem Header="_Help"/>
+                <MenuItem Header="_About"/>
+            </MenuItem>
+        </Menu>
+
     </Grid>
 </Controls:MetroWindow>
