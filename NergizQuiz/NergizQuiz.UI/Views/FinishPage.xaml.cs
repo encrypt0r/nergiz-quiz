@@ -23,5 +23,6 @@ namespace NergizQuiz.UI.Views
         {
             InitializeComponent();
         }
+
     }
 }

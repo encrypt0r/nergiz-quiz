@@ -25,9 +25,6 @@
             <MenuItem Header="_File" >
                 <MenuItem Header="E_xit"/>
             </MenuItem>
-            <MenuItem Header="_Go To" >
-                <MenuItem Header="_Next Page" Command="{Binding ShowQuizPageCommand}"/>
-            </MenuItem>
             <MenuItem Header="_Help" >
                 <MenuItem Header="_Help"/>
                 <MenuItem Header="_About"/>

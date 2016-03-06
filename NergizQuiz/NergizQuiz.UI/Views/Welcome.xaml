@@ -9,14 +9,14 @@
              Width="794" Height="537">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="184*"/>
-            <RowDefinition Height="154*"/>
-            <RowDefinition Height="199*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" Margin="246,50,246,0" TextWrapping="Wrap" Text="Welcome :)" VerticalAlignment="Top" FontSize="64" FontWeight="Light"/>
         <TextBlock  HorizontalAlignment="Center" Margin="0,26,0,0" TextWrapping="Wrap" Text="Your name:" VerticalAlignment="Top" FontSize="29.333" Grid.Row="1" Foreground="#FF363636" FontWeight="SemiBold"/>
-        <TextBox x:Name="txtUserName" HorizontalAlignment="Center" Margin="197,78,197,26" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Center" FontSize="29.333" Width="400" Height="50" BorderThickness="1" TextAlignment="Center"/>
-        <Button x:Name="button" Content="Start" HorizontalAlignment="Center" Margin="0,32,0,115" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowQuizPageCommand}"/>
+        <TextBox x:Name="txtUserName" HorizontalAlignment="Center" Margin="197,78,197,26" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Center" FontSize="29.333" Width="400" Height="50" BorderThickness="2" TextAlignment="Center" Background="{x:Null}" TabIndex="0"/>
+        <Button x:Name="button" Content="Start" HorizontalAlignment="Center" Margin="321,62,319,67" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowQuizPageCommand}" Height="50"/>
 
     </Grid>
 </UserControl>
