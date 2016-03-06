@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="NergizQuiz.UI.Views.FinishPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NergizQuiz.UI.Views"
+             mc:Ignorable="d" 
+             Width="794" Height="537">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="42*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Congrats!" VerticalAlignment="Center" FontSize="64" Margin="267,38,266,38" FontWeight="Light"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, StringFormat= \{0\}\, you answered}" FontSize="32" Margin="0,24,0,0" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="{Binding ScoreColor}" TextWrapping="Wrap" Text="{Binding Percentage}" VerticalAlignment="Top" FontSize="48" Margin="0,72,0,0" Grid.Row="1" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="of the questions correctly" VerticalAlignment="Top" FontSize="32" Margin="0,141,0,0" Grid.Row="1" Width="390" TextAlignment="Center" />
+        <Button x:Name="button" Content="Restart" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="0,10,0,64"/>
+
+    </Grid>
+</UserControl>

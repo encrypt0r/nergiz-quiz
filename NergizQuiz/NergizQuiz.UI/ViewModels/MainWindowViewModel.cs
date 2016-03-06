@@ -6,6 +6,7 @@ using NergizQuiz.MVVM;
 using NergizQuiz.UI.Views;
 using System.Windows.Input;
 using NergizQuiz.Logic;
+using System.Windows.Media;
 namespace NergizQuiz.UI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
@@ -13,11 +14,11 @@ namespace NergizQuiz.UI.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
-            GetNextQuestion();
+            RestartExecute();
         }
         #endregion
         #region Public Properties
-        private object m_Page = new Welcome();
+        private object m_Page;
         public object Page
         {
             get { return m_Page; }
@@ -31,7 +32,7 @@ namespace NergizQuiz.UI.ViewModels
             }
         }
 
-        private string m_UserName = "Somebody";
+        private string m_UserName;
         public string UserName
         {
             get { return m_UserName; }
@@ -57,7 +58,88 @@ namespace NergizQuiz.UI.ViewModels
                     RaisePropertyChanged("Question");
                     RaisePropertyChanged("Percentage");
                     RaisePropertyChanged("Progress");
+                    RaisePropertyChanged("ScoreColor");
                 }
+            }
+        }
+
+        private int m_TotalNumberOfQuestions;
+        public int TotalNumberOfQuestions
+        {
+            get { return m_TotalNumberOfQuestions; }
+            set
+            {
+                if (value != m_TotalNumberOfQuestions)
+                {
+                    m_TotalNumberOfQuestions = value;
+                    RaisePropertyChanged("TotalNumberOfQuestions");
+                }
+            }
+        }
+
+        private int m_TotalNumberOfAnswers;
+        public int TotalNumberOfAnswers
+        {
+            get { return m_TotalNumberOfAnswers; }
+            set
+            {
+                if (value != m_TotalNumberOfAnswers)
+                {
+                    m_TotalNumberOfAnswers = value;
+                    RaisePropertyChanged("TotalNumberOfAnswers");
+                }
+            }
+        }
+
+        private int m_NumberOfCorrectAnswers;
+        public int NumberOfCorrectAnswers
+        {
+            get { return m_NumberOfCorrectAnswers; }
+            set
+            {
+                if (value != m_NumberOfCorrectAnswers)
+                {
+                    m_NumberOfCorrectAnswers = value;
+                    RaisePropertyChanged("NumberOfCorrectAnswers");
+                }
+            }
+        }
+        private float Score
+        {
+            get
+            {
+                float percent = NumberOfCorrectAnswers / (float)(TotalNumberOfAnswers - 1);
+                if (float.IsNaN(percent))
+                    return 1f;
+                else
+                    return percent;
+            }
+        }
+        public string Percentage
+        {
+            get
+            {
+                if (TotalNumberOfAnswers == 0)
+                    return "100 %";
+
+                return Math.Round(Score * 100, 1) + " %";
+            }
+        }
+        public string Progress
+        {
+            get { return TotalNumberOfAnswers + " of " + TotalNumberOfQuestions; }
+        }
+
+        public SolidColorBrush ScoreColor
+        {
+            get
+            {
+                if (Math.Round(Score * 100) >= 50)
+                    return new SolidColorBrush(Colors.Green);
+                else if (Math.Round(Score * 100) == 0)
+                    return new SolidColorBrush(Colors.Red);
+                else
+                    return new SolidColorBrush(Colors.Orange);
             }
         }
 
@@ -118,63 +200,6 @@ namespace NergizQuiz.UI.ViewModels
             }
         }
 
-        private int m_TotalNumberOfQuestions = 5;
-        public int TotalNumberOfQuestions
-        {
-            get { return m_TotalNumberOfQuestions; }
-            set
-            {
-                if (value != m_TotalNumberOfQuestions)
-                {
-                    m_TotalNumberOfQuestions = value;
-                    RaisePropertyChanged("TotalNumberOfQuestions");
-                }
-            }
-        }
-
-        private int m_TotalNumberOfAnswers = 0;
-        public int TotalNumberOfAnswers
-        {
-            get { return m_TotalNumberOfAnswers; }
-            set
-            {
-                if (value != m_TotalNumberOfAnswers)
-                {
-                    m_TotalNumberOfAnswers = value;
-                    RaisePropertyChanged("TotalNumberOfAnswers");
-                }
-            }
-        }
-
-        private int m_NumberOfCorrectAnswers = 0;
-        public int NumberOfCorrectAnswers
-        {
-            get { return m_NumberOfCorrectAnswers; }
-            set
-            {
-                if (value != m_NumberOfCorrectAnswers)
-                {
-                    m_NumberOfCorrectAnswers = value;
-                    RaisePropertyChanged("NumberOfCorrectAnswers");
-                }
-            }
-        }
-
-        public string Percentage
-        {
-            get
-            {
-                if (TotalNumberOfAnswers == 0)
-                    return "100 %";
-
-                float percentage = NumberOfCorrectAnswers / (float)TotalNumberOfAnswers;
-                return Math.Round(percentage * 100, 1) + " %";
-            }
-        }
-        public string Progress
-        {
-            get { return TotalNumberOfAnswers + " of " + TotalNumberOfQuestions; }
-        }
         #endregion
 
         #region Commands
@@ -229,15 +254,45 @@ namespace NergizQuiz.UI.ViewModels
                 NumberOfCorrectAnswers++;
             TotalNumberOfAnswers++;
 
-            GetNextQuestion();
+            // if all of the questions answered, go to finish page
+            if (TotalNumberOfAnswers - 1 == TotalNumberOfQuestions)
+                Page = new FinishPage();
+            else
+                GetNextQuestion();
 
         }
         public bool NextQuestionCanExecute()
         {
-            if (UserName != null && UserName != string.Empty)
-                return true;
-            else
-                return false;
+            return true;
+        }
+
+        private ICommand m_RestartCommand;
+        public ICommand RestartCommand
+        {
+            get
+            {
+                if (m_RestartCommand == null)
+                    m_RestartCommand =
+                        new RelayCommand(RestartExecute, RestartCanExecute);
+
+                return m_RestartCommand;
+            }
+
+        }
+        public void RestartExecute()
+        {
+            TotalNumberOfAnswers = 1;
+            NumberOfCorrectAnswers = 0;
+            TotalNumberOfQuestions = 5;
+            UserName = "Somebody";
+
+            GetNextQuestion();
+            
+            Page = new WelcomePage();
+        }
+        public bool RestartCanExecute()
+        {
+            return true;
         }
         #endregion
 
