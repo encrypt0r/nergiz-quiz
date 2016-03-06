@@ -8,14 +8,14 @@
              Width="794" Height="537">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
+            <RowDefinition Height="176*"/>
+            <RowDefinition Height="226*"/>
+            <RowDefinition Height="135*"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Awesome!" VerticalAlignment="Center" FontSize="64" Margin="0,38" FontWeight="Light"/>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, StringFormat= \{0\}\, your acuracy was}" FontSize="32" Margin="0,68,0,0" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Foreground="{Binding ScoreColor}" TextWrapping="Wrap" Text="{Binding Percentage}" VerticalAlignment="Top" FontSize="72" Margin="0,116,0,0" Grid.Row="1" TextAlignment="Center"/>
-        <Button x:Name="button" Content="Restart" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="0,22,0,63" />
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Awesome!" VerticalAlignment="Center" FontSize="64" Margin="0,80,0,10" FontWeight="Light" Height="86" Width="280"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, StringFormat= \{0\}\, your acuracy was,FallbackValue=Somebody\, your acuracy was}" FontSize="32" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="{Binding ScoreColor,FallbackValue=Green}" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=80 \%}" VerticalAlignment="Top" FontSize="72" Margin="0,79,0,0" Grid.Row="1" TextAlignment="Center"/>
+        <Button x:Name="button" Content="Restart" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="306,22,306,63" Height="50" Width="182" />
 
     </Grid>
 </UserControl>

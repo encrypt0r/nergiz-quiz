@@ -19,7 +19,7 @@
             <RowDefinition Height="537*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,5,20,0">
-            <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="Black" TextOptions.TextHintingMode="Animated"/>
+            <TextBlock Text="{Binding UserName, FallbackValue=Somebody}" FontSize="14" FontWeight="Black" TextOptions.TextHintingMode="Animated"/>
         </StackPanel> 
         <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
             <MenuItem Header="_File" >
