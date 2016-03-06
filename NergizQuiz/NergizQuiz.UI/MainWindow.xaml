@@ -10,24 +10,31 @@
         Title="Nergiz Quiz" Height="600" Width="800"
         GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="icon_small.png"
         >
-    <Grid>
+    <Grid x:Name="grid" >
+        <Grid.DataContext>
+            <ViewModels:MainWindowViewModel/>
+        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"/>
             <RowDefinition Height="537*"/>
         </Grid.RowDefinitions>
-        <Grid.DataContext>
-            <ViewModels:MainWindowViewModel/>
-        </Grid.DataContext>
-        <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" >
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,5,20,0">
+            <TextBlock Text="{Binding UserName}" FontSize="14"/>
+        </StackPanel> 
+        <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
             <MenuItem Header="_File" >
                 <MenuItem Header="E_xit"/>
+            </MenuItem>
+            <MenuItem Header="_Go To" >
+                <MenuItem Header="_Next Page" Command="{Binding ShowQuizPageCommand}"/>
             </MenuItem>
             <MenuItem Header="_Help" >
                 <MenuItem Header="_Help"/>
                 <MenuItem Header="_About"/>
             </MenuItem>
         </Menu>
-        <ContentPresenter x:Name="presenter" Content="{Binding Page}" Grid.Row="1"/>
+        <ContentPresenter DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}" Grid.Row="1"/>
+        
 
     </Grid>
 </Controls:MetroWindow>
