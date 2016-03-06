@@ -1,0 +1,54 @@
+﻿<Controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NergizQuiz.UI.Views"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" x:Class="NergizQuiz.UI.Views.AboutWindow"
+        mc:Ignorable="d"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="Nergiz Quiz" Height="300" Width="500" Icon="/Nergiz Quiz;component/icon_small.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="link" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <ViewModels:AboutWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="63"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="Auto" MinHeight="102"/>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="15,10,0,0" TextWrapping="Wrap" Text="Nergiz Quiz" VerticalAlignment="Top" Height="42" FontSize="32" FontFamily="Segoe UI Light" Grid.Column="1" HorizontalAlignment="Left" Width="164"/>
+        <TextBlock HorizontalAlignment="Left" Margin="16,3,0,0" TextWrapping="Wrap" Text="Fork us on Github:" Width="272" Grid.Row="3" FontSize="16" Grid.Column="1" Height="21" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Okay" Margin="0,0,16,10" Grid.Row="5" Height="33" VerticalAlignment="Bottom" IsCancel="True" IsDefault="True" HorizontalAlignment="Right" Width="98" Grid.Column="1" FontSize="14"/>
+        <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Height="100" Margin="0,20,0,0" Grid.RowSpan="4" VerticalAlignment="Top"/>
+        <Button Command="{Binding OpenGitHub}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,6,0,99" Height="26" Width="291" Grid.RowSpan="2" >
+            <Button.Template>
+                <ControlTemplate >
+                    <TextBlock   Style="{StaticResource link}"  Foreground="#FF3355F0"  FontSize="16" Text="{Binding GitHub, FallbackValue=Github page here}" FontWeight="Normal"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBlock Margin="184,27,0,0" TextWrapping="Wrap" Text="{Binding AppVersion}" FontSize="16" Grid.Column="1" Foreground="#FF555555" HorizontalAlignment="Left" Width="144" Height="21" VerticalAlignment="Top"/>
+        <TextBlock TextWrapping="Wrap" Text="For EPU Spring Fair of 2016"  Grid.Row="1" FontSize="16" Margin="16,1,0,6" HorizontalAlignment="Left"  Grid.Column="1" Width="193" />
+
+    </Grid>
+</Controls:MetroWindow>

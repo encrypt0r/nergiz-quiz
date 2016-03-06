@@ -7,6 +7,8 @@ using NergizQuiz.UI.Views;
 using System.Windows.Input;
 using NergizQuiz.Logic;
 using System.Windows.Media;
+using System.Windows;
+
 namespace NergizQuiz.UI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
@@ -236,7 +238,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_NextQuestionCommand == null)
                     m_NextQuestionCommand =
-                        new RelayCommand(NextQuestionExecute, NextQuestionCanExecute);
+                        new RelayCommand(NextQuestionExecute);
 
                 return m_NextQuestionCommand;
             }
@@ -261,10 +263,6 @@ namespace NergizQuiz.UI.ViewModels
                 GetNextQuestion();
 
         }
-        public bool NextQuestionCanExecute()
-        {
-            return true;
-        }
 
         private ICommand m_RestartCommand;
         public ICommand RestartCommand
@@ -273,7 +271,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_RestartCommand == null)
                     m_RestartCommand =
-                        new RelayCommand(RestartExecute, RestartCanExecute);
+                        new RelayCommand(RestartExecute);
 
                 return m_RestartCommand;
             }
@@ -290,9 +288,36 @@ namespace NergizQuiz.UI.ViewModels
             
             Page = new WelcomePage();
         }
-        public bool RestartCanExecute()
+
+        private ICommand m_ShowAboutCommand;
+        public ICommand ShowAboutCommand
         {
-            return true;
+            get
+            {
+                if (m_ShowAboutCommand == null)
+                    m_ShowAboutCommand =
+                        new RelayCommand(ShowAboutExecute);
+
+                return m_ShowAboutCommand;
+            }
+
+        }
+        public void ShowAboutExecute()
+        {
+            var aw = new AboutWindow();
+            aw.ShowDialog();
+        }
+
+        public ICommand ExitCommand
+        {
+            get
+            {
+                return new RelayCommand(ExitExecute);
+            }
+        }
+        void ExitExecute()
+        {
+            Application.Current.Shutdown();
         }
         #endregion
 

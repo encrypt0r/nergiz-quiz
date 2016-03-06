@@ -23,11 +23,10 @@
         </StackPanel> 
         <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
             <MenuItem Header="_File" >
-                <MenuItem Header="E_xit"/>
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="_Help" >
-                <MenuItem Header="_Help"/>
-                <MenuItem Header="_About"/>
+                <MenuItem Header="_About" Command="{Binding ShowAboutCommand}"/>
             </MenuItem>
         </Menu>
         <ContentPresenter DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}" Grid.Row="1"/>
