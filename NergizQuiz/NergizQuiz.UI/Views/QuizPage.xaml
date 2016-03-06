@@ -14,7 +14,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" Margin="50,20,20,20" TextWrapping="Wrap" Text="Welcome!"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin" RenderTransformOrigin="0.5,0.5" >
+        <TextBlock x:Name="textBlock" Margin="50,20,20,20" TextWrapping="Wrap" Text="{Binding Question.Title}"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin" RenderTransformOrigin="0.5,0.5" >
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -25,13 +25,14 @@
             </TextBlock.RenderTransform>
         </TextBlock>
         <StackPanel x:Name="stackPanel" HorizontalAlignment="Left"  Margin="50,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="152" Width="469">
-            <RadioButton x:Name="radioButton" Content="Nile river in Egypt" Margin="0,5" IsChecked="True"  FontSize="21.333"/>
-            <RadioButton x:Name="radioButton1" Content="A longer name is put here to see what happens" Margin="0,5" FontSize="21.333"/>
-            <RadioButton x:Name="radioButton2" Content="Amazon river" Margin="0,5" FontSize="21.333"/>
-            <RadioButton x:Name="radioButton3" Content="RadioButton" Margin="0,5" FontSize="21.333"/>
+            <RadioButton x:Name="radioButton" IsChecked="{Binding UserAnswer1}" Content="{Binding Question.AllAnswers[0]}" Margin="0,5"   FontSize="21.333"/>
+            <RadioButton x:Name="radioButton1" IsChecked="{Binding UserAnswer2}" Content="{Binding Question.AllAnswers[1]}" Margin="0,5" FontSize="21.333"/>
+            <RadioButton x:Name="radioButton2" IsChecked="{Binding UserAnswer3}" Content="{Binding Question.AllAnswers[2]}" Margin="0,5" FontSize="21.333"/>
+            <RadioButton x:Name="radioButton3" IsChecked="{Binding UserAnswer4}" Content="{Binding Question.AllAnswers[3]}" Margin="0,5" FontSize="21.333"/>
         </StackPanel>
-        <Button x:Name="button" Content="NEXT QUESTION" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="50,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="5 of 25" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
+        <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="NEXT QUESTION" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="160,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Percentage}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>
