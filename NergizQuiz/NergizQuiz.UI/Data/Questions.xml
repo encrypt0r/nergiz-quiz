@@ -4,10 +4,10 @@
   <Question>
     <Title>This is the question title</Title>
     <Answers>
-      <Answer correct="true">Hello</Answer>
-      <Answer>How are you</Answer>
-      <Answer>How do you do</Answer>
-      <Answer>Are you okay?</Answer>
+      <Answer correct="true">The correct answer</Answer>
+      <Answer>An incorrect answer</Answer>
+      <Answer>Another not-true answer</Answer>
+      <Answer>One more false answer</Answer>
     </Answers>
   </Question>
 
