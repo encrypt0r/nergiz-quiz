@@ -29,8 +29,9 @@
                 <MenuItem Header="_About" Command="{Binding ShowAboutCommand}"/>
             </MenuItem>
         </Menu>
-        <ContentPresenter DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}" Grid.Row="1"/>
-        
+     
+        <ContentPresenter Grid.Row="2" DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}"/>
+
 
     </Grid>
 </Controls:MetroWindow>

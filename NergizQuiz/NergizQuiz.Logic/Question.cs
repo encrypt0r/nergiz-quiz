@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using System.Linq;
+
 namespace NergizQuiz.Logic
 {
     public class Question
@@ -50,6 +50,7 @@ namespace NergizQuiz.Logic
             }
 
         }
+        public string Index { get; set; }
         #endregion // Public Properties
     }
 }

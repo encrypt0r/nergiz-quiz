@@ -148,6 +148,20 @@ namespace NergizQuiz.UI.ViewModels
             }
         }
 
+        private ObservableCollection<Question> m_Answers;
+        public ObservableCollection<Question> Answers
+        {
+            get { return m_Answers; }
+            set
+            {
+                if (value != m_Answers)
+                {
+                    m_Answers = value;
+                    RaisePropertyChanged("Answers");
+                }
+            }
+        }
+
         //TODO: There should some way to minimize these
         private bool m_UserAnswer1;
         public bool UserAnswer1
@@ -234,6 +248,32 @@ namespace NergizQuiz.UI.ViewModels
                 return false;
         }
 
+        private ICommand m_MoreInfoCommand;
+        public ICommand MoreInfoCommand
+        {
+            get
+            {
+                if (m_MoreInfoCommand == null)
+                    m_MoreInfoCommand =
+                        new RelayCommand(MoreInfoExecute, MoreInfoCanExecute);
+
+                return m_MoreInfoCommand;
+            }
+
+        }
+        public void MoreInfoExecute()
+        {
+            Page = new MoreInfoPage();
+
+        }
+        public bool MoreInfoCanExecute()
+        {
+            if (UserName != null && UserName != string.Empty)
+                return true;
+            else
+                return false;
+        }
+
         private ICommand m_NextQuestionCommand;
         public ICommand NextQuestionCommand
         {
@@ -249,14 +289,15 @@ namespace NergizQuiz.UI.ViewModels
         }
         public void NextQuestionExecute()
         {
+            // Add the current answer to the list of the answers
+            // The user have given
 
-            var ansList = new List<bool>();
-            ansList.Add(UserAnswer1);
-            ansList.Add(UserAnswer2);
-            ansList.Add(UserAnswer3);
-            ansList.Add(UserAnswer4);
+            int userAnswer = GetUserAnswer();
+            Question.AllAnswers[userAnswer].IsChosenByUser = true;
+            Question.Index = (Answers.Count + 1).ToString ("00");
+            Answers.Add(Question);
 
-            if (ansList[Question.CorrectAnswer] == true)
+            if (userAnswer == Question.CorrectAnswer)
                 NumberOfCorrectAnswers++;
             TotalNumberOfAnswers++;
 
@@ -283,6 +324,7 @@ namespace NergizQuiz.UI.ViewModels
         }
         public void RestartExecute()
         {
+            Answers = new ObservableCollection<Question>();
             TotalNumberOfAnswers = 1;
             NumberOfCorrectAnswers = 0;
             TotalNumberOfQuestions = 5;
@@ -334,9 +376,15 @@ namespace NergizQuiz.UI.ViewModels
             UserAnswer3 = false;
             UserAnswer4 = false;
         }
-        private void AddOneToSeconds()
+        private int GetUserAnswer()
         {
+            foreach (var ans in Question.AllAnswers)
+            {
+                if (ans.IsChosenByUser)
+                    return ans.Index;
+            }
 
+            return 0;
         }
         #endregion
 

@@ -15,7 +15,11 @@
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Awesome!" VerticalAlignment="Center" FontSize="64" Margin="0,80,0,10" FontWeight="Light" Height="86" Width="280"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, StringFormat= \{0\}\, your accuracy was,FallbackValue=Somebody\, your accuracy was}" FontSize="32" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center"/>
         <TextBlock HorizontalAlignment="Center" Foreground="{Binding ScoreColor,FallbackValue=Green}" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=80 \%}" VerticalAlignment="Top" FontSize="72" Margin="0,79,0,0" Grid.Row="1" TextAlignment="Center"/>
-        <Button x:Name="button" Content="Restart" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="306,22,306,63" Height="50" Width="182" />
+        
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Content="Restart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="10,0" />
+            <Button Content="More Info" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding MoreInfoCommand}" Margin="10,0"  />
+        </StackPanel>
 
     </Grid>
 </UserControl>

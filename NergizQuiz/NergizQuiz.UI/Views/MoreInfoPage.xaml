@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="NergizQuiz.UI.Views.MoreInfoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:logic="clr-namespace:NergizQuiz.Logic;assembly=NergizQuiz.Logic"
+             xmlns:local="clr-namespace:NergizQuiz.UI"
+             mc:Ignorable="d"
+             Width="794" Height="537" >
+    <UserControl.Resources>
+        <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Focusable="False"  Margin="0,0,0,10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="132*"/>
+                <RowDefinition Height="Auto" MinHeight="80"/>
+                <RowDefinition Height="178*"/>
+                <RowDefinition Height="63*"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+            </Grid.Resources>
+            <TextBlock TextWrapping="Wrap" Text="Answers" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="1"/>
+            <ListBox ItemsSource="{Binding Answers}" x:Name="listBox" Margin="0,10" Grid.Row="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="logic:Question">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="{Binding Index}" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light"/>
+                                <ItemsControl ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock Text="{Binding Text}" FontSize="14.667" Padding="0,0,5,0" />
+                                                <TextBlock Text="ü" FontFamily="Wingdings" Visibility="{Binding IsChosenByUser, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                                                <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" Visibility="{Binding IsTheCorrectAnswer, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,10,0,0" TextAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="Top 10" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="3"/>
+            <ListBox ItemsSource="{Binding Answers}" x:Name="listBox_Copy" Margin="0,4,0,10" Grid.Row="4">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="logic:Question">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="{Binding Index}" FontSize="32" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
+                            <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Height="43" FontSize="13.333"/>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
