@@ -24,12 +24,12 @@
                 <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
             </Grid.Resources>
             <TextBlock TextWrapping="Wrap" Text="Answers" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="1"/>
-            <ListBox ItemsSource="{Binding Answers}" x:Name="listBox" Margin="0,10" Grid.Row="2">
-                <ListBox.ItemTemplate>
+            <ItemsControl ItemsSource="{Binding Answers}" Margin="0,10" Grid.Row="2">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding Index}" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
-                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10" >
+                                <TextBlock Text="{Binding Index}" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="20,6,20,0" FontWeight="SemiBold" Foreground="#FFADAFB4"/>
+                                <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light"/>
                                 <ItemsControl ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
                                     <ItemsControl.ItemTemplate>
@@ -45,20 +45,20 @@
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,10,0,0" TextAlignment="Center"/>
             <TextBlock TextWrapping="Wrap" Text="Top 10" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="3"/>
-            <ListBox ItemsSource="{Binding Answers}" x:Name="listBox_Copy" Margin="0,4,0,10" Grid.Row="4">
-                <ListBox.ItemTemplate>
+            <ItemsControl ItemsSource="{Binding Answers}" Margin="0,4,0,10" Grid.Row="4">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="{Binding Index}" FontSize="32" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
                             <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Height="43" FontSize="13.333"/>
 
         </Grid>

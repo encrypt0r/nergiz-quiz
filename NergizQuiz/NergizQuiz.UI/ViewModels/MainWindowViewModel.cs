@@ -294,7 +294,7 @@ namespace NergizQuiz.UI.ViewModels
 
             int userAnswer = GetUserAnswer();
             Question.AllAnswers[userAnswer].IsChosenByUser = true;
-            Question.Index = (Answers.Count + 1).ToString ("00");
+            Question.Index = (Answers.Count + 1).ToString("00");
             Answers.Add(Question);
 
             if (userAnswer == Question.CorrectAnswer)
