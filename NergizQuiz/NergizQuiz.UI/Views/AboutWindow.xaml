@@ -39,7 +39,7 @@
         <TextBlock Margin="15,10,0,0" TextWrapping="Wrap" Text="Nergiz Quiz" VerticalAlignment="Top" Height="42" FontSize="32" FontFamily="Segoe UI Light" Grid.Column="1" HorizontalAlignment="Left" Width="164"/>
         <TextBlock HorizontalAlignment="Left" Margin="16,3,0,0" TextWrapping="Wrap" Text="Fork this project on Github:" Width="272" Grid.Row="3" FontSize="16" Grid.Column="1" Height="21" VerticalAlignment="Top"/>
         <Button x:Name="button" Content="Okay" Margin="0,0,16,10" Grid.Row="5" Height="33" VerticalAlignment="Bottom" IsCancel="True" IsDefault="True" HorizontalAlignment="Right" Width="98" Grid.Column="1" FontSize="14"/>
-        <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Height="100" Margin="0,20,0,0" Grid.RowSpan="4" VerticalAlignment="Top"/>
+        <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Height="100" Margin="0,10,0,0" Grid.RowSpan="4" VerticalAlignment="Top"/>
         <Button Command="{Binding OpenGitHub}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,6,0,99" Height="26" Width="291" Grid.RowSpan="2" >
             <Button.Template>
                 <ControlTemplate >

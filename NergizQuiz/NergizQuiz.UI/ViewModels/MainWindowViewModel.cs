@@ -8,6 +8,8 @@ using System.Windows.Input;
 using NergizQuiz.Logic;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace NergizQuiz.UI.ViewModels
 {
@@ -19,6 +21,7 @@ namespace NergizQuiz.UI.ViewModels
             RestartExecute();
         }
         #endregion
+
         #region Public Properties
         private object m_Page;
         public object Page
@@ -246,6 +249,7 @@ namespace NergizQuiz.UI.ViewModels
         }
         public void NextQuestionExecute()
         {
+
             var ansList = new List<bool>();
             ansList.Add(UserAnswer1);
             ansList.Add(UserAnswer2);
@@ -285,7 +289,7 @@ namespace NergizQuiz.UI.ViewModels
             UserName = "Somebody";
 
             GetNextQuestion();
-            
+
             Page = new WelcomePage();
         }
 
@@ -329,6 +333,10 @@ namespace NergizQuiz.UI.ViewModels
             UserAnswer2 = false;
             UserAnswer3 = false;
             UserAnswer4 = false;
+        }
+        private void AddOneToSeconds()
+        {
+
         }
         #endregion
 
