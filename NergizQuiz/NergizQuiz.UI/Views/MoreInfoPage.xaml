@@ -15,21 +15,22 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="132*"/>
+                <RowDefinition/>
+       
                 <RowDefinition Height="Auto" MinHeight="80"/>
-                <RowDefinition Height="178*"/>
-                <RowDefinition Height="63*"/>
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
             </Grid.Resources>
-            <TextBlock TextWrapping="Wrap" Text="Answers" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="1"/>
-            <ItemsControl ItemsSource="{Binding Answers}" Margin="0,10" Grid.Row="2">
+            <Border Grid.Row="1" BorderThickness="0,0,0,2" BorderBrush="{DynamicResource AccentColorBrush}" Margin="25,25,25,0" VerticalAlignment="Top">
+                <TextBlock TextWrapping="Wrap" Text="ANSWERS"  FontSize="29.333" FontWeight="SemiBold" TextAlignment="Center" Foreground="{DynamicResource AccentColorBrush}"/>
+            </Border>
+            <ItemsControl ItemsSource="{Binding Answers}" Margin="0,10,0,0" Grid.Row="2">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10" >
-                                <TextBlock Text="{Binding Index}" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="20,6,20,0" FontWeight="SemiBold" Foreground="#FFADAFB4"/>
-                                <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Index}" FontSize="48" TextAlignment="Center" VerticalAlignment="Center" Margin="20,6,20,0" FontWeight="SemiBold" Foreground="#FFADAFB4"/>
+                            <StackPanel Orientation="Vertical" Margin="10,0" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light"/>
                                 <ItemsControl ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
                                     <ItemsControl.ItemTemplate>
@@ -47,19 +48,19 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="25,75,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap" Text="Note:"  FontSize="18.667" Foreground="#FF4F4F4F" FontWeight="SemiBold" FontStyle="Italic"/>
+                <TextBlock Text=" Your answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+                <TextBlock Text="ü" FontFamily="Wingdings" Visibility="{Binding IsChosenByUser, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                <TextBlock Text="'s and correct answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+                <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" Visibility="{Binding IsTheCorrectAnswer, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                <TextBlock Text="'s" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+            </StackPanel>
+
             <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,10,0,0" TextAlignment="Center"/>
-            <TextBlock TextWrapping="Wrap" Text="Top 10" VerticalAlignment="Top" FontSize="40" FontWeight="Light" Margin="10,10,0,0" Grid.Row="3"/>
-            <ItemsControl ItemsSource="{Binding Answers}" Margin="0,4,0,10" Grid.Row="4">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="logic:Question">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding Index}" FontSize="32" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
-                            <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Light" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Height="43" FontSize="13.333"/>
+
+        
+            <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" HorizontalAlignment="Center" Grid.Row="3" FontSize="16" Padding="25,15" VerticalAlignment="Center" Margin="331,15"/>
 
         </Grid>
     </ScrollViewer>

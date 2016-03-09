@@ -84,8 +84,8 @@
     <Compile Include="Views\QuizPage.xaml.cs">
       <DependentUpon>QuizPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Welcome.xaml.cs">
-      <DependentUpon>Welcome.xaml</DependentUpon>
+    <Compile Include="Views\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Welcome.xaml">
+    <Page Include="Views\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
