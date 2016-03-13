@@ -18,17 +18,21 @@ namespace NergizQuiz.Logic
         static DataLayer()
         {
             randomGenerator = new Random();
-            XElement data = XElement.Load("Data\\Questions.xml");
-
-            listOfQuestions = data.Elements().ToList();
+            listOfQuestions = new List<XElement>();
+            LoadQuestions();
         }
         #endregion // Construction
+
         #region Public Methods
         static public XElement GetNextQuestion()
         {
+            if (listOfQuestions.Count <= 0)
+                LoadQuestions();
+
             XElement question;
-            int randomNumber = randomGenerator.Next(0, 3);
+            int randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
             question = listOfQuestions[randomNumber];
+            listOfQuestions.RemoveAt(randomNumber);
 
             return question;
         }
@@ -110,6 +114,15 @@ namespace NergizQuiz.Logic
             leaderboardx.Save("Data\\Leaderboard.xml");
         }
         #endregion // Public Methods
+
+        #region Private Methods
+        private static void LoadQuestions()
+        {
+            listOfQuestions.Clear();
+            XElement data = XElement.Load("Data\\Questions.xml");
+            listOfQuestions = data.Elements().ToList();
+        }
+        #endregion // Private Methods
 
     }
 }

@@ -7,6 +7,7 @@
              xmlns:logic="clr-namespace:NergizQuiz.Logic;assembly=NergizQuiz.Logic"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
+
     <Grid>
         <ListBox ItemsSource="{Binding Leaderboard}" Grid.Row="1" Visibility="Collapsed">
             <ItemsControl.ItemTemplate>
@@ -29,7 +30,7 @@
                 <GridView >
                     <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Index}"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Accuracy" DisplayMemberBinding="{Binding Accuracy}"/>
+                    <GridViewColumn Header="Accuracy" DisplayMemberBinding="{Binding Accuracy, StringFormat='\{0:00.## %\}'}"/>
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}"/>
                 </GridView>
             </ListView.View>

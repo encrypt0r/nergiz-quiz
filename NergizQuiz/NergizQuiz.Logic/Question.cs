@@ -12,7 +12,7 @@ namespace NergizQuiz.Logic
 
             if (data == null)
                 throw new ArgumentNullException("data");
-            
+
             //TODO: attribute and tag names should not be case sensitive
             AllAnswers = new List<Answer>();
             Title = data.Element("Title").Value;
@@ -21,10 +21,10 @@ namespace NergizQuiz.Logic
             foreach (XElement answer in data.Elements("Answers").Descendants())
             {
                 var newAnswer = new Answer(answer.Value, index);
-                
+
                 if (answer.Attribute("correct") != null &&
                     answer.Attribute("correct").Value == "true")
-                        newAnswer.IsTheCorrectAnswer = true;
+                    newAnswer.IsTheCorrectAnswer = true;
 
                 AllAnswers.Add(newAnswer);
 

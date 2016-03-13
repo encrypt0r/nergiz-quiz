@@ -8,21 +8,21 @@
         xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" x:Class="NergizQuiz.UI.MainWindow"
         mc:Ignorable="d"
         Title="Nergiz Quiz" Height="600" Width="800"
-        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="icon_small.png"
+        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="icon_small.png"
         >
     <Grid x:Name="grid" >
         <Grid.DataContext>
             <ViewModels:MainWindowViewModel/>
         </Grid.DataContext>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="537*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,5,20,0">
             <TextBlock Text="{Binding UserName, FallbackValue=Somebody}" FontSize="14" FontWeight="Black" TextOptions.TextHintingMode="Animated"/>
             <TextBlock Text="{Binding TimeElapsed, FallbackValue=0}" FontSize="14" TextOptions.TextHintingMode="Animated" Margin="5,0,0,0"/>
-        </StackPanel> 
-        <Menu x:Name="menu" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+        </StackPanel>
+        <Menu x:Name="menu" Height="35" HorizontalAlignment="Left" >
             <MenuItem Header="_File" >
                 <MenuItem Header="E_xit" Command="{Binding ExitCommand}"/>
             </MenuItem>
@@ -30,9 +30,8 @@
                 <MenuItem Header="_About" Command="{Binding ShowAboutCommand}"/>
             </MenuItem>
         </Menu>
-     
-        <ContentPresenter Grid.Row="2" DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}"/>
 
+        <ContentPresenter Grid.Row="2" DataContext="{Binding ElementName=grid, Path=DataContext}" x:Name="presenter" Content="{Binding Page}"/>
 
     </Grid>
 </Controls:MetroWindow>
