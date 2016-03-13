@@ -75,6 +75,12 @@
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AnswersSection.xaml.cs">
+      <DependentUpon>AnswersSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardSection.xaml.cs">
+      <DependentUpon>LeaderboardSection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MoreInfoPage.xaml.cs">
       <DependentUpon>MoreInfoPage.xaml</DependentUpon>
     </Compile>
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="Views\QuizPage.xaml.cs">
       <DependentUpon>QuizPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatsSection.xaml.cs">
+      <DependentUpon>StatsSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -103,6 +112,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AnswersSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LeaderboardSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MoreInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatsSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,9 +184,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Questions.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="icon_big.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

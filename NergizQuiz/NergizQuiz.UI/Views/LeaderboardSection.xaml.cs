@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace NergizQuiz.UI.Views
 {
     /// <summary>
-    /// Interaction logic for QuizPage.xaml
+    /// Interaction logic for LeaderboardPage.xaml
     /// </summary>
-    public partial class QuizPage : UserControl
+    public partial class LeaderboardSection : UserControl
     {
-        public QuizPage()
+        public LeaderboardSection()
         {
             InitializeComponent();
-            
         }
     }
 }

@@ -14,22 +14,14 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" Margin="50,20,20,20" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue='The question will be written here'}"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin" RenderTransformOrigin="0.5,0.5" >
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        <StackPanel x:Name="stackPanel" HorizontalAlignment="Left"  Margin="50,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="152" Width="469">
-            <RadioButton x:Name="radioButton" IsChecked="{Binding UserAnswer1, FallbackValue=true}" Content="{Binding Question.AllAnswers[0], FallbackValue=Answer 1}" Margin="0,5"   FontSize="21.333"/>
-            <RadioButton x:Name="radioButton1" IsChecked="{Binding UserAnswer2}" Content="{Binding Question.AllAnswers[1], FallbackValue=Answer 1}" Margin="0,5" FontSize="21.333"/>
-            <RadioButton x:Name="radioButton2" IsChecked="{Binding UserAnswer3}" Content="{Binding Question.AllAnswers[2], FallbackValue=Answer 1}" Margin="0,5" FontSize="21.333"/>
-            <RadioButton x:Name="radioButton3" IsChecked="{Binding UserAnswer4}" Content="{Binding Question.AllAnswers[3], FallbackValue=Answer 1}" Margin="0,5" FontSize="21.333"/>
-        </StackPanel>
+        <TextBlock x:Name="textBlock" Margin="50,20,20,20" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue='The question will be written here'}"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin" RenderTransformOrigin="0.5,0.5"/>
+        <ItemsControl Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding Question.AllAnswers}">
+            <ItemsControl.ItemTemplate >
+                <DataTemplate>
+                    <RadioButton Margin="0,5" Content="{Binding Text}" GroupName="answer" IsChecked="{Binding IsChosenByUser}" FontSize="21.333"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="NEXT QUESTION" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F" IsDefault="True"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress, FallbackValue=0 of 5}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
         <TextBlock  HorizontalAlignment="Left" Margin="160,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=100 \%}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>

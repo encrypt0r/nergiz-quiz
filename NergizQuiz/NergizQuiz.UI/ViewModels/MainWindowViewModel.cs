@@ -18,8 +18,15 @@ namespace NergizQuiz.UI.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
+            dTimer = new DispatcherTimer();
+            dTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            dTimer.Tick += DTimer_Tick;
             RestartExecute();
         }
+        #endregion
+
+        #region Fields
+        private DispatcherTimer dTimer;
         #endregion
 
         #region Public Properties
@@ -162,59 +169,39 @@ namespace NergizQuiz.UI.ViewModels
             }
         }
 
-        //TODO: There should some way to minimize these
-        private bool m_UserAnswer1;
-        public bool UserAnswer1
+        public string TimeElapsed
         {
-            get { return m_UserAnswer1; }
+            get
+            {
+                return SharedMethods.GetTimeInHumanLanguage(DeciSecondsElapsed);
+            }
+        }
+
+        private List<CoolPerson> m_Leaderboard;
+        public List<CoolPerson> Leaderboard
+        {
+            get { return m_Leaderboard; }
             set
             {
-                if (value != m_UserAnswer1)
+                if (value != m_Leaderboard)
                 {
-                    m_UserAnswer1 = value;
-                    RaisePropertyChanged("UserAnswer1");
+                    m_Leaderboard = value;
+                    RaisePropertyChanged("Leaderboard");
                 }
             }
         }
 
-        private bool m_UserAnswer2;
-        public bool UserAnswer2
+        private int m_DeciSecondsElapsed;
+        public int DeciSecondsElapsed
         {
-            get { return m_UserAnswer2; }
+            get { return m_DeciSecondsElapsed; }
             set
             {
-                if (value != m_UserAnswer2)
+                if (value != m_DeciSecondsElapsed)
                 {
-                    m_UserAnswer2 = value;
-                    RaisePropertyChanged("UserAnswer2");
-                }
-            }
-        }
-
-        private bool m_UserAnswer3;
-        public bool UserAnswer3
-        {
-            get { return m_UserAnswer3; }
-            set
-            {
-                if (value != m_UserAnswer3)
-                {
-                    m_UserAnswer3 = value;
-                    RaisePropertyChanged("UserAnswer3");
-                }
-            }
-        }
-
-        private bool m_UserAnswer4;
-        public bool UserAnswer4
-        {
-            get { return m_UserAnswer4; }
-            set
-            {
-                if (value != m_UserAnswer4)
-                {
-                    m_UserAnswer4 = value;
-                    RaisePropertyChanged("UserAnswer4");
+                    m_DeciSecondsElapsed = value;
+                    RaisePropertyChanged("DeciSecondsElapsed");
+                    RaisePropertyChanged("TimeElapsed");
                 }
             }
         }
@@ -238,7 +225,7 @@ namespace NergizQuiz.UI.ViewModels
         public void ShowQuizPageExecute()
         {
             Page = new QuizPage();
-
+            dTimer.Start();
         }
         public bool ShowQuizPageCanExecute()
         {
@@ -261,10 +248,10 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
+
         public void MoreInfoExecute()
         {
             Page = new MoreInfoPage();
-
         }
         public bool MoreInfoCanExecute()
         {
@@ -291,7 +278,6 @@ namespace NergizQuiz.UI.ViewModels
         {
             // Add the current answer to the list of the answers
             // The user have given
-
             int userAnswer = GetUserAnswer();
             Question.AllAnswers[userAnswer].IsChosenByUser = true;
             Question.Index = (Answers.Count + 1).ToString("00");
@@ -303,7 +289,17 @@ namespace NergizQuiz.UI.ViewModels
 
             // if all of the questions answered, go to finish page
             if (TotalNumberOfAnswers - 1 == TotalNumberOfQuestions)
+            {
                 Page = new FinishPage();
+                dTimer.Stop();
+
+                CoolPerson thisCp = new CoolPerson();
+                thisCp.Name = UserName;
+                thisCp.DeciSecondsElapsed = DeciSecondsElapsed;
+                thisCp.Accuracy = (float) NumberOfCorrectAnswers / TotalNumberOfQuestions;
+                DataLayer.AddToLeaderBoard(thisCp);
+                Leaderboard = DataLayer.GetLeaderboard();
+            }
             else
                 GetNextQuestion();
 
@@ -329,6 +325,7 @@ namespace NergizQuiz.UI.ViewModels
             NumberOfCorrectAnswers = 0;
             TotalNumberOfQuestions = 5;
             UserName = "Somebody";
+            DeciSecondsElapsed = 0;
 
             GetNextQuestion();
 
@@ -371,10 +368,7 @@ namespace NergizQuiz.UI.ViewModels
         private void GetNextQuestion()
         {
             Question = new Question(DataLayer.GetNextQuestion());
-            UserAnswer1 = true;
-            UserAnswer2 = false;
-            UserAnswer3 = false;
-            UserAnswer4 = false;
+            Question.AllAnswers[0].IsChosenByUser = true;
         }
         private int GetUserAnswer()
         {
@@ -385,6 +379,13 @@ namespace NergizQuiz.UI.ViewModels
             }
 
             return 0;
+        }
+        #endregion
+
+        #region Event Handlers
+        private void DTimer_Tick(object sender, EventArgs e)
+        {
+            DeciSecondsElapsed += 1;
         }
         #endregion
 
