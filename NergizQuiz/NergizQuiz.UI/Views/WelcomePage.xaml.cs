@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NergizQuiz.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-namespace NergizQuiz.UI
+namespace NergizQuiz.UI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Welcome.xaml
     /// </summary>
-    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
+    public partial class WelcomePage : UserControl
     {
-        public MainWindow()
+        public WelcomePage()
         {
             InitializeComponent();
         }
+
     }
 }

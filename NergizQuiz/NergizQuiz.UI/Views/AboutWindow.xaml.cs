@@ -9,17 +9,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NergizQuiz.UI
+namespace NergizQuiz.UI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
+    public partial class AboutWindow : MahApps.Metro.Controls.MetroWindow
     {
-        public MainWindow()
+        public AboutWindow()
         {
             InitializeComponent();
         }

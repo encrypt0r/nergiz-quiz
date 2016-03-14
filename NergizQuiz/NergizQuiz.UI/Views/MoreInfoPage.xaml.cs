@@ -12,16 +12,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NergizQuiz.UI
+namespace NergizQuiz.UI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AnswersPage.xaml
     /// </summary>
-    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
+    public partial class MoreInfoPage : UserControl
     {
-        public MainWindow()
+        public MoreInfoPage()
         {
             InitializeComponent();
         }
+
     }
 }

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="NergizQuiz.UI.Views.AnswersSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NergizQuiz.UI"
+             xmlns:logic="clr-namespace:NergizQuiz.Logic;assembly=NergizQuiz.Logic"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="25" Width="640" Margin="0,10">
+                <TextBlock TextWrapping="Wrap" Text="Note:"  FontSize="18.667" Foreground="#FF4F4F4F" FontWeight="SemiBold" FontStyle="Italic"/>
+                <TextBlock Text=" Your answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+                <TextBlock Text="ü" FontFamily="Wingdings" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                <TextBlock Text="'s and correct answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+                <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                <TextBlock Text="'s" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Answers}" Grid.Row="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="logic:Question">
+                        <Grid Margin="10,5,10,10" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Index, StringFormat='\{0\}\. '}" Grid.Row="0" Grid.Column="0" FontSize="24" Margin="5,0" FontWeight="SemiBold" Foreground="#FF69717A"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" TextWrapping="Wrap" FontSize="24" FontWeight="Light"/>
+                            <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="" FontFamily="Wingdings" FontSize="18.667" Margin="20,0,10,0" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Text}" FontSize="16" Margin="0,0,5,0" />
+                                            <TextBlock Text="ü" FontFamily="Wingdings" Visibility="{Binding IsChosenByUser, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                                            <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" Visibility="{Binding IsTheCorrectAnswer, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
