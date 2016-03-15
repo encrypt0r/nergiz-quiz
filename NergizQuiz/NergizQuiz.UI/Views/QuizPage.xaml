@@ -9,12 +9,28 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock  Margin="50,20,30,20" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue='The question will be written here'}"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin"/>
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0,1" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-20" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#CC119EDA" Offset="0.399"/>
+                    <GradientStop Color="#8C119EDA" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <TextBlock  Margin="50,20,30,20" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Bottom" FontSize="40" FontWeight="Thin" Foreground="White"/>
         <ItemsControl Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding Question.AllAnswers}">
             <ItemsControl.ItemTemplate >
                 <DataTemplate>
@@ -23,8 +39,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="NEXT QUESTION" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F" IsDefault="True"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress, FallbackValue=0 of 5}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
-        <TextBlock  HorizontalAlignment="Left" Margin="160,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=100 \%}" VerticalAlignment="Top" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress, FallbackValue=0 of 5}" VerticalAlignment="Center" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>
