@@ -24,8 +24,8 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </LinearGradientBrush.RelativeTransform>
-                    <GradientStop Color="#CC119EDA" Offset="0.399"/>
-                    <GradientStop Color="#8C119EDA" Offset="1"/>
+                    <GradientStop Color="#CC119EDA" Offset="0.4"/>
+                    <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
