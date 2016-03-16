@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -17,12 +18,16 @@ namespace NergizQuiz.UI.Views
     /// <summary>
     /// Interaction logic for AnswersPage.xaml
     /// </summary>
-    public partial class MoreInfoPage : UserControl
+    public partial class MoreInfoPage : UserControl, IAnimatedUserControl
     {
         public MoreInfoPage()
         {
             InitializeComponent();
         }
-        
+
+        public Storyboard StartAnimation()
+        {
+            return null;
+        }
     }
 }

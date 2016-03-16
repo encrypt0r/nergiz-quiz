@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 namespace NergizQuiz.UI.Views
@@ -17,12 +17,17 @@ namespace NergizQuiz.UI.Views
     /// <summary>
     /// Interaction logic for Welcome.xaml
     /// </summary>
-    public partial class WelcomePage : UserControl
+    public partial class WelcomePage : UserControl, IAnimatedUserControl
     {
         public WelcomePage()
         {
             InitializeComponent();
         }
 
+        public Storyboard StartAnimation()
+        {
+            Storyboard sb = (Storyboard)FindResource("DramaticExit");
+            return sb;
+        }
     }
 }

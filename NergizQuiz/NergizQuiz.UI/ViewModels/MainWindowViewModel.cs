@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace NergizQuiz.UI.ViewModels
 {
@@ -30,8 +32,8 @@ namespace NergizQuiz.UI.ViewModels
         #endregion
 
         #region Public Properties
-        private object m_Page;
-        public object Page
+        private IAnimatedUserControl m_Page;
+        public IAnimatedUserControl Page
         {
             get { return m_Page; }
             set
@@ -224,9 +226,16 @@ namespace NergizQuiz.UI.ViewModels
         }
         public void ShowQuizPageExecute()
         {
-            Page = new QuizPage();
-            dTimer.Start();
+            Storyboard sb = Page.StartAnimation();
+            sb.Completed += (s, _) => {
+                Page = new QuizPage();
+                dTimer.Start();
+            };
+            sb.Begin();
+
         }
+
+
         public bool ShowQuizPageCanExecute()
         {
             if (UserName != null && UserName != string.Empty)
@@ -286,6 +295,9 @@ namespace NergizQuiz.UI.ViewModels
             if (userAnswer == Question.CorrectAnswer)
                 NumberOfCorrectAnswers++;
             TotalNumberOfAnswers++;
+
+            // Play Animation
+            Page.StartAnimation();
 
             // if all of the questions answered, go to finish page
             if (TotalNumberOfAnswers - 1 == TotalNumberOfQuestions)

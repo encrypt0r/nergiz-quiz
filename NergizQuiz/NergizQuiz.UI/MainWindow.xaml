@@ -10,6 +10,12 @@
         Title="Nergiz Quiz" Height="600" Width="800"
         GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="icon_small.png"
         >
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button>File</Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    
     <Grid x:Name="grid" >
         <Grid.DataContext>
             <ViewModels:MainWindowViewModel/>

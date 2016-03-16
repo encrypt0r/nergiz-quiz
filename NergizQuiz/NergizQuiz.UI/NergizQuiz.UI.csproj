@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Essential\IAnimatedUserControl.cs" />
     <Compile Include="Essential\VisibilityToBooleanConverter.cs" />
     <Compile Include="ViewModels\AboutWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
