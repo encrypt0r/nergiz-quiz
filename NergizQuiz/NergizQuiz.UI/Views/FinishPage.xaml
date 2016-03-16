@@ -6,6 +6,64 @@
              xmlns:local="clr-namespace:NergizQuiz.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="537" d:DesignWidth="794">
+    <UserControl.Resources>
+        <Storyboard x:Key="DramaticEntrance">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.625"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <PowerEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.625"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <PowerEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource DramaticEntrance}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -30,9 +88,36 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Awesome!" VerticalAlignment="Center" FontSize="64" Margin="257,46,257,47" FontWeight="Light" Height="86" Width="280" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, FallbackValue=Somebody\, your accuracy was, StringFormat=\{0\}\, your accuracy was}" FontSize="32" Margin="0" Grid.Row="1" VerticalAlignment="Bottom" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Foreground="{Binding ScoreColor, FallbackValue=Green}" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=80 %}" VerticalAlignment="Top" FontSize="72" Margin="0" Grid.Row="2" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Awesome!" VerticalAlignment="Center" FontSize="64" Margin="257,46,257,47" FontWeight="Light" Height="86" Width="280" Foreground="White" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding UserName, FallbackValue=Somebody\, your accuracy was, StringFormat=\{0\}\, your accuracy was}" FontSize="32" Margin="0" Grid.Row="1" VerticalAlignment="Bottom" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Foreground="{Binding ScoreColor, FallbackValue=Green}" TextWrapping="Wrap" Text="{Binding Percentage, FallbackValue=80 %}" VerticalAlignment="Top" FontSize="72" Margin="0" Grid.Row="2" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
         <StackPanel HorizontalAlignment="Center"  Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="179,34,179,33">
             <Button Content="Restart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}" Margin="10,0" />
