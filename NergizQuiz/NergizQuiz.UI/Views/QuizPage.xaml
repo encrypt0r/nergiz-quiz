@@ -9,12 +9,19 @@
     <UserControl.Resources>
         <Storyboard x:Key="DramaticEntrance">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <PowerEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
@@ -47,7 +54,7 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <TextBlock x:Name="textBlock"  Margin="30,0" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="textBlock"  Margin="30,0" TextWrapping="Wrap" Text="{Binding Question.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -73,7 +80,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="NEXT QUESTION" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F" IsDefault="True"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress, FallbackValue=0 of 5}" VerticalAlignment="Center" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,0,0,30" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Progress, FallbackValue=0 of 5}" VerticalAlignment="Bottom" FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>

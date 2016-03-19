@@ -336,7 +336,7 @@ namespace NergizQuiz.UI.ViewModels
             TotalNumberOfAnswers = 1;
             NumberOfCorrectAnswers = 0;
             TotalNumberOfQuestions = 5;
-            UserName = "Somebody";
+            UserName = "Person";
             DeciSecondsElapsed = 0;
 
             GetNextQuestion();

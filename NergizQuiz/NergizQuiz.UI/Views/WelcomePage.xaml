@@ -65,6 +65,8 @@
             <StringAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="textBlock">
                 <DiscreteStringKeyFrame KeyTime="0" Value=":-)"/>
                 <DiscreteStringKeyFrame KeyTime="0:0:0.4" Value=";-)"/>
+                <DiscreteStringKeyFrame KeyTime="0:0:0.6" Value=";-)"/>
+                <DiscreteStringKeyFrame KeyTime="0:0:0.8" Value=":-)"/>
                 <DiscreteStringKeyFrame KeyTime="0:0:1" Value=":-)"/>
             </StringAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="textBlock">
@@ -95,6 +97,16 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1.2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1.2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
@@ -159,7 +171,8 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50"  TextAlignment="Center"  TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
+            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
+                     TextAlignment="Center"  TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
         </Border>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowQuizPageCommand}" Height="50"/>
 

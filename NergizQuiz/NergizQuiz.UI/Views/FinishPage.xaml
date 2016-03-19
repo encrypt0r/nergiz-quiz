@@ -10,16 +10,16 @@
         <Storyboard x:Key="DramaticEntrance">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.625"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <PowerEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -27,8 +27,8 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.625"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <PowerEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -36,26 +36,26 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock2">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock2">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock2">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
