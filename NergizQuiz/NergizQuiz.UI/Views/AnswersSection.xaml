@@ -25,7 +25,7 @@
                 <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
                 <TextBlock Text="'s" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
             </StackPanel>
-            <ItemsControl ItemsSource="{Binding Answers}" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding CurrentSession.AnswerList}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
                         <Grid Margin="10,5,10,10" VerticalAlignment="Center">

@@ -30,6 +30,8 @@ namespace NergizQuiz.Logic
 
                 index++;
             }
+
+            AllAnswers[0].IsChosenByUser = true;
         }
         #endregion // Construction
 

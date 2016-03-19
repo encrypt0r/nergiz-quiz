@@ -69,10 +69,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Essential\IntegerToTimeConverter.cs" />
+    <Compile Include="Essential\PercentageToColorConverter.cs" />
+    <Compile Include="Essential\SessionFacade.cs" />
     <Compile Include="Essential\IAnimatedUserControl.cs" />
     <Compile Include="Essential\VisibilityToBooleanConverter.cs" />
     <Compile Include="ViewModels\AboutWindowViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>

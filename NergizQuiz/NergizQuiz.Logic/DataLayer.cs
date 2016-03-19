@@ -33,7 +33,7 @@ namespace NergizQuiz.Logic
             int randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
             question = listOfQuestions[randomNumber];
             listOfQuestions.RemoveAt(randomNumber);
-
+            
             return question;
         }
         static public List<CoolPerson> GetLeaderboard()
@@ -45,11 +45,11 @@ namespace NergizQuiz.Logic
                 var cp = new CoolPerson();
                 cp.Name = person.Element("Name").Value;
                 cp.Accuracy = float.Parse(person.Element("Accuracy").Value);
-                cp.DeciSecondsElapsed = int.Parse(person.Element("DeciSecondsElapsed").Value);
+                cp.TimeElapsed = int.Parse(person.Element("DeciSecondsElapsed").Value);
 
                 list.Add(cp);
             }
-            List<CoolPerson> sortedList = list.OrderByDescending(p => p.Accuracy).ThenBy(p => p.DeciSecondsElapsed).ToList();
+            List<CoolPerson> sortedList = list.OrderByDescending(p => p.Accuracy).ThenBy(p => p.TimeElapsed).ToList();
 
             for (int i = 1; i <= sortedList.Count; i++)
             {
@@ -76,7 +76,7 @@ namespace NergizQuiz.Logic
                     }
                     else if (cp.Accuracy == leaderboard[i].Accuracy)
                     {
-                        if (cp.DeciSecondsElapsed < leaderboard[i].DeciSecondsElapsed)
+                        if (cp.TimeElapsed < leaderboard[i].TimeElapsed)
                         {
                             leaderboard.Insert(i, cp);
                             break;
@@ -102,7 +102,7 @@ namespace NergizQuiz.Logic
                 XElement cpx = new XElement("Person");
                 XElement namex = new XElement("Name", cp.Name);
                 XElement accuracyx = new XElement("Accuracy", cp.Accuracy);
-                XElement timex = new XElement("DeciSecondsElapsed", cp.DeciSecondsElapsed);
+                XElement timex = new XElement("DeciSecondsElapsed", cp.TimeElapsed);
 
                 cpx.Add(namex);
                 cpx.Add(accuracyx);

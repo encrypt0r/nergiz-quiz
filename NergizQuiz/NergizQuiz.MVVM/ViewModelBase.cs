@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace NergizQuiz.MVVM
 {
-    public class ViewModelBase : INotifyPropertyChanged, IDisposable
+    public class ObservableObject : INotifyPropertyChanged, IDisposable
     {
         #region DisplayName
         /// <summary>
@@ -94,7 +94,7 @@ namespace NergizQuiz.MVVM
         /// <summary>
         /// Useful for ensuring that ViewModel objects are properly garbage collected.
         /// </summary>
-        ~ViewModelBase()
+        ~ObservableObject()
         {
             string msg = string.Format("{0} ({1}) ({2}) Finalized", this.GetType().Name, this.DisplayName, this.GetHashCode());
             System.Diagnostics.Debug.WriteLine(msg);

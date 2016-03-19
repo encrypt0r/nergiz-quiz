@@ -13,13 +13,13 @@ namespace NergizQuiz.Logic
         {
             get { return (Accuracy * 100) + " %"; }
         }
-        public int DeciSecondsElapsed { get; set; }
+        public int TimeElapsed { get; set; }
         public int Index { get; set; }
         public string Time
         {
             get
             {
-                return SharedMethods.GetTimeInHumanLanguage(DeciSecondsElapsed);
+                return SharedMethods.GetTimeInHumanLanguage(TimeElapsed);
             }
         }
     }

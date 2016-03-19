@@ -171,7 +171,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
+            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
                      TextAlignment="Center"  TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
         </Border>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowQuizPageCommand}" Height="50"/>

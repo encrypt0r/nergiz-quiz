@@ -11,7 +11,7 @@
         GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="icon_small.png"
         >
     <Controls:MetroWindow.DataContext>
-        <ViewModels:MainWindowViewModel/>
+        <ViewModels:MainWindowVM/>
     </Controls:MetroWindow.DataContext>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
