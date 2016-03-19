@@ -20,7 +20,7 @@
         </Style>
     </Window.Resources>
     <Window.DataContext>
-        <ViewModels:AboutWindowViewModel/>
+        <ViewModels:AboutWindowVM/>
     </Window.DataContext>
     <Grid>
 

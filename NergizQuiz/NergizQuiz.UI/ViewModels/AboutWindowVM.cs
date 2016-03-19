@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace NergizQuiz.UI.ViewModels
 {
-    class AboutWindowViewModel : ObservableObject
+    class AboutWindowVM : ObservableObject
     {
 
 

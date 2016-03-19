@@ -9,10 +9,16 @@ namespace NergizQuiz.Logic
 {
     public static class DataLayer
     {
-        #region Members
+        #region Fields
         private static Random randomGenerator;
-        private static List<XElement> listOfQuestions;
+        private static List<XElement> listOfQuestions;        
 
+        // comments
+        private static string[] level1 = { "Needs More Work", "Unsatsifactory" };
+        private static string[] level2 = { "Good", "Satisfactory" };
+        private static string[] level3 = { "Very Good!", "Well done!", "Good Job!" };
+        private static string[] level4 = { "Excellent", "Fantastic", "Superb" };
+        private static string[] level5 = { "Incredible!", "Marvelous", "Legendary" };
         #endregion // Members
         #region Construction
         static DataLayer()
@@ -92,6 +98,33 @@ namespace NergizQuiz.Logic
 
             WriteListToDataBase(leaderboard);
         }
+        static public string GetComment(float accuracy)
+        {
+            int level = HelperMethods.GetLevel(accuracy);
+
+            switch (level)
+            {
+                default:
+                    return level1[randomGenerator.Next(0, level1.Length)];
+                case 2:
+                    return level2[randomGenerator.Next(0, level2.Length )];
+                case 3:
+                    return level3[randomGenerator.Next(0, level3.Length)];
+                case 4:
+                    return level4[randomGenerator.Next(0, level4.Length)];
+                case 5:
+                    return level5[randomGenerator.Next(0, level5.Length)];
+            }
+        }
+        #endregion // Public Methods
+
+        #region Private Methods
+        private static void LoadQuestions()
+        {
+            listOfQuestions.Clear();
+            XElement data = XElement.Load("Data\\Questions.xml");
+            listOfQuestions = data.Elements().ToList();
+        }
         private static void WriteListToDataBase(List<CoolPerson> list)
         {
             XElement leaderboardx = new XElement("Leaderboard");
@@ -112,15 +145,6 @@ namespace NergizQuiz.Logic
             }
 
             leaderboardx.Save("Data\\Leaderboard.xml");
-        }
-        #endregion // Public Methods
-
-        #region Private Methods
-        private static void LoadQuestions()
-        {
-            listOfQuestions.Clear();
-            XElement data = XElement.Load("Data\\Questions.xml");
-            listOfQuestions = data.Elements().ToList();
         }
         #endregion // Private Methods
 

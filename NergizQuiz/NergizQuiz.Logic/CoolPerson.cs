@@ -19,7 +19,7 @@ namespace NergizQuiz.Logic
         {
             get
             {
-                return SharedMethods.GetTimeInHumanLanguage(TimeElapsed);
+                return HelperMethods.GetTimeInHumanLanguage(TimeElapsed);
             }
         }
     }

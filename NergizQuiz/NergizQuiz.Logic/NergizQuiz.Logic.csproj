@@ -45,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Session.cs" />
-    <Compile Include="SharedMethods.cs" />
+    <Compile Include="HelperMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Leaderboard.xml">

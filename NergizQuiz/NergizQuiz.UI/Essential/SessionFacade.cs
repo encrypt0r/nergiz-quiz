@@ -24,7 +24,7 @@ namespace NergizQuiz.UI
             FetchNextQuestion();
             NumberOfQuestionsToBeAsked = 25;
             CurrentQuestionNumber = 1;
-            Time = 0;            
+            Time = 0;
 
             dTimer = new DispatcherTimer();
             dTimer.Interval = new TimeSpan(0, 0, 1);
@@ -96,6 +96,8 @@ namespace NergizQuiz.UI
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
                     RaisePropertyChanged("Accuracy");
+                    RaisePropertyChanged("Level");
+                    RaisePropertyChanged("Comment");
                 }
             }
         }
@@ -134,6 +136,14 @@ namespace NergizQuiz.UI
                 else
                     return percent;
             }
+        }
+        public string Level
+        {
+            get { return HelperMethods.GetLevelString(Accuracy); }
+        }
+        public string Comment
+        {
+            get { return DataLayer.GetComment(Accuracy);}
         }
         #endregion
 

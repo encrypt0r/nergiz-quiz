@@ -65,6 +65,7 @@ namespace NergizQuiz.UI.ViewModels
 
         #region Commands
         private ICommand m_ShowQuizPageCommand;
+        private bool welcomePageAnimationIsPlaying = false;
         public ICommand ShowQuizPageCommand
         {
             get
@@ -80,17 +81,26 @@ namespace NergizQuiz.UI.ViewModels
         public void ShowQuizPageExecute()
         {
             Storyboard sb = Page.StartAnimation();
+            sb.Completed += SbShowQuizPage_Completed;
             sb.Completed += (s, _) =>
             {
-                Page = new QuizPage();
-                CurrentSession.StartTimer();
+                sb.Completed -= SbShowQuizPage_Completed;
+                welcomePageAnimationIsPlaying = false;
             };
+            welcomePageAnimationIsPlaying = true;
             sb.Begin();
 
         }
+
+        private void SbShowQuizPage_Completed(object sender, EventArgs e)
+        {
+            Page = new QuizPage();
+            CurrentSession.StartTimer();
+        }
+
         public bool ShowQuizPageCanExecute()
         {
-            if (CurrentSession.UserName != string.Empty)
+            if (CurrentSession.UserName != string.Empty && !welcomePageAnimationIsPlaying)
                 return true;
             else
                 return false;

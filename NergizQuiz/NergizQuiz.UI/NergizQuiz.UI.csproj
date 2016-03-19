@@ -74,7 +74,7 @@
     <Compile Include="Essential\SessionFacade.cs" />
     <Compile Include="Essential\IAnimatedUserControl.cs" />
     <Compile Include="Essential\VisibilityToBooleanConverter.cs" />
-    <Compile Include="ViewModels\AboutWindowViewModel.cs" />
+    <Compile Include="ViewModels\AboutWindowVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
