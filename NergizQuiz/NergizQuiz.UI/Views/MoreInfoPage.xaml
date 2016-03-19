@@ -23,22 +23,24 @@
             <RowDefinition Height="Auto" MinHeight="69"/>
         </Grid.RowDefinitions>
 
-        <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,10" TextAlignment="Center"/>
+        <Rectangle Grid.Row="0" Fill="{DynamicResource AccentColorBrush}"/>
+
+        <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,0,0,10" TextAlignment="Center" Foreground="White"/>
         <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" Grid.Row="2" FontSize="16" Padding="25,15" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="10,0">
             <TabItem Header="Stats">
                 <Grid>
-                    <views:StatsSection Background="#FFE5E5E5" Foreground="#FF424242" />
+                    <views:StatsSection Foreground="#FF424242"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Answers">
                 <Grid>
-                    <views:AnswersSection Background="#FFE5E5E5" Foreground="#FF424242" />
+                    <views:AnswersSection Foreground="#FF424242"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Leaderboard">
                 <Grid>
-                    <views:LeaderboardSection Background="#FFE5E5E5" Foreground="#FF424242" />
+                    <views:LeaderboardSection Foreground="#FF424242"/>
                 </Grid>
             </TabItem>
         </TabControl>
