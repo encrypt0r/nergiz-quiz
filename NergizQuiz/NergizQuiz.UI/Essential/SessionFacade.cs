@@ -126,6 +126,19 @@ namespace NergizQuiz.UI
                 }
             }
         }
+        public int Rank
+        {
+            get { return session.Rank; }
+            set
+            {
+                if (value != session.Rank)
+                {
+                    session.Rank = value;
+                    RaisePropertyChanged("Rank");
+                }
+            }
+        }
+
         public float Accuracy
         {
             get

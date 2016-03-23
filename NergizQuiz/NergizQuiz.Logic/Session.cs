@@ -18,6 +18,7 @@ namespace NergizQuiz.Logic
         public int NumberOfQuestionsToBeAsked { get; set; }
         public int NumberOfAnswersGiven { get; set; }
         public int NumberOfCorrectAnswers { get; set; }
+        public int Rank { get; set; }
         public int Time { get; set; }
     }
 }

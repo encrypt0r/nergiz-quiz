@@ -215,6 +215,10 @@ namespace NergizQuiz.UI.ViewModels
         #region Event Handlers
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {
+            string result = UnicodeEncoding.UTF8.GetString(e.Result);
+            string[] parts = result.Split(';');
+            int rank = int.Parse(parts[0]);
+            CurrentSession.Rank = rank;
             Page = new FinishPage();
         }
         #endregion

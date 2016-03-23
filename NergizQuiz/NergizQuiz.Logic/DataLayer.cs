@@ -17,7 +17,7 @@ namespace NergizQuiz.Logic
         public const string API_INSERT = "insert";
         public const string API_PATH = SITE_URL + "api.php";
         public const string SITE_URL = "http://localhost/nergiz-quiz-web/";
-        public const string LEADERBOARD_URL = SITE_URL + "leaderboard.php";
+        public const string LEADERBOARD_URL = SITE_URL;
 
         // comments
         private static string[] level1 = { "Needs More Work", "Unsatsifactory" };

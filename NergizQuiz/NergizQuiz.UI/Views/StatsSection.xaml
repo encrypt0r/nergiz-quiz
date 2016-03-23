@@ -22,16 +22,17 @@
             <TextBlock Text="CORRECT ANSWERS" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="{Binding CurrentSession.NumberOfCorrectAnswers}" FontSize="21.333" FontWeight="Light"/>
-                <TextBlock Text="{Binding CurrentSession.NumberOfQuestionsToBeAsked, StringFormat=' of {0}'}" FontSize="21.333" FontWeight="Light"/>
+                <TextBlock Text="{Binding CurrentSession.NumberOfQuestionsToBeAsked, StringFormat=' of {0} '}" FontSize="21.333" FontWeight="Light"/>
+                <TextBlock Text="{Binding CurrentSession.Accuracy,StringFormat='(\{0:0.## %\})'}" FontSize="21.333" FontWeight="Light"/>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Margin="0,0,0,10" >
-            <TextBlock Text="ACCURACY" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.Accuracy,StringFormat='\{0:0.## %\}'}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="LEVEL" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
             <TextBlock Text="{Binding CurrentSession.Level}" FontSize="21.333" FontWeight="Light"/>
+        </StackPanel>
+        <StackPanel Margin="0,0,0,10" >
+            <TextBlock Text="RANK" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
+            <TextBlock Text="{Binding CurrentSession.Rank}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
     </StackPanel>
 
