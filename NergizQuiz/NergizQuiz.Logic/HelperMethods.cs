@@ -17,12 +17,12 @@ namespace NergizQuiz.Logic
             if (minutes > 0)
             {
                 
-                sb.Append(minutes.ToString("0 Minutes and "));
-                sb.Append(remSeconds.ToString("0 Seconds"));
+                sb.Append(minutes.ToString("0 Minute" + MakeItPlural(minutes) + " and "));
+                sb.Append(remSeconds.ToString("0 Second" + MakeItPlural(remSeconds)));
             }
            else
             {
-                sb.Append(remSeconds.ToString("0 Seconds"));
+                sb.Append(remSeconds.ToString("0 Second" + MakeItPlural(remSeconds)));
             }
 
             return sb.ToString();
@@ -47,16 +47,23 @@ namespace NergizQuiz.Logic
             switch (level)
             {
                 default:
-                    return "Level 1: Elementary";
+                    return "Elementary (1)";
                 case 2:
-                    return "Level 2: Lower-Intermediate";
+                    return "Lower-Intermediate (2)";
                 case 3:
-                    return "Level 3: Intermediate";
+                    return "Intermediate (3)";
                 case 4:
-                    return "Level 4: Upper-Intermediate";
+                    return "Upper-Intermediate (4)";
                 case 5:
-                    return "Level 5: Advanced";
+                    return "Advanced (5)";
             }
+        }
+        public static string MakeItPlural(int num)
+        {
+            if (num == 1)
+                return "";
+            else
+                return "s";
         }
     }
 }

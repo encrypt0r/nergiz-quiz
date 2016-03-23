@@ -26,24 +26,24 @@
         <Rectangle Grid.Row="0" Fill="{DynamicResource AccentColorBrush}"/>
 
         <TextBlock TextWrapping="Wrap" Text="More Info" FontSize="48" FontWeight="Light" Margin="0,0,0,10" TextAlignment="Center" Foreground="White"/>
-        <Button x:Name="button" Command="{Binding RestartCommand}" Content="Restart" Grid.Row="2" FontSize="16" Padding="25,15" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="10,0">
             <TabItem Header="Stats">
                 <Grid>
-                    <views:StatsSection Foreground="#FF424242"/>
+                    <views:StatsSection/>
                 </Grid>
             </TabItem>
             <TabItem Header="Answers">
                 <Grid>
-                    <views:AnswersSection Foreground="#FF424242"/>
+                    <views:AnswersSection/>
                 </Grid>
             </TabItem>
             <TabItem Header="Leaderboard">
                 <Grid>
-                    <views:LeaderboardSection Foreground="#FF424242"/>
+                    <views:LeaderboardSection/>
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button Grid.Row="2" Content="Resart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}"/>
     </Grid>
 
 </UserControl>

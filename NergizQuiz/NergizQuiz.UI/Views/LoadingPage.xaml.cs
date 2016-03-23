@@ -8,22 +8,26 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NergizQuiz.Logic;
+
 namespace NergizQuiz.UI.Views
 {
     /// <summary>
-    /// Interaction logic for LeaderboardPage.xaml
+    /// Interaction logic for LoadingPage.xaml
     /// </summary>
-    public partial class LeaderboardSection : UserControl
+    public partial class LoadingPage : UserControl, IAnimatedUserControl
     {
-        public LeaderboardSection()
+        public LoadingPage()
         {
             InitializeComponent();
-            browser.Source = new Uri(DataLayer.LEADERBOARD_URL);
         }
 
+        public Storyboard StartAnimation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

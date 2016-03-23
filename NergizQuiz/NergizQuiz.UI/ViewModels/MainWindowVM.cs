@@ -151,15 +151,16 @@ namespace NergizQuiz.UI.ViewModels
             if (CurrentSession.CurrentQuestionNumber == CurrentSession.NumberOfQuestionsToBeAsked)
             {
                 CurrentSession.NextQuestion();
-                Page = new FinishPage();
                 CurrentSession.StopTimer();
 
+                Page = new LoadingPage();
                 CoolPerson thisCp = new CoolPerson();
                 thisCp.Name = CurrentSession.UserName;
                 thisCp.TimeElapsed = CurrentSession.Time;
                 thisCp.Accuracy = (float)CurrentSession.NumberOfCorrectAnswers / CurrentSession.NumberOfQuestionsToBeAsked;
-                DataLayer.AddToLeaderBoard(thisCp);
-                Leaderboard = DataLayer.GetLeaderboard();
+
+                var handler = new System.Net.UploadValuesCompletedEventHandler(UploadComplete);
+                DataLayer.UploadPersonIntoLeaderboard(thisCp, handler); 
             }
             else
             {
@@ -211,5 +212,11 @@ namespace NergizQuiz.UI.ViewModels
 
         #endregion
 
+        #region Event Handlers
+        private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
+        {
+            Page = new FinishPage();
+        }
+        #endregion
     }
 }

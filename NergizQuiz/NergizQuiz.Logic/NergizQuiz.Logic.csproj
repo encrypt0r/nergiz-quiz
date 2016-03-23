@@ -48,9 +48,6 @@
     <Compile Include="HelperMethods.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Leaderboard.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\Questions.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

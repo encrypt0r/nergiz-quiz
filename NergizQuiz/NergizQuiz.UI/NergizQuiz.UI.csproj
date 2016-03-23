@@ -85,6 +85,9 @@
     <Compile Include="Views\LeaderboardSection.xaml.cs">
       <DependentUpon>LeaderboardSection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MoreInfoPage.xaml.cs">
       <DependentUpon>MoreInfoPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LeaderboardSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Net;
 
 namespace NergizQuiz.Logic
 {
@@ -11,7 +12,12 @@ namespace NergizQuiz.Logic
     {
         #region Fields
         private static Random randomGenerator;
-        private static List<XElement> listOfQuestions;        
+        private static List<XElement> listOfQuestions;
+        public const string API_PASSWORD =  "Pass";
+        public const string API_INSERT = "insert";
+        public const string API_PATH = SITE_URL + "api.php";
+        public const string SITE_URL = "http://localhost/nergiz-quiz-web/";
+        public const string LEADERBOARD_URL = SITE_URL + "leaderboard.php";
 
         // comments
         private static string[] level1 = { "Needs More Work", "Unsatsifactory" };
@@ -64,40 +70,6 @@ namespace NergizQuiz.Logic
 
             return sortedList;
         }
-        static public void AddToLeaderBoard(CoolPerson cp)
-        {
-            // check if he is really a cool person
-            var leaderboard = GetLeaderboard();
-
-            if (leaderboard.Count < 10)
-                leaderboard.Add(cp);
-            else
-            {
-                for (int i = 0; i < leaderboard.Count; i++)
-                {
-                    if (cp.Accuracy > leaderboard[i].Accuracy)
-                    {
-                        leaderboard.Insert(i, cp);
-                        break;
-                    }
-                    else if (cp.Accuracy == leaderboard[i].Accuracy)
-                    {
-                        if (cp.TimeElapsed < leaderboard[i].TimeElapsed)
-                        {
-                            leaderboard.Insert(i, cp);
-                            break;
-                        }
-                        else
-                        {
-                            leaderboard.Insert(i + 1, cp);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            WriteListToDataBase(leaderboard);
-        }
         static public string GetComment(float accuracy)
         {
             int level = HelperMethods.GetLevel(accuracy);
@@ -115,6 +87,22 @@ namespace NergizQuiz.Logic
                 case 5:
                     return level5[randomGenerator.Next(0, level5.Length)];
             }
+        }
+        static public void UploadPersonIntoLeaderboard(CoolPerson cp, UploadValuesCompletedEventHandler callback)
+        {
+            var nvc = new System.Collections.Specialized.NameValueCollection();
+            nvc.Add("name", cp.Name);
+            nvc.Add("accuracy", cp.Accuracy.ToString());
+            nvc.Add("time", cp.TimeElapsed.ToString());
+            nvc.Add("operation", API_INSERT);
+            nvc.Add("password", API_PASSWORD);
+
+            var wb = new WebClient();
+            wb.Headers.Add("user-agent", "Nergiz Quiz Desktop Client");
+            wb.Headers.Add("content-type", "application/x-www-form-urlencoded");
+
+            wb.UploadValuesAsync(new Uri(API_PATH), "POST", nvc);
+            wb.UploadValuesCompleted += callback;
         }
         #endregion // Public Methods
 
