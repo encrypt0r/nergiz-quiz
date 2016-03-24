@@ -48,28 +48,6 @@ namespace NergizQuiz.Logic
             
             return question;
         }
-        static public List<CoolPerson> GetLeaderboard()
-        {
-            var list = new List<CoolPerson>();
-            var leaderBoard = XElement.Load("Data\\Leaderboard.xml");
-            foreach (var person in leaderBoard.Elements())
-            {
-                var cp = new CoolPerson();
-                cp.Name = person.Element("Name").Value;
-                cp.Accuracy = float.Parse(person.Element("Accuracy").Value);
-                cp.TimeElapsed = int.Parse(person.Element("DeciSecondsElapsed").Value);
-
-                list.Add(cp);
-            }
-            List<CoolPerson> sortedList = list.OrderByDescending(p => p.Accuracy).ThenBy(p => p.TimeElapsed).ToList();
-
-            for (int i = 1; i <= sortedList.Count; i++)
-            {
-                sortedList[i - 1].Index = i;
-            }
-
-            return sortedList;
-        }
         static public string GetComment(float accuracy)
         {
             int level = HelperMethods.GetLevel(accuracy);
@@ -88,14 +66,16 @@ namespace NergizQuiz.Logic
                     return level5[randomGenerator.Next(0, level5.Length)];
             }
         }
-        static public void UploadPersonIntoLeaderboard(CoolPerson cp, UploadValuesCompletedEventHandler callback)
+        static public void UploadPersonIntoLeaderboard(Person cp, UploadValuesCompletedEventHandler callback)
         {
             var nvc = new System.Collections.Specialized.NameValueCollection();
             nvc.Add("name", cp.Name);
             nvc.Add("accuracy", cp.Accuracy.ToString());
-            nvc.Add("time", cp.TimeElapsed.ToString());
+            nvc.Add("time", cp.Time.ToString());
             nvc.Add("operation", API_INSERT);
             nvc.Add("password", API_PASSWORD);
+            nvc.Add("gender", cp.IsMale.ToString());
+            nvc.Add("age", cp.Age.ToString());
 
             var wb = new WebClient();
             wb.Headers.Add("user-agent", "Nergiz Quiz Desktop Client");
@@ -103,6 +83,27 @@ namespace NergizQuiz.Logic
 
             wb.UploadValuesAsync(new Uri(API_PATH), "POST", nvc);
             wb.UploadValuesCompleted += callback;
+        }
+        static public ObservableCollection<Person> ParseLeaderboard(string data)
+        {
+            var leaderboard = new ObservableCollection<Person>();
+            char[] seperators = { '|' };
+            string[] dataParts = data.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string part in dataParts)
+            {
+                string[] properties = part.Split(',');
+                var person = new Person();
+
+                person.Rank = int.Parse(properties[0]);
+                person.Name = properties[1];
+                person.Accuracy = float.Parse(properties[2]);
+                person.Time = int.Parse(properties[3]);
+
+                leaderboard.Add(person);
+            }
+
+            return leaderboard;
         }
         #endregion // Public Methods
 
@@ -113,17 +114,17 @@ namespace NergizQuiz.Logic
             XElement data = XElement.Load("Data\\Questions.xml");
             listOfQuestions = data.Elements().ToList();
         }
-        private static void WriteListToDataBase(List<CoolPerson> list)
+        private static void WriteListToDataBase(List<Person> list)
         {
             XElement leaderboardx = new XElement("Leaderboard");
 
             for (int i = 0, m = list.Count; i < m && i < 10; i++)
             {
-                CoolPerson cp = list[i];
+                Person cp = list[i];
                 XElement cpx = new XElement("Person");
                 XElement namex = new XElement("Name", cp.Name);
                 XElement accuracyx = new XElement("Accuracy", cp.Accuracy);
-                XElement timex = new XElement("DeciSecondsElapsed", cp.TimeElapsed);
+                XElement timex = new XElement("DeciSecondsElapsed", cp.Time);
 
                 cpx.Add(namex);
                 cpx.Add(accuracyx);

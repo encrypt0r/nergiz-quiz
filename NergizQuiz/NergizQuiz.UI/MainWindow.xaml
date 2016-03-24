@@ -8,7 +8,7 @@
         xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" x:Class="NergizQuiz.UI.MainWindow"
         mc:Ignorable="d"
         Title="Nergiz Quiz" Height="600" Width="800"
-        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="icon_small.png"
+        GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="icon_small.png" MinWidth="500" MinHeight="500"
         >
     <Controls:MetroWindow.DataContext>
         <ViewModels:MainWindowVM/>

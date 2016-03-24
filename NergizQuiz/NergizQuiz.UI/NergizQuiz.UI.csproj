@@ -71,6 +71,8 @@
     </ApplicationDefinition>
     <Compile Include="Essential\IntegerToTimeConverter.cs" />
     <Compile Include="Essential\PercentageToColorConverter.cs" />
+    <Compile Include="Essential\PersonFacade.cs" />
+    <Compile Include="Essential\RankToStringConverter.cs" />
     <Compile Include="Essential\SessionFacade.cs" />
     <Compile Include="Essential\IAnimatedUserControl.cs" />
     <Compile Include="Essential\VisibilityToBooleanConverter.cs" />
@@ -81,6 +83,9 @@
     </Compile>
     <Compile Include="Views\AnswersSection.xaml.cs">
       <DependentUpon>AnswersSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormPage.xaml.cs">
+      <DependentUpon>FormPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LeaderboardSection.xaml.cs">
       <DependentUpon>LeaderboardSection.xaml</DependentUpon>
@@ -120,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AnswersSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FormPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

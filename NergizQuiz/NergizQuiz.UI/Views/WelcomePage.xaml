@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NergizQuiz.UI.Views"
-             xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="NergizQuiz.UI.Views.WelcomePage"
+             xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels"
+             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
+             x:Class="NergizQuiz.UI.Views.WelcomePage"
              mc:Ignorable="d" 
              d:DesignHeight="537" d:DesignWidth="794">
     <UserControl.Resources>
@@ -117,12 +119,12 @@
     </UserControl.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Rectangle>
-            <Rectangle.Fill>
+        <Border>
+            <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
                     <LinearGradientBrush.RelativeTransform>
                         <TransformGroup>
@@ -135,34 +137,37 @@
                     <GradientStop Color="#CC119EDA" Offset="0.4"/>
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" FontSize="64" FontWeight="Light" Foreground="White" Text="Welc" VerticalAlignment="Center"/>
-            <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Width="64" Height="64" Margin="-5,0" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" FontSize="64" FontWeight="Light" Foreground="White" Text="me :)" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-        </StackPanel>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please, write your name below:" VerticalAlignment="Bottom" FontSize="21.333" FontWeight="Light" Foreground="White" Margin="0,0,0,50" />
+            </Border.Background>
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" FontSize="64" FontWeight="Light" Foreground="White" Text="Welc" VerticalAlignment="Center"/>
+                    <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Width="64" Height="64" Margin="-5,0" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock x:Name="textBlock" TextWrapping="Wrap" FontSize="64" FontWeight="Light" Foreground="White" Text="me :)" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please, write your name below:" VerticalAlignment="Bottom" FontSize="21.333" FontWeight="Light" Foreground="White" Margin="0,0,0,38" />
 
-        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="3" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5">
+            </Grid>
+        </Border>
+
+        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="2" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5" Margin="0">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -171,10 +176,10 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
+            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
                      TextAlignment="Center"  TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
         </Border>
-        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowQuizPageCommand}" Height="50"/>
+        <Button x:Name="btnStart" Content="Next" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Top" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowFormPageCommand}" Height="50"/>
 
     </Grid>
 </UserControl>

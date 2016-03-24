@@ -20,11 +20,10 @@ namespace NergizQuiz.UI
         public SessionFacade()
         {
             AnswerList = new ObservableCollection<Question>();
-            UserName = "Person";
+            Person = new PersonFacade();
             FetchNextQuestion();
             NumberOfQuestionsToBeAsked = 25;
             CurrentQuestionNumber = 1;
-            Time = 0;
 
             dTimer = new DispatcherTimer();
             dTimer.Interval = new TimeSpan(0, 0, 1);
@@ -38,18 +37,21 @@ namespace NergizQuiz.UI
         #endregion
 
         #region Public Properties
-        public string UserName
+
+        private PersonFacade m_Person;
+        public PersonFacade Person
         {
-            get { return session.UserName; }
+            get { return m_Person; }
             set
             {
-                if (value != session.UserName)
+                if (value != m_Person)
                 {
-                    session.UserName = value;
-                    RaisePropertyChanged("UserName");
+                    m_Person = value;
+                    RaisePropertyChanged("Person");
                 }
             }
         }
+
         public Question CurrentQuestion
         {
             get { return session.CurrentQuestion; }
@@ -95,9 +97,7 @@ namespace NergizQuiz.UI
                 {
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
-                    RaisePropertyChanged("Accuracy");
-                    RaisePropertyChanged("Level");
-                    RaisePropertyChanged("Comment");
+                    Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestionsToBeAsked;
                 }
             }
         }
@@ -110,54 +110,10 @@ namespace NergizQuiz.UI
                 {
                     session.NumberOfCorrectAnswers = value;
                     RaisePropertyChanged("NumberOfCorrectAnswers");
-                    RaisePropertyChanged("Accuracy");
-                }
-            }
-        }
-        public int Time
-        {
-            get { return session.Time; }
-            set
-            {
-                if (value != session.Time)
-                {
-                    session.Time = value;
-                    RaisePropertyChanged("Time");
-                }
-            }
-        }
-        public int Rank
-        {
-            get { return session.Rank; }
-            set
-            {
-                if (value != session.Rank)
-                {
-                    session.Rank = value;
-                    RaisePropertyChanged("Rank");
                 }
             }
         }
 
-        public float Accuracy
-        {
-            get
-            {
-                float percent = NumberOfCorrectAnswers / (float)(NumberOfQuestionsToBeAsked);
-                if (float.IsNaN(percent))
-                    return 1f;
-                else
-                    return percent;
-            }
-        }
-        public string Level
-        {
-            get { return HelperMethods.GetLevelString(Accuracy); }
-        }
-        public string Comment
-        {
-            get { return DataLayer.GetComment(Accuracy);}
-        }
         #endregion
 
         #region Public Methods
@@ -196,7 +152,7 @@ namespace NergizQuiz.UI
         }
         private void dTimer_Tick(object sender, EventArgs e)
         {
-            Time += 1;
+            Person.Time += 1;
         }
         #endregion
     }

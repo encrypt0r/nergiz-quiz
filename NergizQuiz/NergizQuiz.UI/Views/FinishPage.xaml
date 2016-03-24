@@ -123,7 +123,7 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Comment, FallbackValue=Awesome!}" FontSize="64" Margin="0" FontWeight="Light" Foreground="White" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Comment, FallbackValue=Awesome!}" FontSize="64" Margin="0" FontWeight="Light" Foreground="White" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -133,8 +133,8 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock Name="textBlock2" HorizontalAlignment="Center" Foreground="{Binding CurrentSession.Accuracy, Converter={StaticResource PercentageToColorConverter}, FallbackValue=Green}" 
-                   TextWrapping="Wrap" Text="{Binding CurrentSession.Accuracy, StringFormat=\{0:0.## %\}, FallbackValue=80 %}" VerticalAlignment="Bottom" FontSize="72"
+        <TextBlock Name="textBlock2" HorizontalAlignment="Center" Foreground="{Binding CurrentSession.Person.Accuracy, Converter={StaticResource PercentageToColorConverter}, FallbackValue=Green}" 
+                   TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Accuracy, StringFormat=\{0:0.## %\}, FallbackValue=80 %}" VerticalAlignment="Bottom" FontSize="72"
                    Margin="0" Grid.Row="1" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -158,7 +158,7 @@
             </Button.RenderTransform>
         </Button>
 
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentSession.UserName, StringFormat= '\{0\}\, your estimated level is',FallbackValue=Explanation}" FontSize="21.333" Margin="0" Grid.Row="2" VerticalAlignment="Center" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, StringFormat= '\{0\}\, your estimated level is',FallbackValue=Explanation}" FontSize="21.333" Margin="0" Grid.Row="2" VerticalAlignment="Center" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -168,7 +168,7 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentSession.Level, FallbackValue=Level1: Elementary}" FontSize="40" Margin="0" Grid.Row="3" VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" FontWeight="Light">
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Level, FallbackValue=Level1: Elementary}" FontSize="40" Margin="0" Grid.Row="3" VerticalAlignment="Top" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" FontWeight="Light">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

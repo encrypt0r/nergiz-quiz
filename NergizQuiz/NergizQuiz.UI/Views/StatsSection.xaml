@@ -8,31 +8,32 @@
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
         <local:IntegerToTimeConverter x:Key="IntegerToTimeConverter"/>
+        <local:RankToStringConverter x:Key="RankToStringConverter"/>
     </UserControl.Resources>
     <StackPanel Margin="15,10">
         <StackPanel Margin="0,0,0,10">
             <TextBlock Text="NAME" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.UserName}" FontSize="21.333" FontWeight="Light"/>
+            <TextBlock Text="{Binding CurrentSession.Person.Name}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="TIME" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.Time, Converter={StaticResource IntegerToTimeConverter}}" FontSize="21.333" FontWeight="Light"/>
+            <TextBlock Text="{Binding CurrentSession.Person.Time, Converter={StaticResource IntegerToTimeConverter}}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="CORRECT ANSWERS" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="{Binding CurrentSession.NumberOfCorrectAnswers}" FontSize="21.333" FontWeight="Light"/>
                 <TextBlock Text="{Binding CurrentSession.NumberOfQuestionsToBeAsked, StringFormat=' of {0} '}" FontSize="21.333" FontWeight="Light"/>
-                <TextBlock Text="{Binding CurrentSession.Accuracy,StringFormat='(\{0:0.## %\})'}" FontSize="21.333" FontWeight="Light"/>
+                <TextBlock Text="{Binding CurrentSession.Person.Accuracy,StringFormat='(\{0:0.## %\})'}" FontSize="21.333" FontWeight="Light"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="LEVEL" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.Level}" FontSize="21.333" FontWeight="Light"/>
+            <TextBlock Text="{Binding CurrentSession.Person.Level}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="RANK" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.Rank}" FontSize="21.333" FontWeight="Light"/>
+            <TextBlock Text="{Binding CurrentSession.Person.Rank, Converter={StaticResource RankToStringConverter}}" FontSize="21.333" FontWeight="Light"/>
         </StackPanel>
     </StackPanel>
 

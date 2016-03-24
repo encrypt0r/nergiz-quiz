@@ -7,6 +7,8 @@ using NergizQuiz.MVVM;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using NergizQuiz.UI.Views;
+using System.Collections.ObjectModel;
+
 namespace NergizQuiz.UI.ViewModels
 {
     class MainWindowVM : ObservableObject
@@ -48,8 +50,8 @@ namespace NergizQuiz.UI.ViewModels
             }
         }
 
-        private List<CoolPerson> m_Leaderboard;
-        public List<CoolPerson> Leaderboard
+        private ObservableCollection<Person> m_Leaderboard;
+        public ObservableCollection<Person> Leaderboard
         {
             get { return m_Leaderboard; }
             set
@@ -64,43 +66,40 @@ namespace NergizQuiz.UI.ViewModels
         #endregion
 
         #region Commands
-        private ICommand m_ShowQuizPageCommand;
+        private ICommand m_ShowFormPageCommand;
         private bool welcomePageAnimationIsPlaying = false;
-        public ICommand ShowQuizPageCommand
+        public ICommand ShowFormPageCommand
         {
             get
             {
-                if (m_ShowQuizPageCommand == null)
-                    m_ShowQuizPageCommand =
-                        new RelayCommand(ShowQuizPageExecute, ShowQuizPageCanExecute);
+                if (m_ShowFormPageCommand == null)
+                    m_ShowFormPageCommand =
+                        new RelayCommand(ShowFormPageExecute, ShowFormPageCanExecute);
 
-                return m_ShowQuizPageCommand;
+                return m_ShowFormPageCommand;
             }
 
         }
-        public void ShowQuizPageExecute()
+        public void ShowFormPageExecute()
         {
             Storyboard sb = Page.StartAnimation();
-            sb.Completed += SbShowQuizPage_Completed;
+            sb.Completed += SbShowformPage_Animation_Complete;
             sb.Completed += (s, _) =>
             {
-                sb.Completed -= SbShowQuizPage_Completed;
+                sb.Completed -= SbShowformPage_Animation_Complete;
                 welcomePageAnimationIsPlaying = false;
             };
             welcomePageAnimationIsPlaying = true;
             sb.Begin();
-
         }
-
-        private void SbShowQuizPage_Completed(object sender, EventArgs e)
+        private void SbShowformPage_Animation_Complete(object sender, EventArgs e)
         {
-            Page = new QuizPage();
+            Page = new FormPage();
             CurrentSession.StartTimer();
         }
-
-        public bool ShowQuizPageCanExecute()
+        public bool ShowFormPageCanExecute()
         {
-            if (CurrentSession.UserName != string.Empty && !welcomePageAnimationIsPlaying)
+            if (CurrentSession.Person.Name != string.Empty && !welcomePageAnimationIsPlaying)
                 return true;
             else
                 return false;
@@ -125,10 +124,28 @@ namespace NergizQuiz.UI.ViewModels
         }
         public bool MoreInfoCanExecute()
         {
-            if (CurrentSession.UserName != string.Empty)
+            if (CurrentSession.Person.Name != string.Empty)
                 return true;
             else
                 return false;
+        }
+
+        private ICommand m_ShowQuizPageCommand;
+        public ICommand ShowQuizPageCommand
+        {
+            get
+            {
+                if (m_ShowQuizPageCommand == null)
+                    m_ShowQuizPageCommand =
+                        new RelayCommand(ShowQuizPageExecute);
+
+                return m_ShowQuizPageCommand;
+            }
+
+        }
+        public void ShowQuizPageExecute()
+        {
+            Page = new QuizPage();
         }
 
         private ICommand m_NextQuestionCommand;
@@ -154,13 +171,8 @@ namespace NergizQuiz.UI.ViewModels
                 CurrentSession.StopTimer();
 
                 Page = new LoadingPage();
-                CoolPerson thisCp = new CoolPerson();
-                thisCp.Name = CurrentSession.UserName;
-                thisCp.TimeElapsed = CurrentSession.Time;
-                thisCp.Accuracy = (float)CurrentSession.NumberOfCorrectAnswers / CurrentSession.NumberOfQuestionsToBeAsked;
-
                 var handler = new System.Net.UploadValuesCompletedEventHandler(UploadComplete);
-                DataLayer.UploadPersonIntoLeaderboard(thisCp, handler); 
+                DataLayer.UploadPersonIntoLeaderboard(CurrentSession.Person.GetPerson(), handler); 
             }
             else
             {
@@ -216,9 +228,11 @@ namespace NergizQuiz.UI.ViewModels
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {
             string result = UnicodeEncoding.UTF8.GetString(e.Result);
-            string[] parts = result.Split(';');
+            string[] parts = result.Split('#');
             int rank = int.Parse(parts[0]);
-            CurrentSession.Rank = rank;
+            CurrentSession.Person.Rank = rank;
+            string leaderboard = parts[1];
+            Leaderboard = DataLayer.ParseLeaderboard(leaderboard);
             Page = new FinishPage();
         }
         #endregion

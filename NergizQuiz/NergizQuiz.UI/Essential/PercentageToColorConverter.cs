@@ -14,9 +14,12 @@ namespace NergizQuiz.UI
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             float accuracy = (float)value;
-
-            if (Math.Round(accuracy * 100) >= 50)
+            if (Math.Round(accuracy * 100) == 100)
+                return new SolidColorBrush(Colors.Blue);
+            if (Math.Round(accuracy * 100) >= 75)
                 return new SolidColorBrush(Colors.Green);
+            if (Math.Round(accuracy * 100) >= 50)
+                return new SolidColorBrush(Colors.GreenYellow);
             else if (Math.Round(accuracy * 100) == 0)
                 return new SolidColorBrush(Colors.Red);
             else
