@@ -9,12 +9,12 @@
              d:DesignHeight="537" d:DesignWidth="794">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition/>
             <RowDefinition Height="3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" >
-            <Border.Background >
+            <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
                     <LinearGradientBrush.RelativeTransform>
                         <TransformGroup>
@@ -28,7 +28,7 @@
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, StringFormat='Hi {0}, Can we ask you a couple of questions?'}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="30,0" TextAlignment="Center">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, StringFormat='Hi {0}!', FallbackValue=Hi!}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="40,0">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -39,10 +39,13 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Border>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="207,0" Grid.RowSpan="2" >
-            <StackPanel Margin="40,40,40,25" HorizontalAlignment="Center">
-                <TextBlock Text="WHAT'S YOUR GENDER?" FontSize="26.667" Margin="0,0,0,10" HorizontalAlignment="Center" Foreground="#FF515A5F"/>
-                <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Center" >
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="0" >
+
+            <TextBlock Text="Can we ask you a couple of questions?" FontSize="37.333" Margin="40,10,0,20" Foreground="Black" FontWeight="Light"/>
+
+            <StackPanel Margin="40,10">
+                <TextBlock Text="1. What's your gender?" FontSize="26.667" Margin="0,0,0,10" Foreground="Black" FontWeight="Light"/>
+                <StackPanel Orientation="Horizontal" Margin="28,0,0,0" >
                     <TextBlock Text="I'm " FontSize="18.667" Margin="0,0,15,0"/>
                     <RadioButton GroupName="gender" IsChecked="{Binding CurrentSession.Person.IsMale}" Content="Male" Margin="0,0,20,8" FontSize="18.667" VerticalAlignment="Bottom" />
                     <RadioButton GroupName="gender" Content="Female" FontSize="18.667" VerticalAlignment="Bottom" Margin="0,0,0,8"/>
@@ -50,8 +53,8 @@
 
             </StackPanel>
             <StackPanel Margin="40,0,40,40">
-                <TextBlock Text="HOW OLD ARE YOU?" FontSize="26.667" Margin="0,0,0,10" HorizontalAlignment="Center" Foreground="#FF515A5F"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="2. How old are you?" FontSize="26.667" Margin="0,0,0,10" Foreground="Black" FontWeight="Light"/>
+                <StackPanel Orientation="Horizontal" Margin="28,0,0,0">
                     <TextBlock Text="I'm " FontSize="18.667"/>
                     <Custom:NumericUpDown TextAlignment="Center" Maximum="120" Minimum="5" HasDecimals="False" Value="{Binding CurrentSession.Person.Age}" FontSize="18.667" Margin="10,0" />
                     <TextBlock Text=" years old." FontSize="18.667"/>

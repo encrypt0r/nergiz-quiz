@@ -120,7 +120,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Border>
@@ -162,12 +162,12 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                 </StackPanel>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please, write your name below:" VerticalAlignment="Bottom" FontSize="21.333" FontWeight="Light" Foreground="White" Margin="0,0,0,38" />
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please, write your name below:" VerticalAlignment="Bottom" FontSize="21.333" FontWeight="Light" Foreground="White" Margin="0,0,0,40" />
 
             </Grid>
         </Border>
 
-        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="2" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5" Margin="0">
+        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="3" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5" Margin="0">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

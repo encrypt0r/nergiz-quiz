@@ -106,8 +106,8 @@
             <RowDefinition Height="2*"/>
 
         </Grid.RowDefinitions>
-        <Rectangle>
-            <Rectangle.Fill>
+        <Border>
+            <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
                     <LinearGradientBrush.RelativeTransform>
                         <TransformGroup>
@@ -120,19 +120,18 @@
                     <GradientStop Color="#CC119EDA" Offset="0.4"/>
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Comment, FallbackValue=Awesome!}" FontSize="64" Margin="0" FontWeight="Light" Foreground="White" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
+            </Border.Background>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Comment, FallbackValue=Awesome!}" FontSize="64" Margin="0" FontWeight="Light" Foreground="White" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Border>
         <TextBlock Name="textBlock2" HorizontalAlignment="Center" Foreground="{Binding CurrentSession.Person.Accuracy, Converter={StaticResource PercentageToColorConverter}, FallbackValue=Green}" 
                    TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Accuracy, StringFormat=\{0:0.## %\}, FallbackValue=80 %}" VerticalAlignment="Bottom" FontSize="72"
                    Margin="0" Grid.Row="1" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">

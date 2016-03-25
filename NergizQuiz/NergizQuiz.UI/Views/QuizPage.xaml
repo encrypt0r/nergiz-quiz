@@ -37,8 +37,8 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Rectangle>
-            <Rectangle.Fill>
+        <Border>
+            <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
                     <LinearGradientBrush.RelativeTransform>
                         <TransformGroup>
@@ -51,9 +51,7 @@
                     <GradientStop Color="#CC119EDA" Offset="0.4"/>
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-
+            </Border.Background>
         <TextBlock x:Name="textBlock"  Margin="30,0" TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestion.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -64,7 +62,8 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <ItemsControl x:Name="itemsControl" Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding CurrentSession.CurrentQuestion.AllAnswers}" RenderTransformOrigin="0.5,0.5">
+        </Border> 
+            <ItemsControl x:Name="itemsControl" Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding CurrentSession.CurrentQuestion.AllAnswers}" RenderTransformOrigin="0.5,0.5">
             <ItemsControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
