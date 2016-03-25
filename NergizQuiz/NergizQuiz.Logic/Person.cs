@@ -21,5 +21,12 @@ namespace NergizQuiz.Logic
         public int Time { get; set; }
         public int Age { get; set; }
         public bool IsMale { get; set; }
+        public string TimeForHumans
+        {
+            get
+            {
+                return HelperMethods.GetTimeInHumanLanguage(Time);
+            }
+        }
     }
 }

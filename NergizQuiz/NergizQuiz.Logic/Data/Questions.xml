@@ -246,5 +246,24 @@
 </Answers>
 </Question>
 
+<Question>
+<Title>....... to go out to an Italian restaurant tonight?</Title>
+<Answers>
+<Answer>Do you like</Answer>
+<Answer>Are you liking</Answer>
+<Answer>You like</Answer>
+<Answer correct="true">Would you like</Answer>
+</Answers>
+</Question>
 
+<Question>
+<Title>I think I've got a cold, I can't stop ......</Title>
+<Answers>
+<Answer>sneeze</Answer>
+<Answer correct="true">sneezing</Answer>
+<Answer>to sneeze</Answer>
+<Answer>the sneezing</Answer>
+</Answers>
+</Question>
+ 
 </Questions>

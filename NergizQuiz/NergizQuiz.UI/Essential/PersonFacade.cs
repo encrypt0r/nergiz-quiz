@@ -13,6 +13,7 @@ namespace NergizQuiz.UI
     /// </summary>
     class PersonFacade : ObservableObject
     {
+
         #region Fields
         private Person person = new Person();
         #endregion
@@ -100,7 +101,7 @@ namespace NergizQuiz.UI
         {
             get
             {
-                return HelperMethods.GetTimeInHumanLanguage(Time);
+                return person.TimeForHumans;
             }
         }
         public string Level

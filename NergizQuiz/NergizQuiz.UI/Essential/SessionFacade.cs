@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace NergizQuiz.UI
 {
@@ -19,11 +20,14 @@ namespace NergizQuiz.UI
         #region Constructor
         public SessionFacade()
         {
-            AnswerList = new ObservableCollection<Question>();
             Person = new PersonFacade();
-            FetchNextQuestion();
             NumberOfQuestionsToBeAsked = 25;
             CurrentQuestionNumber = 1;
+            AnswerList = new ObservableCollection<Question>();
+            Questions = DataLayer.GetNewSetOfQuestions(NumberOfQuestionsToBeAsked + 1);
+            
+            FetchNextQuestion();
+
 
             dTimer = new DispatcherTimer();
             dTimer.Interval = new TimeSpan(0, 0, 1);
@@ -97,7 +101,8 @@ namespace NergizQuiz.UI
                 {
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
-                    Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestionsToBeAsked;
+                    if (Person != null)
+                        Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestionsToBeAsked;
                 }
             }
         }
@@ -123,6 +128,18 @@ namespace NergizQuiz.UI
                 {
                     m_NumberOfParticipants = value;
                     RaisePropertyChanged("NumberOfParticipants");
+                }
+            }
+        }
+        public ObservableCollection<XElement> Questions
+        {
+            get { return session.Questions; }
+            set
+            {
+                if (value != session.Questions)
+                {
+                    session.Questions = value;
+                    RaisePropertyChanged("Questions");
                 }
             }
         }
@@ -159,7 +176,9 @@ namespace NergizQuiz.UI
         #region Private Methods and Event Handlers
         private void FetchNextQuestion()
         {
-            CurrentQuestion = new Question(DataLayer.GetNextQuestion());
+            if (CurrentQuestionNumber >= NumberOfQuestionsToBeAsked + 1)
+                return;
+            CurrentQuestion = new Question(Questions[CurrentQuestionNumber - 1]);
             CurrentQuestion.Index = (AnswerList.Count + 1).ToString("00");
             AnswerList.Add(CurrentQuestion);
         }

@@ -9,6 +9,31 @@
              d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <local:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+        <Style TargetType="Border" x:Key="IsChosenByUserBorder">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChosenByUser}" Value="True">
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Margin"  Value="13,0,4,0"/>
+                    <Setter Property="Padding" Value="5,0"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="IsChosenByUserBullet" >
+            <Setter Property="Margin" Value="20,0,10,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChosenByUser}" Value="True">
+                    <Setter Property="Margin" Value="0"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="IsTheCorrectAnswer">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsTheCorrectAnswer}" Value="True" >
+                    <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
+                    <Setter Property="FontWeight"  Value="Bold"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <ScrollViewer>
         <Grid>
@@ -17,14 +42,6 @@
 
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="25" Width="640" Margin="0,10">
-                <TextBlock TextWrapping="Wrap" Text="Note:"  FontSize="18.667" Foreground="#FF4F4F4F" FontWeight="SemiBold" FontStyle="Italic"/>
-                <TextBlock Text=" Your answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
-                <TextBlock Text="ü" FontFamily="Wingdings" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
-                <TextBlock Text="'s and correct answers are marked by '" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
-                <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
-                <TextBlock Text="'s" FontSize="18.667" FontStyle="Italic" Foreground="#FF4F4F4F"/>
-            </StackPanel>
             <ItemsControl ItemsSource="{Binding CurrentSession.AnswerList}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
@@ -42,12 +59,11 @@
                             <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        
-                                            <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="" FontFamily="Wingdings" FontSize="18.667" Margin="20,0,10,0" VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding Text}" FontSize="16" Margin="0,0,5,0" />
-                                            <TextBlock Text="ü" FontFamily="Wingdings" Visibility="{Binding IsChosenByUser, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
-                                            <TextBlock Text="ü" Foreground="DodgerBlue"  FontFamily="Wingdings" Visibility="{Binding IsTheCorrectAnswer, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border BorderBrush="#CC172A32" CornerRadius="5" Style="{StaticResource IsChosenByUserBorder}" >
+                                                <TextBlock Text="" FontFamily="Wingdings" FontSize="18.667" VerticalAlignment="Center" Style="{StaticResource IsChosenByUserBullet}"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding Text}" FontSize="16" Margin="0,0,5,0" Style="{StaticResource IsTheCorrectAnswer}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

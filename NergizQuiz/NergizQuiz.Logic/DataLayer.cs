@@ -105,6 +105,24 @@ namespace NergizQuiz.Logic
 
             return leaderboard;
         }
+        static public ObservableCollection<XElement> GetNewSetOfQuestions(int max)
+        {
+            if (listOfQuestions.Count <= 0)
+                LoadQuestions();
+            int[] indeces = new int[max];
+            var newSet = new ObservableCollection<XElement>();
+            for (int i = 0; i < max; i++)
+            {
+                XElement question;
+                int randomNumber = GetRandomNumber(indeces);
+                question = listOfQuestions[randomNumber];
+
+                newSet.Add(question);
+                indeces[i] = randomNumber;
+            }
+
+            return newSet;
+        }
         #endregion // Public Methods
 
         #region Private Methods
@@ -134,6 +152,16 @@ namespace NergizQuiz.Logic
             }
 
             leaderboardx.Save("Data\\Leaderboard.xml");
+        }
+        private static int GetRandomNumber(int[] excludedSet)
+        {
+            int randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
+            while (excludedSet.Contains(randomNumber ))
+            {
+                randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
+            }
+
+            return randomNumber;
         }
         #endregion // Private Methods
 
