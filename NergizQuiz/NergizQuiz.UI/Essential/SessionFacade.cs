@@ -113,6 +113,19 @@ namespace NergizQuiz.UI
                 }
             }
         }
+        private int m_NumberOfParticipants;
+        public int NumberOfParticipants
+        {
+            get { return m_NumberOfParticipants; }
+            set
+            {
+                if (value != m_NumberOfParticipants)
+                {
+                    m_NumberOfParticipants = value;
+                    RaisePropertyChanged("NumberOfParticipants");
+                }
+            }
+        }
 
         #endregion
 

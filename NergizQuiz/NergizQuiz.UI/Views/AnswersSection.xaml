@@ -42,7 +42,8 @@
                             <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllAnswers}" Padding="0,5,0,0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
+                                        
+                                            <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="" FontFamily="Wingdings" FontSize="18.667" Margin="20,0,10,0" VerticalAlignment="Center"/>
                                             <TextBlock Text="{Binding Text}" FontSize="16" Margin="0,0,5,0" />
                                             <TextBlock Text="ü" FontFamily="Wingdings" Visibility="{Binding IsChosenByUser, Converter={StaticResource VisibilityToBooleanConverter}}" FontWeight="Black" LineHeight="10" VerticalAlignment="Center" FontSize="18.667" />

@@ -33,7 +33,10 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >
             <TextBlock Text="RANK" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
-            <TextBlock Text="{Binding CurrentSession.Person.Rank, Converter={StaticResource RankToStringConverter}}" FontSize="21.333" FontWeight="Light"/>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="{Binding CurrentSession.Person.Rank, Converter={StaticResource RankToStringConverter}}" FontSize="21.333" FontWeight="Light"/>
+                <TextBlock Text="{Binding CurrentSession.NumberOfParticipants, StringFormat=' of the \{0\} participants'}" FontSize="21.333" FontWeight="Light"/>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 
