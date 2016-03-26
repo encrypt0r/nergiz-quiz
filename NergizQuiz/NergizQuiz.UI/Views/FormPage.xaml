@@ -46,7 +46,7 @@
         </Border>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="0" Grid.ColumnSpan="2" >
 
-            <TextBlock Text="Can we ask you a couple of questions?" FontSize="37.333" Margin="40,10,0,20" Foreground="#FF374C55" FontWeight="Light"/>
+            <TextBlock Text="Could we know you a little bit more?" FontSize="37.333" Margin="40,10,0,20" Foreground="#FF374C55" FontWeight="Light"/>
 
             <StackPanel Margin="40,10">
                 <TextBlock Text="1. What's your gender?" FontSize="26.667" Margin="0,0,0,10" Foreground="#FF374C55" FontWeight="Light"/>

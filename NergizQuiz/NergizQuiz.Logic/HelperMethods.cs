@@ -65,5 +65,9 @@ namespace NergizQuiz.Logic
             else
                 return "s";
         }
+        public static string ApplyMeaningfulChars(string str)
+        {
+           return str.Replace(@"\n", "\n");
+        }
     }
 }

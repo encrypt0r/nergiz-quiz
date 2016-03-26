@@ -14,7 +14,7 @@
                 <DataTrigger Binding="{Binding IsChosenByUser}" Value="True">
                     <Setter Property="BorderThickness" Value="2"/>
                     <Setter Property="Margin"  Value="13,0,4,0"/>
-                    <Setter Property="Padding" Value="5,0"/>
+                    <Setter Property="Padding" Value="4,1,4,0"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -22,7 +22,7 @@
             <Setter Property="Margin" Value="20,0,10,0"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsChosenByUser}" Value="True">
-                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Margin" Value="0,-2"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -60,7 +60,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Border BorderBrush="#CC172A32" CornerRadius="5" Style="{StaticResource IsChosenByUserBorder}" >
+                                            <Border BorderBrush="#CC172A32" CornerRadius="10" Style="{StaticResource IsChosenByUserBorder}" >
                                                 <TextBlock Text="" FontFamily="Wingdings" FontSize="18.667" VerticalAlignment="Center" Style="{StaticResource IsChosenByUserBullet}"/>
                                             </Border>
                                             <TextBlock Text="{Binding Text}" FontSize="16" Margin="0,0,5,0" Style="{StaticResource IsTheCorrectAnswer}"/>

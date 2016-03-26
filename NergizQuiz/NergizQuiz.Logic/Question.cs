@@ -15,7 +15,7 @@ namespace NergizQuiz.Logic
 
             //TODO: attribute and tag names should not be case sensitive
             AllAnswers = new List<Answer>();
-            Title = data.Element("Title").Value;
+            Title = HelperMethods.ApplyMeaningfulChars(data.Element("Title").Value);
 
             int index = 0;
             foreach (XElement answer in data.Elements("Answers").Descendants())
@@ -31,7 +31,8 @@ namespace NergizQuiz.Logic
                 index++;
             }
 
-            AllAnswers[0].IsChosenByUser = true;
+            if (DataLayer.IS_DEBUGGING)
+                AllAnswers[0].IsChosenByUser = true;
         }
         #endregion // Construction
 
@@ -53,6 +54,19 @@ namespace NergizQuiz.Logic
 
         }
         public string Index { get; set; }
+        public int UserAnswer
+        {
+            get
+            {
+                foreach (var ans in AllAnswers)
+                {
+                    if (ans.IsChosenByUser)
+                        return ans.Index;
+                }
+
+                return -1;
+            }
+        }
         #endregion // Public Properties
     }
 }

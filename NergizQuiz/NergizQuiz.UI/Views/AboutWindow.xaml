@@ -48,7 +48,7 @@
             </Button.Template>
         </Button>
         <TextBlock Margin="184,27,0,0" TextWrapping="Wrap" Text="{Binding AppVersion}" FontSize="16" Grid.Column="1" Foreground="#FF555555" HorizontalAlignment="Left" Width="144" Height="21" VerticalAlignment="Top"/>
-        <TextBlock TextWrapping="Wrap" Text="For EPU Spring Fair of 2016"  Grid.Row="1" FontSize="16" Margin="16,1,0,6" HorizontalAlignment="Left"  Grid.Column="1" Width="193" />
+        <TextBlock TextWrapping="Wrap" Text="By: Muhammad Yaseen and Amed Abdulla"  Grid.Row="1" FontSize="16" Margin="16,1,0,6"  Grid.Column="1" />
 
     </Grid>
 </Controls:MetroWindow>

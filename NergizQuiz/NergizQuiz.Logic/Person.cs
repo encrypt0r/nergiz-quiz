@@ -9,7 +9,7 @@ namespace NergizQuiz.Logic
     {
         public Person()
         {
-            Name = "Person";
+            Name = "";
             Time = 0;
             Age = 18;
             IsMale = true;

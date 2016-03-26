@@ -155,7 +155,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_NextQuestionCommand == null)
                     m_NextQuestionCommand =
-                        new RelayCommand(NextQuestionExecute);
+                        new RelayCommand(NextQuestionExecute, NextQuestionCanExecute);
 
                 return m_NextQuestionCommand;
             }
@@ -183,7 +183,10 @@ namespace NergizQuiz.UI.ViewModels
             }               
 
         }
-
+        public bool NextQuestionCanExecute()
+        {
+            return (CurrentSession.CurrentQuestion.UserAnswer != -1);
+        }
         private ICommand m_RestartCommand;
         public ICommand RestartCommand
         {

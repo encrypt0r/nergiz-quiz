@@ -5,18 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Net;
+using System.Diagnostics;
 
 namespace NergizQuiz.Logic
 {
     public static class DataLayer
     {
         #region Fields
+        public static bool IS_DEBUGGING = false;
+
+
         private static Random randomGenerator;
         private static List<XElement> listOfQuestions;
         public const string API_PASSWORD =  "Pass";
-        public const string API_INSERT = "insert";
-        public const string API_PATH = SITE_URL + "api.php";
-        public const string SITE_URL = "http://localhost/nergiz-quiz-web/";
+        public const string API_INSERT = "insert";        
+        public const string LOCALHOST_URL = "http://localhost/nergiz-quiz-web/";
+        public const string SITE_URL =  "http://nergiz-quiz.ueuo.com/";
         public const string LEADERBOARD_URL = SITE_URL;
 
         // comments
@@ -80,8 +84,14 @@ namespace NergizQuiz.Logic
             var wb = new WebClient();
             wb.Headers.Add("user-agent", "Nergiz Quiz Desktop Client");
             wb.Headers.Add("content-type", "application/x-www-form-urlencoded");
+            string apiPath;
 
-            wb.UploadValuesAsync(new Uri(API_PATH), "POST", nvc);
+            if (IS_DEBUGGING)
+                apiPath = LOCALHOST_URL + "api.php";
+            else
+                apiPath = SITE_URL + "api.php";
+
+            wb.UploadValuesAsync(new Uri(apiPath), "POST", nvc);
             wb.UploadValuesCompleted += callback;
         }
         static public ObservableCollection<Person> ParseLeaderboard(string data)

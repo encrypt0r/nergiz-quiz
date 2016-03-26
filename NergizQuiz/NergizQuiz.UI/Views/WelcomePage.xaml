@@ -111,6 +111,16 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Style x:Key="nameTextBox" TargetType="TextBox" >
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Style.Triggers>
+                
+                <DataTrigger Binding="{Binding CurrentSession.Person.Name}" Value="">
+                    
+                    <Setter Property="Width" Value="100"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -162,12 +172,11 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                 </StackPanel>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please, write your name below:" VerticalAlignment="Bottom" FontSize="21.333" FontWeight="Light" Foreground="White" Margin="0,0,0,40" />
 
             </Grid>
         </Border>
 
-        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="3" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5" Margin="0">
+        <Border x:Name="border" Padding="15,5" Background="White" HorizontalAlignment="Center" Grid.RowSpan="3" Grid.Row="0" VerticalAlignment="Center" BorderBrush="#FF1B698B" BorderThickness="2" CornerRadius="35" RenderTransformOrigin="0.5,0.5" Margin="0" Width="434" Custom:ControlsHelper.FocusBorderBrush="{DynamicResource AccentColorBrush}">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -176,8 +185,8 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Width="400" Height="50" 
-                     TextAlignment="Center"  TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
+            <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Height="50" 
+                     TextAlignment="Center"   TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" Custom:TextBoxHelper.Watermark="What's your name?" HorizontalAlignment="Center" MinWidth="100" />
         </Border>
         <Button x:Name="btnStart" Content="Next" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Top" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowFormPageCommand}" Height="50"/>
 
