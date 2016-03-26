@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NergizQuiz.MVVM")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A small MVVM framework for Nergiz Quiz")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Erbil Polytechnic University")]
 [assembly: AssemblyProduct("NergizQuiz.MVVM")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCopyright("Copyright © EPU 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

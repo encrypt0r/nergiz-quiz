@@ -11,10 +11,13 @@ namespace NergizQuiz.UI.ViewModels
     class AboutWindowVM : ObservableObject
     {
 
-
         public string GitHub
         {
             get { return "https://github.com/encrypt0r/nergiz-quiz"; }
+        }
+        public string Website
+        {
+            get { return "http://nergiz-quiz.ueuo.com/"; }
         }
         public string AppVersion
         {
@@ -22,7 +25,7 @@ namespace NergizQuiz.UI.ViewModels
         }
 
         private ICommand m_OpenGitHub;
-        public ICommand OpenGitHub
+        public ICommand OpenGitHubCommand
         {
             get
             {
@@ -37,6 +40,24 @@ namespace NergizQuiz.UI.ViewModels
         public void OpenGitHubExecute()
         {
             System.Diagnostics.Process.Start(GitHub);
+        }
+
+        private ICommand m_OpenWebsite;
+        public ICommand OpenWebsiteCommand
+        {
+            get
+            {
+                if (m_OpenWebsite == null)
+                    m_OpenWebsite =
+                        new RelayCommand(OpenWebsiteExecute);
+
+                return m_OpenWebsite;
+            }
+
+        }
+        public void OpenWebsiteExecute()
+        {
+            System.Diagnostics.Process.Start(Website);
         }
 
         private string GetVersion()
