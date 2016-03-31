@@ -41,7 +41,7 @@
         <Button x:Name="button" Content="Okay" Margin="0,0,20,0" Grid.Row="5" Height="33" VerticalAlignment="Bottom" IsCancel="True" IsDefault="True" HorizontalAlignment="Right" Width="98" Grid.Column="1" FontSize="14"/>
         <Image x:Name="image" Source="/Nergiz Quiz;component/icon_big.png" Height="100" Margin="0,10,0,0" Grid.RowSpan="3" VerticalAlignment="Top"/>
         <TextBlock Margin="184,27,0,0" TextWrapping="Wrap" Text="{Binding AppVersion}" FontSize="16" Grid.Column="1" Foreground="#FF555555" HorizontalAlignment="Left" Width="144" Height="21" VerticalAlignment="Top"/>
-        <TextBlock TextWrapping="Wrap" Text="By: Muhammad Yaseen and Ahmed Abdulla"  Grid.Row="1" FontSize="16" Margin="16,1,0,15"  Grid.Column="1" />
+        <TextBlock TextWrapping="Wrap" Text="By: Muhammad Yaseen and Ahmed Abdullah"  Grid.Row="1" FontSize="16" Margin="16,1,0,15"  Grid.Column="1" />
         <Button ToolTip="{Binding Website}" Command="{Binding OpenWebsiteCommand}" Margin="16,0,0,0" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" >
             <Button.Template>
                 <ControlTemplate >
@@ -52,7 +52,7 @@
         <Button ToolTip="{Binding GitHub}" Command="{Binding OpenGitHubCommand}"  Height="26" Margin="16,0,0,0" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" >
             <Button.Template>
                 <ControlTemplate >
-                    <TextBlock   Style="{StaticResource link}"  Foreground="#FF3355F0"  FontSize="16" Text="Check out our Github Repo" FontWeight="Normal"/>
+                    <TextBlock   Style="{StaticResource link}"  Foreground="#FF3355F0"  FontSize="16" Text="Check out the GitHub Repo" FontWeight="Normal"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>

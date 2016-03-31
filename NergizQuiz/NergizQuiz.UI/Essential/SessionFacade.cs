@@ -21,13 +21,14 @@ namespace NergizQuiz.UI
         public SessionFacade()
         {
             Person = new PersonFacade();
-            NumberOfQuestionsToBeAsked = 25;
+            NumberOfQuestionsToBeAsked = 15;
             CurrentQuestionNumber = 1;
             AnswerList = new ObservableCollection<Question>();
             Questions = DataLayer.GetNewSetOfQuestions(NumberOfQuestionsToBeAsked + 1);
             
             FetchNextQuestion();
 
+            m_BtnNextText = "Next Question";
 
             dTimer = new DispatcherTimer();
             dTimer.Interval = new TimeSpan(0, 0, 1);
@@ -56,6 +57,19 @@ namespace NergizQuiz.UI
             }
         }
 
+        private string m_BtnNextText;
+        public string BtnNextText
+        {
+            get { return m_BtnNextText; }
+            set
+            {
+                if (value != m_BtnNextText)
+                {
+                    m_BtnNextText = value;
+                    RaisePropertyChanged("BtnNextText");
+                }
+            }
+        }
         public Question CurrentQuestion
         {
             get { return session.CurrentQuestion; }
@@ -103,6 +117,9 @@ namespace NergizQuiz.UI
                     RaisePropertyChanged("CurrentQuestionNumber");
                     if (Person != null)
                         Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestionsToBeAsked;
+
+                    if (value == NumberOfQuestionsToBeAsked)
+                        BtnNextText = "Get Results";
                 }
             }
         }

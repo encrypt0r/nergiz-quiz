@@ -186,7 +186,7 @@
                 </TransformGroup>
             </Border.RenderTransform>
             <TextBox BorderThickness="0" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="29.333" Height="50" 
-                     TextAlignment="Center"   TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" Custom:TextBoxHelper.Watermark="What's your name?" HorizontalAlignment="Center" MinWidth="100" />
+                     TextAlignment="Center"   TabIndex="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" Custom:TextBoxHelper.Watermark="What's your name?" HorizontalAlignment="Center" MinWidth="100" MaxLength="22" />
         </Border>
         <Button x:Name="btnStart" Content="Next" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Top" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding ShowFormPageCommand}" Height="50"/>
 

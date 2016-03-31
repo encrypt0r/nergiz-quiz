@@ -51,7 +51,6 @@
             <StackPanel Margin="40,10">
                 <TextBlock Text="1. What's your gender?" FontSize="26.667" Margin="0,0,0,10" Foreground="#FF374C55" FontWeight="Light"/>
                 <StackPanel Orientation="Horizontal" Margin="28,0,0,0" >
-                    <TextBlock Text="I'm " FontSize="18.667" Margin="0,0,15,0"/>
                     <RadioButton GroupName="gender" IsChecked="{Binding CurrentSession.Person.IsMale}" Content="Male" Margin="0,0,20,8" FontSize="18.667" VerticalAlignment="Bottom" />
                     <RadioButton GroupName="gender" Content="Female" FontSize="18.667" VerticalAlignment="Bottom" Margin="0,0,0,8"/>
                 </StackPanel>
@@ -60,8 +59,7 @@
             <StackPanel Margin="40,0,40,40">
                 <TextBlock Text="2. How old are you?" FontSize="26.667" Margin="0,0,0,10" Foreground="#FF374C55" FontWeight="Light"/>
                 <StackPanel Orientation="Horizontal" Margin="28,0,0,0">
-                    <TextBlock Text="I'm " FontSize="18.667"/>
-                    <Custom:NumericUpDown TextAlignment="Center" Maximum="120" Minimum="5" HasDecimals="False" Value="{Binding CurrentSession.Person.Age}" FontSize="18.667" Margin="10,0" />
+                    <Custom:NumericUpDown TextAlignment="Center" Maximum="120" Minimum="5" HasDecimals="False" Value="{Binding CurrentSession.Person.Age}" FontSize="18.667" Margin="0,0,10,0" />
                     <TextBlock Text=" years old." FontSize="18.667"/>
                 </StackPanel>
             </StackPanel>

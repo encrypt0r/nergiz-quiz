@@ -63,6 +63,7 @@ namespace NergizQuiz.UI.ViewModels
                 }
             }
         }
+
         #endregion
 
         #region Commands
@@ -156,7 +157,7 @@ namespace NergizQuiz.UI.ViewModels
                 if (m_NextQuestionCommand == null)
                     m_NextQuestionCommand =
                         new RelayCommand(NextQuestionExecute, NextQuestionCanExecute);
-
+                
                 return m_NextQuestionCommand;
             }
 
