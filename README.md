@@ -1,7 +1,8 @@
 # Nergiz Quiz
 This is a simple quiz app thats being made for [EPU](http://epu.edu.krd) spring festival. Feel free to use it according to the license provided. And yes, I'd be glad to hear your suggestions :octocat:
 
-The server side app is being developed here: [Nergiz Quiz Web](https://github.com/encrypt0r/nergiz-quiz-web)
+The server side app is being developed here: [Nergiz Quiz Web](https://github.com/encrypt0r/nergiz-quiz-web) <br>
+And the android client app is being developed here: [Nergiz Quiz Android](https://github.com/encrypt0r/nergiz-quiz-android)
 ## License
 
 The MIT License (MIT)
