@@ -69,5 +69,12 @@ namespace NergizQuiz.Logic
         {
            return str.Replace(@"\n", "\n");
         }
+        public static int GetNthDigit(int number, int digit)
+        {
+            double power = Math.Pow(10, digit);
+            while (digit-- > 1)
+                number /= 10;
+            return (int)number % 10;
+        }
     }
 }

@@ -13,16 +13,23 @@ namespace NergizQuiz.UI
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string rank = (value).ToString();
-            int lastDigit = int.Parse(rank[rank.Length - 1].ToString());
-            if (lastDigit == 1)
-                return rank + "st";
-            else if (lastDigit == 2)
-                return rank + "nd";
-            else if (lastDigit == 3)
-                return rank + "rd";
+            int rank = (int)value;
+            string rankStr = rank.ToString();
+            int firstDig = HelperMethods.GetNthDigit(rank, 1);
+            int secondDig = HelperMethods.GetNthDigit(rank, 2);
+            if (secondDig != 1)
+            {
+                if (firstDig == 1)
+                    return rankStr + "st";
+                else if (firstDig == 2)
+                    return rankStr + "nd";
+                else if (firstDig == 3)
+                    return rankStr + "rd";
+                else
+                    return rankStr + "th";
+            }
             else
-                return rank + "th";
+                return rankStr + "th";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
