@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using NergizQuiz.MVVM;
 using NergizQuiz.Logic;
+using System.Text.RegularExpressions;
+using System.ComponentModel;
+
 namespace NergizQuiz.UI
 {
     /// <summary>
@@ -11,7 +14,7 @@ namespace NergizQuiz.UI
     /// It wraps all the properties of the objet to
     /// be MVVM-friendly.
     /// </summary>
-    class PersonFacade : ObservableObject
+    class PersonFacade : ObservableObject, IDataErrorInfo
     {
 
         #region Fields
@@ -121,6 +124,41 @@ namespace NergizQuiz.UI
         public Person GetPerson()
         {
             return person;
+        }
+        #endregion
+
+        #region IDataErrorInfo members
+        private Regex nameRegex = new Regex("^[a-zA-Z]+$");
+        private string error = string.Empty;
+        public string Error
+        {
+            get
+            {
+                error = string.Empty;
+
+                return error;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                error = string.Empty;
+                if (columnName == "Name")
+                    error = ValidateName();
+
+                return error;
+            }
+        }
+
+        private string ValidateName()
+        {
+            if (Name == string.Empty)
+                return Strings.NameEmptyError;
+            else if (!nameRegex.IsMatch(Name))
+                return Strings.NameInvalidCharacterError;
+            else return string.Empty;
         }
         #endregion
     }

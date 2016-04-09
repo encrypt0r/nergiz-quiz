@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using NergizQuiz.UI.Views;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace NergizQuiz.UI.ViewModels
 {
@@ -100,7 +102,7 @@ namespace NergizQuiz.UI.ViewModels
         }
         public bool ShowFormPageCanExecute()
         {
-            if (CurrentSession.Person.Name != string.Empty && !welcomePageAnimationIsPlaying)
+            if (CurrentSession.Person["Name"] == string.Empty && !welcomePageAnimationIsPlaying)
                 return true;
             else
                 return false;
@@ -113,7 +115,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_MoreInfoCommand == null)
                     m_MoreInfoCommand =
-                        new RelayCommand(MoreInfoExecute, MoreInfoCanExecute);
+                        new RelayCommand(MoreInfoExecute);
 
                 return m_MoreInfoCommand;
             }
@@ -122,13 +124,6 @@ namespace NergizQuiz.UI.ViewModels
         public void MoreInfoExecute()
         {
             Page = new MoreInfoPage();
-        }
-        public bool MoreInfoCanExecute()
-        {
-            if (CurrentSession.Person.Name != string.Empty)
-                return true;
-            else
-                return false;
         }
 
         private ICommand m_ShowQuizPageCommand;
@@ -188,6 +183,7 @@ namespace NergizQuiz.UI.ViewModels
         {
             return (CurrentSession.CurrentQuestion.UserAnswer != -1);
         }
+
         private ICommand m_RestartCommand;
         public ICommand RestartCommand
         {
@@ -225,8 +221,9 @@ namespace NergizQuiz.UI.ViewModels
             var aw = new AboutWindow();
             aw.ShowDialog();
         }
-
         #endregion
+
+ 
 
         #region Event Handlers
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
