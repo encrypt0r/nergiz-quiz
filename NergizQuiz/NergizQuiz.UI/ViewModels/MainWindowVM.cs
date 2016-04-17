@@ -161,14 +161,14 @@ namespace NergizQuiz.UI.ViewModels
         {
 
             // if all of the questions answered, go to finish page
-            if (CurrentSession.CurrentQuestionNumber == CurrentSession.NumberOfQuestionsToBeAsked)
+            if (CurrentSession.CurrentQuestionNumber == CurrentSession.NumberOfQuestions)
             {
                 CurrentSession.NextQuestion();
                 CurrentSession.StopTimer();
 
                 Page = new LoadingPage();
                 var handler = new System.Net.UploadValuesCompletedEventHandler(UploadComplete);
-                DataLayer.UploadPersonIntoLeaderboard(CurrentSession.Person.GetPerson(), handler); 
+                DataLayer.SendPersonToDatabase(CurrentSession.Person.GetPerson(), handler); 
             }
             else
             {

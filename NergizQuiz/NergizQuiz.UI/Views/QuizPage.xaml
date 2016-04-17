@@ -81,7 +81,7 @@
         <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="{Binding CurrentSession.BtnNextText, FallbackValue='Next Question'}" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F" IsDefault="True"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,0,0,30" Grid.Row="3" VerticalAlignment="Bottom">
             <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestionNumber, FallbackValue=0}"  FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.NumberOfQuestionsToBeAsked, StringFormat=' of {0}', FallbackValue= of 25}"  FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.NumberOfQuestions, StringFormat=' of {0}', FallbackValue= ' of 15'}"  FontSize="24" Foreground="#FF646464" FontWeight="Bold"/>
         </StackPanel>
 
 

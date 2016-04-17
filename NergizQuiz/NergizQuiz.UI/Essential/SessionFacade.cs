@@ -22,10 +22,9 @@ namespace NergizQuiz.UI
         {
             session = new Session();
             Person = new PersonFacade();
-            NumberOfQuestionsToBeAsked = 15; // change this to change the number of questions
+            NumberOfQuestions = 15; // change this to change the number of questions
             CurrentQuestionNumber = 1;
-            AnswerList = new ObservableCollection<Question>();
-            Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(NumberOfQuestionsToBeAsked));
+            Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(NumberOfQuestions));
             
             FetchNextQuestion();
 
@@ -83,19 +82,7 @@ namespace NergizQuiz.UI
                 }
             }
         }
-        public ObservableCollection<Question> AnswerList
-        {
-            get { return session.AnswerList; }
-            set
-            {
-                if (value != session.AnswerList)
-                {
-                    session.AnswerList = value;
-                    RaisePropertyChanged("AnswerList");
-                }
-            }
-        }
-        public int NumberOfQuestionsToBeAsked
+        public int NumberOfQuestions
         {
             get { return session.NumberOfQuestionsToBeAsked; }
             set
@@ -103,7 +90,7 @@ namespace NergizQuiz.UI
                 if (value != session.NumberOfQuestionsToBeAsked)
                 {
                     session.NumberOfQuestionsToBeAsked = value;
-                    RaisePropertyChanged("NumberOfQuestionsToBeAsked");
+                    RaisePropertyChanged("NumberOfQuestions");
                 }
             }
         }
@@ -117,9 +104,9 @@ namespace NergizQuiz.UI
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
                     if (Person != null)
-                        Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestionsToBeAsked;
+                        Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestions;
 
-                    if (value == NumberOfQuestionsToBeAsked)
+                    if (value == NumberOfQuestions)
                         BtnNextText = "Get Results";
                 }
             }
@@ -194,11 +181,10 @@ namespace NergizQuiz.UI
         #region Private Methods and Event Handlers
         private void FetchNextQuestion()
         {
-            if (CurrentQuestionNumber > NumberOfQuestionsToBeAsked)
+            if (CurrentQuestionNumber > NumberOfQuestions)
                 return;
             CurrentQuestion = Questions[CurrentQuestionNumber - 1];
-            CurrentQuestion.Index = (AnswerList.Count + 1).ToString("00");
-            AnswerList.Add(CurrentQuestion);
+            CurrentQuestion.Index = (CurrentQuestionNumber).ToString("00");
         }
         private void dTimer_Tick(object sender, EventArgs e)
         {

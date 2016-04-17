@@ -57,7 +57,7 @@ namespace NergizQuiz.Logic
                     return level5[randomGenerator.Next(0, level5.Length)];
             }
         }
-        static public void UploadPersonIntoLeaderboard(Person cp, UploadValuesCompletedEventHandler callback)
+        static public void SendPersonToDatabase(Person cp, UploadValuesCompletedEventHandler callback)
         {
             var nvc = new System.Collections.Specialized.NameValueCollection();
             nvc.Add("name", cp.Name);
