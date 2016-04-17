@@ -31,7 +31,20 @@ namespace NergizQuiz.UI
                 {
                     person.Name = value;
                     RaisePropertyChanged("Name");
+                    RaisePropertyChanged("FirstName");
                 }
+            }
+        }
+        public string FirstName
+        {
+            get
+            {
+                if (Name.Contains(' '))
+                {
+                    return Name.Split(' ')[0];
+                }
+                else
+                    return Name;
             }
         }
         public float Accuracy
@@ -154,10 +167,12 @@ namespace NergizQuiz.UI
 
         private string ValidateName()
         {
-            if (Name.Length < 3)
+            if (Name.Length < 1)
                 return Strings.NameEmptyError;
             else if (!nameRegex.IsMatch(Name))
                 return Strings.NameInvalidCharacterError;
+            else if (Name.Length < 3)
+                return Strings.NameMinLetters;
             else return string.Empty;
         }
         #endregion

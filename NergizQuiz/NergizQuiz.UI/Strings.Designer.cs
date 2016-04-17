@@ -77,5 +77,14 @@ namespace NergizQuiz.UI {
                 return ResourceManager.GetString("NameInvalidCharacterError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name should be at least three letters.
+        /// </summary>
+        internal static string NameMinLetters {
+            get {
+                return ResourceManager.GetString("NameMinLetters", resourceCulture);
+            }
+        }
     }
 }

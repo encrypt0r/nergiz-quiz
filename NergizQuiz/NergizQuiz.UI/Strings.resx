@@ -123,4 +123,7 @@
   <data name="NameInvalidCharacterError" xml:space="preserve">
     <value>Name can only include A-Z</value>
   </data>
+  <data name="NameMinLetters" xml:space="preserve">
+    <value>Name should be at least three letters</value>
+  </data>
 </root>

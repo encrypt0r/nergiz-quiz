@@ -33,7 +33,7 @@
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Name, StringFormat='Hi, {0}!', FallbackValue=Hi!}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="40,0">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CurrentSession.Person.FirstName, StringFormat='Hi, {0}!', FallbackValue=Hi!}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="40,0">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
