@@ -7,7 +7,7 @@ namespace NergizQuiz.Logic
     public class Question
     {
         #region Construction
-        public Question(XElement data)
+        public Question(XElement data, int level)
         {
 
             if (data == null)
@@ -31,6 +31,7 @@ namespace NergizQuiz.Logic
                 index++;
             }
 
+            Level = level;
             // AllAnswers[0].IsChosenByUser = true;
         }
         #endregion // Construction
@@ -66,6 +67,7 @@ namespace NergizQuiz.Logic
                 return -1;
             }
         }
+        public int Level { get; set; }
         #endregion // Public Properties
     }
 }

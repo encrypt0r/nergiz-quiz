@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+    <Question>
+        <Title>When do you study?</Title>
+        <Answers>
+            <Answer>at school</Answer>
+            <Answer correct="true">in the evenings</Answer>
+            <Answer>in the library</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Let's have dinner now.</Title>
+        <Answers>
+            <Answer>You aren't eating.</Answer>
+            <Answer>There aren't any.</Answer>
+            <Answer correct="true">Tom isn't here yet</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>My father ...... his new car for two weeks now.</Title>
+        <Answers>
+            <Answer correct="true">has had</Answer>
+            <Answer>has</Answer>
+            <Answer>is having</Answer>
+            <Answer>had</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Anyone ...... after the start of the play is not allowed in until the interval.</Title>
+        <Answers>
+            <Answer>arrives</Answer>
+            <Answer>has arrived</Answer>
+            <Answer correct="true">arriving</Answer>
+            <Answer>arrived</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>I think I've got a cold, I can't stop ......</Title>
+        <Answers>
+            <Answer>sneeze</Answer>
+            <Answer correct="true">sneezing</Answer>
+            <Answer>to sneeze</Answer>
+            <Answer>the sneezing</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>I can't find my keys anywhere - I ...... have left them at work.</Title>
+        <Answers>
+            <Answer>can</Answer>
+            <Answer correct="true">must</Answer>
+            <Answer>ought</Answer>
+            <Answer>would</Answer>
+        </Answers>
+    </Question>
+</Questions>

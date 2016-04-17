@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+
+    <Question>
+        <Title>The snow was ...... heavily when I left the house.</Title>
+        <Answers>
+            <Answer>dropping</Answer>
+            <Answer>landing</Answer>
+            <Answer correct="true">falling</Answer>
+            <Answer>descending</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>That old saucepan will come in ...... when we go camping.</Title>
+        <Answers>
+            <Answer>convenient</Answer>
+            <Answer>fitting</Answer>
+            <Answer correct="true">handy</Answer>
+            <Answer>suitable</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>I didn't ...... driving home in the storm so I stayed overnight in a hotel.</Title>
+        <Answers>
+            <Answer correct="true">fancy</Answer>
+            <Answer>desire</Answer>
+            <Answer>prefer</Answer>
+            <Answer>want</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The judge said that those prepared to...... in crime must be ready to suffer the consequences.</Title>
+        <Answers>
+            <Answer>involve</Answer>
+            <Answer correct="true">engage</Answer>
+            <Answer>undertake</Answer>
+            <Answer>enlist</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Marianne seemed to take ...... at my comments on her work.</Title>
+        <Answers>
+            <Answer>annoyance</Answer>
+            <Answer>insult</Answer>
+            <Answer correct="true">offence</Answer>
+            <Answer>indignation</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The farmhouse was so isolated that they had to generate their own electricity ......</Title>
+        <Answers>
+            <Answer>current.</Answer>
+            <Answer correct="true">supply.</Answer>
+            <Answer>grid.</Answer>
+            <Answer>power.</Answer>
+        </Answers>
+    </Question>
+</Questions>

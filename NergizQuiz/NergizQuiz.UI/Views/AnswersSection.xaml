@@ -42,7 +42,7 @@
 
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ItemsControl ItemsSource="{Binding CurrentSession.AnswerList}" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding CurrentSession.Questions}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="logic:Question">
                         <Grid Margin="10,5,10,10" VerticalAlignment="Center">

@@ -14,15 +14,14 @@ namespace NergizQuiz.Logic
         #region Fields
         public static bool IS_DEBUGGING = false;
 
-
         private static Random randomGenerator;
-        private static List<XElement> listOfQuestions;
-        public const string API_PASSWORD =  "Pass";
-        public const string API_INSERT = "insert";        
+        private static List<Question> listOfQuestions;
+        public const string API_PASSWORD = "Pass";
+        public const string API_INSERT = "insert_person";
         public const string LOCALHOST_URL = "http://localhost/nergiz-quiz-web/";
-        public const string SITE_URL =  "http://nergiz-quiz.ueuo.com/";
-        public const string LEADERBOARD_URL = SITE_URL;
-
+        public const string API_URL = "/api/v1/api.php";
+        public const string SITE_URL = "http://nergiz-quiz.ueuo.com/";
+        public const int NUMBER_OF_LEVELS = 5;
         // comments
         private static string[] level1 = { "Needs More Work", "Unsatsifactory" };
         private static string[] level2 = { "Good", "Satisfactory" };
@@ -34,24 +33,12 @@ namespace NergizQuiz.Logic
         static DataLayer()
         {
             randomGenerator = new Random();
-            listOfQuestions = new List<XElement>();
+            listOfQuestions = new List<Question>();
             LoadQuestions();
         }
         #endregion // Construction
 
         #region Public Methods
-        static public XElement GetNextQuestion()
-        {
-            if (listOfQuestions.Count <= 0)
-                LoadQuestions();
-
-            XElement question;
-            int randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
-            question = listOfQuestions[randomNumber];
-            listOfQuestions.RemoveAt(randomNumber);
-            
-            return question;
-        }
         static public string GetComment(float accuracy)
         {
             int level = HelperMethods.GetLevel(accuracy);
@@ -61,7 +48,7 @@ namespace NergizQuiz.Logic
                 default:
                     return level1[randomGenerator.Next(0, level1.Length)];
                 case 2:
-                    return level2[randomGenerator.Next(0, level2.Length )];
+                    return level2[randomGenerator.Next(0, level2.Length)];
                 case 3:
                     return level3[randomGenerator.Next(0, level3.Length)];
                 case 4:
@@ -87,9 +74,9 @@ namespace NergizQuiz.Logic
             string apiPath;
 
             if (IS_DEBUGGING)
-                apiPath = LOCALHOST_URL + "api.php";
+                apiPath = LOCALHOST_URL + API_URL;
             else
-                apiPath = SITE_URL + "api.php";
+                apiPath = SITE_URL + API_URL;
 
             wb.UploadValuesAsync(new Uri(apiPath), "POST", nvc);
             wb.UploadValuesCompleted += callback;
@@ -115,23 +102,32 @@ namespace NergizQuiz.Logic
 
             return leaderboard;
         }
-        static public ObservableCollection<XElement> GetNewSetOfQuestions(int max)
+        static public List<Question> GetNewListOfQuestions(int max)
         {
-            if (listOfQuestions.Count <= 0)
-                LoadQuestions();
-            int[] indeces = new int[max];
-            var newSet = new ObservableCollection<XElement>();
-            for (int i = 0; i < max; i++)
-            {
-                XElement question;
-                int randomNumber = GetRandomNumber(indeces);
-                question = listOfQuestions[randomNumber];
+            var returnList = new List<Question>();
 
-                newSet.Add(question);
-                indeces[i] = randomNumber;
+            // reset the questions
+            foreach (var q in listOfQuestions)
+                foreach (var a in q.AllAnswers)
+                    a.IsChosenByUser = false;
+
+            for (int i = 1; i <= NUMBER_OF_LEVELS; i++)
+            {
+                int numberOfQuestions = max / NUMBER_OF_LEVELS;
+
+                // make sure we return max questions
+                if (i == NUMBER_OF_LEVELS)
+                {
+                    if (max % NUMBER_OF_LEVELS != 0)
+                        numberOfQuestions += max - (numberOfQuestions * NUMBER_OF_LEVELS);
+                }
+
+                var list = GetLevel(i, numberOfQuestions);
+                returnList.AddRange(list);
             }
 
-            return newSet;
+            returnList.Shuffle();
+            return returnList;
         }
         #endregion // Public Methods
 
@@ -139,8 +135,18 @@ namespace NergizQuiz.Logic
         private static void LoadQuestions()
         {
             listOfQuestions.Clear();
-            XElement data = XElement.Load("Data\\Questions.xml");
-            listOfQuestions = data.Elements().ToList();
+            for (int i = 1; i <= NUMBER_OF_LEVELS; i++)
+            {
+                List<XElement> level_i_Questions = new List<XElement>();
+                XElement data = XElement.Load("Data\\Level" + i + ".xml");
+                level_i_Questions = data.Elements().ToList();
+
+                foreach (var item in level_i_Questions)
+                {
+                    var q = new Question(item, i);
+                    listOfQuestions.Add(q);
+                }
+            }
         }
         private static void WriteListToDataBase(List<Person> list)
         {
@@ -163,16 +169,59 @@ namespace NergizQuiz.Logic
 
             leaderboardx.Save("Data\\Leaderboard.xml");
         }
-        private static int GetRandomNumber(int[] excludedSet)
+        private static int GetRandomNumber(int[] excludedSet, int max)
         {
-            int randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
-            while (excludedSet.Contains(randomNumber ))
+            int randomNumber;
+            do
             {
-                randomNumber = randomGenerator.Next(0, listOfQuestions.Count);
+                randomNumber = randomGenerator.Next(0, max);
             }
+            while (excludedSet.Contains(randomNumber));
 
             return randomNumber;
         }
+        private static List<Question> GetLevel(int level, int max)
+        {
+            List<Question> returnList = new List<Question>();
+            if (listOfQuestions.Count <= 0)
+                LoadQuestions();
+
+            var thisLevelList = listOfQuestions.Where(q => q.Level == level).ToList();
+            if (thisLevelList.Count() < max)
+                throw new ArgumentException("There are not enough questions of level " + level);
+
+            int[] indeces = new int[max];
+            for (int i = 0; i < max; i++)
+            {
+                indeces[i] = -1; // so that GetRandomNumber() does not stuck in the loop
+                int randomNumber = GetRandomNumber(indeces, thisLevelList.Count);
+                Debug.WriteLine("random number: " + randomNumber);
+                Question q = thisLevelList[randomNumber];
+                returnList.Add(q);
+                indeces[i] = randomNumber;
+            }
+
+            return returnList;
+        }
+        /// <summary>
+        /// Shuffles a list pseudo-randomly. 
+        /// Credit: Eric J. (http://stackoverflow.com/questions/273313/randomize-a-listt-in-c-sharp)
+        /// </summary>
+        /// <typeparam name="T">Type of the items in the list</typeparam>
+        /// <param name="list">The list to be shuffled</param>
+        private static void Shuffle<T>(this List<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = randomGenerator.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+    
         #endregion // Private Methods
 
     }

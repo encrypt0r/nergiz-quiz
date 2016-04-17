@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+    <Question>
+        <Title>When can we meet again?</Title>
+        <Answers>
+            <Answer correct="true">When are you free?</Answer>
+            <Answer>It was two days ago.</Answer>
+            <Answer>Can you help me?</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>My aunt is going to stay with me.</Title>
+        <Answers>
+            <Answer>How do you do?</Answer>
+            <Answer correct="true">How long for?</Answer>
+            <Answer>How was it?</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Would you prefer lemonade or orange juice?</Title>
+        <Answers>
+            <Answer correct="true">Have you got anything else?</Answer>
+            <Answer>If you like.</Answer>
+            <Answer>Are you sure about that?</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>What differences are there ...... the English spoken in the UK and the English spoken in the US?</Title>
+        <Answers>
+            <Answer>among</Answer>
+            <Answer correct="true">between</Answer>
+            <Answer>beside</Answer>
+            <Answer>with</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>....... to go out to an Italian restaurant tonight?</Title>
+        <Answers>
+            <Answer>Do you like</Answer>
+            <Answer>Are you liking</Answer>
+            <Answer>You like</Answer>
+            <Answer correct="true">Would you like</Answer>
+        </Answers>
+    </Question>
+</Questions>

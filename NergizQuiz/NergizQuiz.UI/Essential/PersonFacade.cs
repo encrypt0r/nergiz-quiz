@@ -128,7 +128,7 @@ namespace NergizQuiz.UI
         #endregion
 
         #region IDataErrorInfo members
-        private Regex nameRegex = new Regex("^[a-zA-Z]+$");
+        private Regex nameRegex = new Regex("^[a-zA-Z\\s]+$");
         private string error = string.Empty;
         public string Error
         {
@@ -154,7 +154,7 @@ namespace NergizQuiz.UI
 
         private string ValidateName()
         {
-            if (Name == string.Empty)
+            if (Name.Length < 3)
                 return Strings.NameEmptyError;
             else if (!nameRegex.IsMatch(Name))
                 return Strings.NameInvalidCharacterError;

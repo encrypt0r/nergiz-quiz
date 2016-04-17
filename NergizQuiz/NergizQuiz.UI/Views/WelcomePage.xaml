@@ -146,7 +146,7 @@
         </Style>
         <DataTemplate DataType="{x:Type ValidationError}">
             <StackPanel Orientation="Horizontal">
-                <Border CornerRadius="5" Background="#FFF13D61" Padding="10,0" Margin="0,0,5,0">
+                <Border CornerRadius="5" Background="#F62459" Padding="10,1" Margin="0,0,10,0">
                     <TextBlock Text="!" Foreground="White"  FontSize="18" FontFamily="Segoe UI" FontWeight="Bold"/>
                 </Border>
                 <TextBlock Text="{Binding ErrorContent}" Foreground="White"  FontSize="18" FontFamily="Segoe UI Light"/>

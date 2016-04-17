@@ -61,7 +61,7 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name must be at least two letters.
+        ///   Looks up a localized string similar to Write your name below, Please..
         /// </summary>
         internal static string NameEmptyError {
             get {

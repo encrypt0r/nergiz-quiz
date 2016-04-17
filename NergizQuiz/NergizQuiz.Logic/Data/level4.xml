@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+
+    <Question>
+        <Title>You should not have a dog if you are not ...... to look after it.</Title>
+        <Answers>
+            <Answer correct="true">prepared</Answer>
+            <Answer>adapted</Answer>
+            <Answer>arranged</Answer>
+            <Answer>decided</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>She is now taking a more positive ...... to her studies and should do well.</Title>
+        <Answers>
+            <Answer correct="true">attitude</Answer>
+            <Answer>behaviour</Answer>
+            <Answer>manner</Answer>
+            <Answer>style</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The builders are ...... good progress with the new house.</Title>
+        <Answers>
+            <Answer>getting</Answer>
+            <Answer>doing</Answer>
+            <Answer correct="true">making</Answer>
+            <Answer>taking</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>According to Richard's ...... the train leaves at 7 o'clock.</Title>
+        <Answers>
+            <Answer>opinion</Answer>
+            <Answer>advice</Answer>
+            <Answer>knowledge</Answer>
+            <Answer correct="true">information</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>When you stay in a country for some time you get used to the people's ...... of life.</Title>
+        <Answers>
+            <Answer>habit</Answer>
+            <Answer>custom</Answer>
+            <Answer correct="true">way</Answer>
+            <Answer>system</Answer>
+        </Answers>
+    </Question>
+</Questions>

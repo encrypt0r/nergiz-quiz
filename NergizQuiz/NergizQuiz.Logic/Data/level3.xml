@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>    
+    <Question>
+        <Title>At 6 p.m. I started to get angry with him because he was late ......</Title>
+        <Answers>
+            <Answer correct="true">as usual</Answer>
+            <Answer>in general</Answer>
+            <Answer>typically</Answer>
+            <Answer>usually</Answer>
+        </Answers>
+    </Question>
+    
+    <Question>
+        <Title>When a car pulled out in front of her, Jane did well not to ...... control of her bicycle.</Title>
+        <Answers>
+            <Answer>miss</Answer>
+            <Answer correct="true">lose</Answer>
+            <Answer>fail</Answer>
+            <Answer>drop</Answer>
+        </Answers>
+    </Question>
+    
+    <Question>
+        <Title>...... you get your father's permission, I'll take you skiing next weekend.</Title>
+        <Answers>
+            <Answer>Although</Answer>
+            <Answer correct="true">Provided</Answer>
+            <Answer>As</Answer>
+            <Answer>Unless</Answer>
+        </Answers>
+    </Question>
+    
+    <Question>
+        <Title>I really enjoy stories that are ...... in the distant future.</Title>
+        <Answers>
+            <Answer>found</Answer>
+            <Answer correct="true">set</Answer>
+            <Answer>put</Answer>
+            <Answer>placed</Answer>
+        </Answers>
+    </Question>
+    
+    <Question>
+        <Title>A local company has agreed to ...... the school team with football shirts.</Title>
+        <Answers>
+            <Answer>contribute</Answer>
+            <Answer correct="true">supply</Answer>
+            <Answer>give</Answer>
+            <Answer>produce</Answer>
+        </Answers>
+    </Question>
+</Questions>

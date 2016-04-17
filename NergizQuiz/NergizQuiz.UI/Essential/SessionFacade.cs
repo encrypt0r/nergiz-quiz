@@ -20,11 +20,12 @@ namespace NergizQuiz.UI
         #region Constructor
         public SessionFacade()
         {
+            session = new Session();
             Person = new PersonFacade();
-            NumberOfQuestionsToBeAsked = 15;
+            NumberOfQuestionsToBeAsked = 15; // change this to change the number of questions
             CurrentQuestionNumber = 1;
             AnswerList = new ObservableCollection<Question>();
-            Questions = DataLayer.GetNewSetOfQuestions(NumberOfQuestionsToBeAsked + 1);
+            Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(NumberOfQuestionsToBeAsked));
             
             FetchNextQuestion();
 
@@ -148,7 +149,7 @@ namespace NergizQuiz.UI
                 }
             }
         }
-        public ObservableCollection<XElement> Questions
+        public ObservableCollection<Question> Questions
         {
             get { return session.Questions; }
             set
@@ -193,9 +194,9 @@ namespace NergizQuiz.UI
         #region Private Methods and Event Handlers
         private void FetchNextQuestion()
         {
-            if (CurrentQuestionNumber >= NumberOfQuestionsToBeAsked + 1)
+            if (CurrentQuestionNumber > NumberOfQuestionsToBeAsked)
                 return;
-            CurrentQuestion = new Question(Questions[CurrentQuestionNumber - 1]);
+            CurrentQuestion = Questions[CurrentQuestionNumber - 1];
             CurrentQuestion.Index = (AnswerList.Count + 1).ToString("00");
             AnswerList.Add(CurrentQuestion);
         }
