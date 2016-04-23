@@ -50,4 +50,105 @@
             <Answer>system</Answer>
         </Answers>
     </Question>
+
+    <Question>
+        <Title>What is this ...... in English? I can't remember.</Title>
+        <Answers>
+            <Answer correct="true">called</Answer>
+            <Answer>said</Answer>
+            <Answer>named</Answer>
+            <Answer>spoken</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Do you fancy ...... away for the weekend?</Title>
+        <Answers>
+            <Answer>go</Answer>
+            <Answer>to go</Answer>
+            <Answer correct="true">going</Answer>
+            <Answer>be going</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>There's ...... in applying for the job. I'm not qualified for it.</Title>
+        <Answers>
+            <Answer>no reason</Answer>
+            <Answer correct="true">no point</Answer>
+            <Answer>no worth</Answer>
+            <Answer>no chance</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>It's ...... to go climbing alone.</Title>
+        <Answers>
+            <Answer>danger</Answer>
+            <Answer correct="true">risky</Answer>
+            <Answer>hazard</Answer>
+            <Answer>threatening</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>It's almost midnight. He ...... be coming now!</Title>
+        <Answers>
+            <Answer correct="true">can't</Answer>
+            <Answer>mustn't</Answer>
+            <Answer>mightn't</Answer>
+            <Answer>can</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Pablo denied ...... the money.</Title>
+        <Answers>
+            <Answer>having took</Answer>
+            <Answer>to have taken</Answer>
+            <Answer correct="true">having taken</Answer>
+            <Answer>had taken</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Hurry up or we'll ...... our train!</Title>
+        <Answers>
+            <Answer>lose</Answer>
+            <Answer>fail</Answer>
+            <Answer>catch</Answer>
+            <Answer correct="true">miss</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>By 2020 I think we will ...... a settlement on Mars.</Title>
+        <Answers>
+            <Answer correct="true">have built</Answer>
+            <Answer>have been building</Answer>
+            <Answer>be built</Answer>
+            <Answer>built</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>There is ...... traffic in Bangkok.</Title>
+        <Answers>
+            <Answer>plenty of</Answer>
+            <Answer>a lot</Answer>
+            <Answer correct="true">too much</Answer>
+            <Answer>too many</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>There were ...... of people at the football match on Friday.</Title>
+        <Answers>
+            <Answer>a great deal</Answer>
+            <Answer>a large amount</Answer>
+            <Answer>many</Answer>
+            <Answer correct="true">hundreds</Answer>
+        </Answers>
+    </Question>
+
 </Questions>

@@ -57,4 +57,95 @@
             <Answer>would</Answer>
         </Answers>
     </Question>
+
+    <Question>
+        <Title>Excuse me, ...... time please?</Title>
+        <Answers>
+            <Answer>you have the</Answer>
+            <Answer>what is</Answer>
+            <Answer correct="true">have you got the</Answer>
+            <Answer>what</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>My parents ...... married since 1985.</Title>
+        <Answers>
+            <Answer>got</Answer>
+            <Answer>were</Answer>
+            <Answer correct="true">have been</Answer>
+            <Answer>are</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>I don't know many people ...... still smoke nowadays.</Title>
+        <Answers>
+            <Answer>they</Answer>
+            <Answer correct="true">who</Answer>
+            <Answer>which</Answer>
+            <Answer>what</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>Where's your car today? It ...... repaired.</Title>
+        <Answers>
+            <Answer>been</Answer>
+            <Answer>was</Answer>
+            <Answer correct="true">is being</Answer>
+            <Answer>was being</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>If the people on the ship ...... see him, he would have drowned.</Title>
+        <Answers>
+            <Answer>had seen</Answer>
+            <Answer correct="true">hadn't seen</Answer>
+            <Answer>could see</Answer>
+            <Answer>saw</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The journey ...... much longer than I had expected.</Title>
+        <Answers>
+            <Answer correct="true">is taking</Answer>
+            <Answer>took</Answer>
+            <Answer>was taken</Answer>
+            <Answer>had taken</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>I've never ...... to England.</Title>
+        <Answers>
+            <Answer correct="true">been</Answer>
+            <Answer>went</Answer>
+            <Answer>going</Answer>
+            <Answer>go</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>You ...... be really excited about your trip to Germany.</Title>
+        <Answers>
+            <Answer>could</Answer>
+            <Answer correct="true">must</Answer>
+            <Answer>have to</Answer>
+            <Answer>ought</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>It looks ...... it's going to rain.</Title>
+        <Answers>
+            <Answer>alike</Answer>
+            <Answer>as like</Answer>
+            <Answer>as</Answer>
+            <Answer correct="true">as if</Answer>
+        </Answers>
+    </Question>
+
 </Questions>

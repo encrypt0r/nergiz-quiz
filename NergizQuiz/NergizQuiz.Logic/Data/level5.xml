@@ -60,4 +60,95 @@
             <Answer>power.</Answer>
         </Answers>
     </Question>
+
+    <Question>
+        <Title>You should ...... my advice!</Title>
+        <Answers>
+            <Answer>listen</Answer>
+            <Answer>hear</Answer>
+            <Answer>do</Answer>
+            <Answer correct="true">take</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>There were ...... of people at the football match on Friday.</Title>
+        <Answers>
+            <Answer>great deal</Answer>
+            <Answer>fives</Answer>
+            <Answer correct="true">many</Answer>
+            <Answer>hundreds</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>There are so many people off sick we'll have to put the meeting ...... until next week.</Title>
+        <Answers>
+            <Answer>back</Answer>
+            <Answer correct="true">off</Answer>
+            <Answer>over</Answer>
+            <Answer>by</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>He didn't enjoy studying abroad as he had ...... friends there.</Title>
+        <Answers>
+            <Answer>little</Answer>
+            <Answer>a few</Answer>
+            <Answer correct="true">few</Answer>
+            <Answer>a lot of</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The car ...... start this morning, so I was late for work.</Title>
+        <Answers>
+            <Answer>couldn't</Answer>
+            <Answer>shouldn't</Answer>
+            <Answer correct="true">wouldn't</Answer>
+            <Answer>hadn't</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>The new GPS is ....... I don't know how we managed without it before.</Title>
+        <Answers>
+            <Answer>priceless</Answer>
+            <Answer>worthy</Answer>
+            <Answer correct="true">invaluable</Answer>
+            <Answer>valueless</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>My manager ...... on excellent punctuality at all times.</Title>
+        <Answers>
+            <Answer>advises</Answer>
+            <Answer>demands</Answer>
+            <Answer>persists</Answer>
+            <Answer correct="true">insists</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>We have been ...... that a new training centre should be built.</Title>
+        <Answers>
+            <Answer>advise</Answer>
+            <Answer correct="true">advised</Answer>
+            <Answer>adviced</Answer>
+            <Answer>advising</Answer>
+        </Answers>
+    </Question>
+
+    <Question>
+        <Title>It's important that everyone in the group ...... each other.</Title>
+        <Answers>
+            <Answer>goes along</Answer>
+            <Answer correct="true">gets on with</Answer>
+            <Answer>gets along</Answer>
+            <Answer>goes on with</Answer>
+        </Answers>
+    </Question>
+
 </Questions>
