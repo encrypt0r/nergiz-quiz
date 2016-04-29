@@ -9,16 +9,6 @@
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Nergiz Quiz" Height="300" Width="500" Icon="/Nergiz Quiz;component/icon_small.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Window.Resources>
-        <Style x:Key="link" TargetType="{x:Type TextBlock}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
-                    <Setter Property="Cursor" Value="Hand"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
     <Window.DataContext>
         <ViewModels:AboutWindowVM/>
     </Window.DataContext>
@@ -52,7 +42,7 @@
         <Button ToolTip="{Binding GitHub}" Command="{Binding OpenGitHubCommand}"  Height="26" Margin="16,0,0,0" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" >
             <Button.Template>
                 <ControlTemplate >
-                    <TextBlock   Style="{StaticResource link}"  Foreground="#FF3355F0"  FontSize="16" Text="Check out the GitHub Repo" FontWeight="Normal"/>
+                    <TextBlock Style="{StaticResource link}"  Foreground="#FF3355F0"  FontSize="16" Text="Check out the GitHub Repo" FontWeight="Normal"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>

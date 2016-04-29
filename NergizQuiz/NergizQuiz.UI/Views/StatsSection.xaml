@@ -10,7 +10,9 @@
         <local:IntegerToTimeConverter x:Key="IntegerToTimeConverter"/>
         <local:RankToStringConverter x:Key="RankToStringConverter"/>
     </UserControl.Resources>
-    <StackPanel Margin="15,10">
+
+
+    <StackPanel Margin="10,0">
         <StackPanel Margin="0,0,0,10">
             <TextBlock Text="NAME" FontSize="18.667" FontWeight="Medium" Foreground="#FF4A5168"/>
             <TextBlock Text="{Binding CurrentSession.Person.Name}" FontSize="21.333" FontWeight="Light"/>
@@ -37,7 +39,17 @@
                 <TextBlock Text="{Binding CurrentSession.Person.Rank, Converter={StaticResource RankToStringConverter}}" FontSize="21.333" FontWeight="Light"/>
                 <TextBlock Text="{Binding CurrentSession.NumberOfParticipants, StringFormat=' of the \{0\} participants'}" FontSize="21.333" FontWeight="Light"/>
             </StackPanel>
+
         </StackPanel>
+        <Button Margin="0,10,0,0" Command="{Binding GoToWebsiteCommand}" HorizontalAlignment="Left">
+            <Button.Template>
+                <ControlTemplate >
+                    <TextBlock Style="{StaticResource link}" Foreground="#FF3355F0"  FontSize="18" Text="MORE INFO" FontWeight="SemiBold"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </StackPanel>
+
+
 
 </UserControl>

@@ -221,13 +221,32 @@ namespace NergizQuiz.UI.ViewModels
             var aw = new AboutWindow();
             aw.ShowDialog();
         }
+
+        private ICommand m_GoToWebsiteCommand;
+        public ICommand GoToWebsiteCommand
+        {
+            get
+            {
+                if (m_GoToWebsiteCommand == null)
+                    m_GoToWebsiteCommand =
+                        new RelayCommand(GoToWebsiteExecute);
+
+                return m_GoToWebsiteCommand;
+            }
+
+        }
+        public void GoToWebsiteExecute()
+        {
+            System.Diagnostics.Process.Start(DataLayer.SITE_URL);
+        }
         #endregion
 
- 
+
 
         #region Event Handlers
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {
+
             string result = Encoding.UTF8.GetString(e.Result);
             string[] parts = result.Split('#');
 

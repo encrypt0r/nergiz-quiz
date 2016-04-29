@@ -32,7 +32,8 @@ namespace NergizQuiz.Logic
             }
 
             Level = level;
-            // AllAnswers[0].IsChosenByUser = true;
+            if (DataLayer.IS_DEBUGGING)
+                AllAnswers[0].IsChosenByUser = true;
         }
         #endregion // Construction
 

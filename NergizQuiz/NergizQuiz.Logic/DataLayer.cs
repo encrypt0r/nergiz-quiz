@@ -16,7 +16,7 @@ namespace NergizQuiz.Logic
 
         private static Random randomGenerator;
         private static List<Question> listOfQuestions;
-        public const string API_PASSWORD = "Pass";
+        public const string API_PASSWORD = "HowAreYou?";
         public const string API_INSERT = "insert_person";
         public const string LOCALHOST_URL = "http://localhost/nergiz-quiz-web/";
         public const string API_URL = "/api/v1/api.php";
@@ -63,7 +63,7 @@ namespace NergizQuiz.Logic
             nvc.Add("name", cp.Name);
             nvc.Add("accuracy", cp.Accuracy.ToString());
             nvc.Add("time", cp.Time.ToString());
-            nvc.Add("operation", API_INSERT);
+            nvc.Add("action", API_INSERT);
             nvc.Add("password", API_PASSWORD);
             nvc.Add("gender", cp.IsMale.ToString());
             nvc.Add("age", cp.Age.ToString());
@@ -148,27 +148,7 @@ namespace NergizQuiz.Logic
                 }
             }
         }
-        private static void WriteListToDataBase(List<Person> list)
-        {
-            XElement leaderboardx = new XElement("Leaderboard");
 
-            for (int i = 0, m = list.Count; i < m && i < 10; i++)
-            {
-                Person cp = list[i];
-                XElement cpx = new XElement("Person");
-                XElement namex = new XElement("Name", cp.Name);
-                XElement accuracyx = new XElement("Accuracy", cp.Accuracy);
-                XElement timex = new XElement("DeciSecondsElapsed", cp.Time);
-
-                cpx.Add(namex);
-                cpx.Add(accuracyx);
-                cpx.Add(timex);
-
-                leaderboardx.Add(cpx);
-            }
-
-            leaderboardx.Save("Data\\Leaderboard.xml");
-        }
         private static int GetRandomNumber(int[] excludedSet, int max)
         {
             int randomNumber;

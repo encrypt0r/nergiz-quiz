@@ -5,7 +5,7 @@ using System.Text;
 using NergizQuiz.MVVM;
 using System.Windows.Input;
 using System.Reflection;
-
+using NergizQuiz.Logic;
 namespace NergizQuiz.UI.ViewModels
 {
     class AboutWindowVM : ObservableObject
@@ -17,7 +17,7 @@ namespace NergizQuiz.UI.ViewModels
         }
         public string Website
         {
-            get { return "http://nergiz-quiz.ueuo.com/"; }
+            get { return DataLayer.SITE_URL; }
         }
         public string AppVersion
         {
