@@ -109,16 +109,6 @@
             <Answer>I'm come</Answer>
         </Answers>
     </Question>
-
-    <Question>
-        <Title>Do you fancy ...... away for the weekend?</Title>
-        <Answers>
-            <Answer>go</Answer>
-            <Answer>to go</Answer>
-            <Answer correct="true">going</Answer>
-            <Answer>be going</Answer>
-        </Answers>
-    </Question>
     
 	<Question>
         <Title>Chen's looking forward ...... his new job next week.</Title>
@@ -150,4 +140,13 @@
         </Answers>
     </Question>
 
+    <Question>
+      <Title>Do you fancy ...... away for the weekend?</Title>
+      <Answers>
+        <Answer>go</Answer>
+        <Answer>to go</Answer>
+        <Answer correct="true">going</Answer>
+        <Answer>be going</Answer>
+      </Answers>
+    </Question>
 </Questions>

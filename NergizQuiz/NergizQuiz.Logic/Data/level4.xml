@@ -62,16 +62,6 @@
     </Question>
 
     <Question>
-        <Title>Do you fancy ...... away for the weekend?</Title>
-        <Answers>
-            <Answer>go</Answer>
-            <Answer>to go</Answer>
-            <Answer correct="true">going</Answer>
-            <Answer>be going</Answer>
-        </Answers>
-    </Question>
-
-    <Question>
         <Title>There's ...... in applying for the job. I'm not qualified for it.</Title>
         <Answers>
             <Answer>no reason</Answer>

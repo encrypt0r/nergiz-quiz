@@ -113,20 +113,24 @@ namespace NergizQuiz.Logic
 
             for (int i = 1; i <= NUMBER_OF_LEVELS; i++)
             {
-                int numberOfQuestions = max / NUMBER_OF_LEVELS;
+                int numQuestionsForThisLevel = max / NUMBER_OF_LEVELS;
 
                 // make sure we return max questions
-                if (i == NUMBER_OF_LEVELS)
+                if (i == 0 && max % NUMBER_OF_LEVELS != 0)
                 {
-                    if (max % NUMBER_OF_LEVELS != 0)
-                        numberOfQuestions += max - (numberOfQuestions * NUMBER_OF_LEVELS);
+                    int totalNumQuestions = numQuestionsForThisLevel * NUMBER_OF_LEVELS;
+                    numQuestionsForThisLevel += (max - totalNumQuestions);
                 }
 
-                var list = GetLevel(i, numberOfQuestions);
+                var list = GetLevel(i, numQuestionsForThisLevel);
                 returnList.AddRange(list);
             }
-
+            foreach (Question q in returnList)
+                Debug.WriteLine(q);
             returnList.Shuffle();
+            Debug.WriteLine("----------------------");
+            foreach (Question q in returnList)
+                Debug.WriteLine(q);
             return returnList;
         }
         #endregion // Public Methods
@@ -149,40 +153,44 @@ namespace NergizQuiz.Logic
             }
         }
 
-        private static int GetRandomNumber(int[] excludedSet, int max)
+        private static int GetNewRandNum(int[] oldNums, int max)
         {
             int randomNumber;
             do
             {
                 randomNumber = randomGenerator.Next(0, max);
             }
-            while (excludedSet.Contains(randomNumber));
+            while (oldNums.Contains(randomNumber));
 
             return randomNumber;
         }
         private static List<Question> GetLevel(int level, int max)
         {
             List<Question> returnList = new List<Question>();
+
             if (listOfQuestions.Count <= 0)
                 LoadQuestions();
 
-            var thisLevelList = listOfQuestions.Where(q => q.Level == level).ToList();
-            if (thisLevelList.Count() < max)
+            // This gets all of the questions of this level in the database
+            var database = listOfQuestions.Where(q => q.Level == level).ToList();
+
+            if (database.Count() < max)
                 throw new ArgumentException("There are not enough questions of level " + level);
 
-            int[] indeces = new int[max];
+            // Get max Random Questions from database
+            int[] oldNums = new int[max];
             for (int i = 0; i < max; i++)
             {
-                indeces[i] = -1; // so that GetRandomNumber() does not stuck in the loop
-                int randomNumber = GetRandomNumber(indeces, thisLevelList.Count);
-                Debug.WriteLine("random number: " + randomNumber);
-                Question q = thisLevelList[randomNumber];
+                oldNums[i] = -1; // so that GetRandomNumber() does not get stuck in the loop
+                int randomNumber = GetNewRandNum(oldNums, database.Count);
+                Question q = database[randomNumber];
                 returnList.Add(q);
-                indeces[i] = randomNumber;
+                oldNums[i] = randomNumber;
             }
 
             return returnList;
         }
+
         /// <summary>
         /// Shuffles a list pseudo-randomly. 
         /// Credit: Eric J. (http://stackoverflow.com/questions/273313/randomize-a-listt-in-c-sharp)
@@ -201,7 +209,7 @@ namespace NergizQuiz.Logic
                 list[n] = value;
             }
         }
-    
+
         #endregion // Private Methods
 
     }

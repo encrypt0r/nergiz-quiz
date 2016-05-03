@@ -70,5 +70,12 @@ namespace NergizQuiz.Logic
         }
         public int Level { get; set; }
         #endregion // Public Properties
+
+        #region Publi Overrided Methods
+        public override string ToString()
+        {
+            return Title;
+        }
+        #endregion
     }
 }
