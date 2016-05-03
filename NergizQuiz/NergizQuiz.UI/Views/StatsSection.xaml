@@ -26,7 +26,7 @@
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="{Binding CurrentSession.NumberOfCorrectAnswers}" FontSize="21.333" FontWeight="Light"/>
                 <TextBlock Text="{Binding CurrentSession.NumberOfQuestionsToBeAsked, StringFormat=' of {0} '}" FontSize="21.333" FontWeight="Light"/>
-                <TextBlock Text="{Binding CurrentSession.Person.Accuracy,StringFormat='(\{0:0.## %\})'}" FontSize="21.333" FontWeight="Light"/>
+                <TextBlock Text="{Binding CurrentSession.Person.Accuracy,StringFormat=' (\{0:0.## %\})'}" FontSize="21.333" FontWeight="Light"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,0,0,10" >

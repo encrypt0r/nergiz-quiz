@@ -37,15 +37,7 @@ namespace NergizQuiz.UI
         }
         public string FirstName
         {
-            get
-            {
-                if (Name.Contains(' '))
-                {
-                    return Name.Split(' ')[0];
-                }
-                else
-                    return Name;
-            }
+            get { return person.FirstName; }
         }
         public float Accuracy
         {
@@ -122,14 +114,11 @@ namespace NergizQuiz.UI
         }
         public string Level
         {
-            get
-            {
-                return HelperMethods.GetLevelString(Accuracy);
-            }
+            get { return person.Level; }
         }
         public string Comment
         {
-            get { return DataLayer.GetComment(Accuracy); }
+            get { return person.Comment; }
         }
         #endregion
 

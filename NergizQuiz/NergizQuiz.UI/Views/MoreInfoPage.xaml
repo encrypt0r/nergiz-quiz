@@ -56,7 +56,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Grid.Row="2" Content="Resart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}"/>
+        <Button Grid.Row="2" Content="Restart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="40,10" IsDefault="True" Command="{Binding RestartCommand}"/>
     </Grid>
 
 </UserControl>

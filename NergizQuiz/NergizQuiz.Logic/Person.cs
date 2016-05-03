@@ -28,5 +28,28 @@ namespace NergizQuiz.Logic
                 return HelperMethods.GetTimeInHumanLanguage(Time);
             }
         }
+        public string Level
+        {
+            get
+            {
+                return HelperMethods.GetLevelString(Accuracy);
+            }
+        }
+        public string Comment
+        {
+            get { return DataLayer.GetComment(Accuracy); }
+        }
+        public string FirstName
+        {
+            get
+            {
+                if (Name.Contains(' '))
+                {
+                    return Name.Split(' ')[0];
+                }
+                else
+                    return Name;
+            }
+        }
     }
 }
