@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace NergizQuiz.Logic
 {
@@ -75,6 +76,33 @@ namespace NergizQuiz.Logic
             while (digit-- > 1)
                 number /= 10;
             return (int)number % 10;
+        }
+
+        /// <summary>
+        /// Searches for an XElement by name case-insensitively.
+        /// </summary>
+        /// <param name="name">The name of the XElement (case-insensitive)</param>
+        /// <param name="data">The parent XElement.</param>
+        /// <returns></returns>
+        public static XElement SelectXElement(string name, XElement data)
+        {
+            var element = data.Elements().Where(i => i.Name.LocalName.ToLower() == name.ToLower()).First();
+            return element;
+        }
+        /// <summary>
+        /// Searches for an XAttribute of an XElement by name case-insensitively.
+        /// </summary>
+        /// <param name="name">The name of the XAttribute (case-insensitive)</param>
+        /// <param name="data">The XElement.</param>
+        /// <returns></returns>
+        public static XAttribute SelectXAttribute(string name, XElement data)
+        {
+            var attributes = data.Attributes().Where(i => i.Name.LocalName.ToLower() == name.ToLower());
+
+            if (attributes.Count() > 0)
+                return attributes.First();
+            else
+                return null;
         }
     }
 }

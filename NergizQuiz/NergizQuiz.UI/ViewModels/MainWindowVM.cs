@@ -241,8 +241,6 @@ namespace NergizQuiz.UI.ViewModels
         }
         #endregion
 
-
-
         #region Event Handlers
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {

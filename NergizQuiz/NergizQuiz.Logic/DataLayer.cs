@@ -13,7 +13,7 @@ namespace NergizQuiz.Logic
     {
         #region Fields
         public static bool IS_DEBUGGING = false;
-
+       
         private static Random randomGenerator;
         private static List<Question> listOfQuestions;
         public const string API_PASSWORD = "HowAreYou?";
@@ -106,7 +106,7 @@ namespace NergizQuiz.Logic
         {
             var returnList = new List<Question>();
 
-            // reset the questions
+            // reset the questions, because they are passed by reference
             foreach (var q in listOfQuestions)
                 foreach (var a in q.AllAnswers)
                     a.IsChosenByUser = false;

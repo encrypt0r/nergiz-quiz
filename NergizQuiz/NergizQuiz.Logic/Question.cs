@@ -13,17 +13,16 @@ namespace NergizQuiz.Logic
             if (data == null)
                 throw new ArgumentNullException("data");
 
-            //TODO: attribute and tag names should not be case sensitive
             AllAnswers = new List<Answer>();
-            Title = HelperMethods.ApplyMeaningfulChars(data.Element("Title").Value);
-
+            Title = HelperMethods.ApplyMeaningfulChars(HelperMethods.SelectXElement("title", data).Value);
+            
             int index = 0;
-            foreach (XElement answer in data.Elements("Answers").Descendants())
+            foreach (XElement answer in HelperMethods.SelectXElement("answers", data).Descendants())
             {
                 var newAnswer = new Answer(answer.Value, index);
 
-                if (answer.Attribute("correct") != null &&
-                    answer.Attribute("correct").Value == "true")
+                if (HelperMethods.SelectXAttribute("correct", answer) != null &&
+                    HelperMethods.SelectXAttribute("correct", answer).Value.ToLower() == "true")
                     newAnswer.IsTheCorrectAnswer = true;
 
                 AllAnswers.Add(newAnswer);
@@ -32,8 +31,6 @@ namespace NergizQuiz.Logic
             }
 
             Level = level;
-            if (DataLayer.IS_DEBUGGING)
-                AllAnswers[0].IsChosenByUser = true;
         }
         #endregion // Construction
 
