@@ -105,19 +105,14 @@ namespace NergizQuiz.Logic
         }
         static public List<Question> GetNewListOfQuestions(int max)
         {
-            var returnList = new List<Question>();
-
-            // reset the questions, because they are passed by reference
-            foreach (var q in listOfQuestions)
-                foreach (var a in q.AllAnswers)
-                    a.IsChosenByUser = false;
+            var returnList = new List<Question>(max);
 
             for (int i = 1; i <= NUMBER_OF_LEVELS; i++)
             {
                 int numQuestionsForThisLevel = max / NUMBER_OF_LEVELS;
 
                 // make sure we return max questions
-                if (i == 0 && max % NUMBER_OF_LEVELS != 0)
+                if (i == 1 && max % NUMBER_OF_LEVELS != 0)
                 {
                     int totalNumQuestions = numQuestionsForThisLevel * NUMBER_OF_LEVELS;
                     numQuestionsForThisLevel += (max - totalNumQuestions);
@@ -126,12 +121,13 @@ namespace NergizQuiz.Logic
                 var list = GetLevel(i, numQuestionsForThisLevel);
                 returnList.AddRange(list);
             }
-            foreach (Question q in returnList)
-                Debug.WriteLine(q);
             returnList.Shuffle();
-            Debug.WriteLine("----------------------");
-            foreach (Question q in returnList)
-                Debug.WriteLine(q);
+            
+            // reset the questions, because they are passed by reference
+            foreach (var q in returnList)
+                foreach (var a in q.AllAnswers)
+                    a.IsChosenByUser = false;
+
             return returnList;
         }
         #endregion // Public Methods

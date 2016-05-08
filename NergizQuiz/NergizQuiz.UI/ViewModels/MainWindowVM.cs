@@ -33,6 +33,7 @@ namespace NergizQuiz.UI.ViewModels
                 {
                     DataLayer.NumberOfQuestions = value;
                     RaisePropertyChanged("NumberOfQuestions");
+                    RestartExecute();
                 }
             }
         }
@@ -165,7 +166,7 @@ namespace NergizQuiz.UI.ViewModels
                 if (m_NextQuestionCommand == null)
                     m_NextQuestionCommand =
                         new RelayCommand(NextQuestionExecute, NextQuestionCanExecute);
-                
+
                 return m_NextQuestionCommand;
             }
 
@@ -181,7 +182,7 @@ namespace NergizQuiz.UI.ViewModels
 
                 Page = new LoadingPage();
                 var handler = new System.Net.UploadValuesCompletedEventHandler(UploadComplete);
-                DataLayer.SendPersonToDatabase(CurrentSession.Person.GetPerson(), handler); 
+                DataLayer.SendPersonToDatabase(CurrentSession.Person.GetPerson(), handler);
             }
             else
             {
@@ -189,7 +190,7 @@ namespace NergizQuiz.UI.ViewModels
 
                 // transition between two questions
                 Page.StartAnimation();
-            }               
+            }
 
         }
         private bool NextQuestionCanExecute()
@@ -301,8 +302,8 @@ namespace NergizQuiz.UI.ViewModels
             }
             else
             {
-                string message = 
-                    Strings.ErrorOccuredServer + e.Error.Message + Strings.TryAgain;
+                string message = Strings.ErrorOccuredServer + Environment.NewLine +
+                                 e.Error.Message + Environment.NewLine + Strings.TryAgain;
 
                 System.Windows.MessageBox.Show(message, "Nergiz Quiz");
             }

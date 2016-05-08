@@ -17,6 +17,9 @@ namespace NergizQuiz.UI
             string rankStr = rank.ToString();
             int firstDig = HelperMethods.GetNthDigit(rank, 1);
             int secondDig = HelperMethods.GetNthDigit(rank, 2);
+            if (rank == 0)
+                return "?";
+
             if (secondDig != 1)
             {
                 if (firstDig == 1)

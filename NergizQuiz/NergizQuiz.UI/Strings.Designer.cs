@@ -61,7 +61,7 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while trying to connect to server:\n.
+        ///   Looks up a localized string similar to An error occured while trying to connect to server:.
         /// </summary>
         internal static string ErrorOccuredServer {
             get {
@@ -97,7 +97,7 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \nYour score could not be uploaded. Pelase try again later..
+        ///   Looks up a localized string similar to Your score could not be uploaded. Pelase try again later..
         /// </summary>
         internal static string TryAgain {
             get {
