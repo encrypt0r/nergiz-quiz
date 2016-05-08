@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel  Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-            <Button Margin="10" MinHeight="30" MinWidth="80" Content="Ok" Click="Button_Click" />
+            <Button FontSize="12" Margin="10" MinHeight="30" MinWidth="80" Content="Ok" Click="Button_Click" />
         </StackPanel>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Number of questions to ask:" VerticalAlignment="Top" FontSize="16"/>
         <TextBox x:Name="textBox" Height="23" Margin="10,10,10,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding NumberOfQuestions}" VerticalAlignment="Top"/>

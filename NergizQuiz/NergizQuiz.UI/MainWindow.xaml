@@ -13,10 +13,13 @@
     <Controls:MetroWindow.DataContext>
         <ViewModels:MainWindowVM/>
     </Controls:MetroWindow.DataContext>
+    <Controls:MetroWindow.Resources>
+        <local:VisibilityToBooleanConverter x:Key="visibilityConverter"/>
+    </Controls:MetroWindow.Resources>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="About" Command="{Binding ShowAboutCommand}"/>
-            <Button Content="{Binding NumberOfQuestions, FallbackValue=15}" Command="{Binding ShowSettingsCommand}"/>
+            <Button Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource visibilityConverter}}" Content="{Binding NumberOfQuestions, FallbackValue=15}" Command="{Binding ShowSettingsCommand}"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid x:Name="grid" >

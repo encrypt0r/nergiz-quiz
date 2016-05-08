@@ -96,7 +96,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void ShowFormPageExecute()
+        private void ShowFormPageExecute()
         {
             Storyboard sb = Page.StartAnimation();
             sb.Completed += SbShowformPage_Animation_Complete;
@@ -113,7 +113,7 @@ namespace NergizQuiz.UI.ViewModels
             Page = new FormPage();
             CurrentSession.StartTimer();
         }
-        public bool ShowFormPageCanExecute()
+        private bool ShowFormPageCanExecute()
         {
             if (CurrentSession.Person["Name"] == string.Empty && !welcomePageAnimationIsPlaying)
                 return true;
@@ -134,7 +134,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void MoreInfoExecute()
+        private void MoreInfoExecute()
         {
             Page = new MoreInfoPage();
         }
@@ -152,7 +152,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void ShowQuizPageExecute()
+        private void ShowQuizPageExecute()
         {
             Page = new QuizPage();
         }
@@ -170,7 +170,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void NextQuestionExecute()
+        private void NextQuestionExecute()
         {
 
             // if all of the questions answered, go to finish page
@@ -192,7 +192,7 @@ namespace NergizQuiz.UI.ViewModels
             }               
 
         }
-        public bool NextQuestionCanExecute()
+        private bool NextQuestionCanExecute()
         {
             return (CurrentSession.CurrentQuestion.UserAnswer != -1);
         }
@@ -210,7 +210,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void RestartExecute()
+        private void RestartExecute()
         {
             CurrentSession = new SessionFacade();
             Page = new WelcomePage();
@@ -229,7 +229,7 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void ShowAboutExecute()
+        private void ShowAboutExecute()
         {
             var aw = new AboutWindow();
             aw.ShowDialog();
@@ -249,7 +249,6 @@ namespace NergizQuiz.UI.ViewModels
 
         }
 
-
         private ICommand m_ShowSettingsCommand;
         public ICommand ShowSettingsCommand
         {
@@ -257,17 +256,21 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_ShowSettingsCommand == null)
                     m_ShowSettingsCommand =
-                        new RelayCommand(ShowSettingsCommandExecute);
+                        new RelayCommand(ShowSettingsCommandExecute, ShowSettingsCanExecute);
 
                 return m_ShowSettingsCommand;
             }
 
         }
-        public void ShowSettingsCommandExecute()
+        private void ShowSettingsCommandExecute()
         {
             var sw = new SettingsWindow();
             sw.DataContext = this;
             sw.ShowDialog();
+        }
+        private bool ShowSettingsCanExecute()
+        {
+            return (Page is WelcomePage) ? true : false;
         }
         #endregion
 
@@ -278,18 +281,27 @@ namespace NergizQuiz.UI.ViewModels
         }
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {
+            if (e.Error == null)
+            {
+                string result = Encoding.UTF8.GetString(e.Result);
+                string[] parts = result.Split('#');
 
-            string result = Encoding.UTF8.GetString(e.Result);
-            string[] parts = result.Split('#');
+                int rank = int.Parse(parts[0]);
+                int numberOfParticipants = int.Parse(parts[1]);
+                string leaderboard = parts[2];
 
-            int rank = int.Parse(parts[0]);
-            int numberOfParticipants = int.Parse(parts[1]);
-            string leaderboard = parts[2];
+                CurrentSession.Person.Rank = rank;
+                CurrentSession.NumberOfParticipants = numberOfParticipants;
 
-            CurrentSession.Person.Rank = rank;
-            CurrentSession.NumberOfParticipants = numberOfParticipants;
-            
-            Leaderboard = DataLayer.ParseLeaderboard(leaderboard);
+                Leaderboard = DataLayer.ParseLeaderboard(leaderboard);
+            }
+            else
+            {
+                string message = "An error occured while trying to connect to server:\n" +
+                                  e.Error.Message +
+                                  "\nYour score could not be uploaded. Pelase try again later.";
+                System.Windows.MessageBox.Show(message, "Nergiz Quiz");
+            }
             Page = new FinishPage();
         }
         #endregion
