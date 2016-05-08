@@ -20,6 +20,7 @@
         <Controls:WindowCommands>
             <Button Content="About" Command="{Binding ShowAboutCommand}"/>
             <Button Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource visibilityConverter}}" Content="{Binding NumberOfQuestions, FallbackValue=15}" Command="{Binding ShowSettingsCommand}"/>
+            <Button Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource visibilityConverter}}" Content="Restart" Command="{Binding RestartCommand}"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid x:Name="grid" >

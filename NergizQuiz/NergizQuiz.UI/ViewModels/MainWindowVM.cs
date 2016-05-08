@@ -204,7 +204,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 if (m_RestartCommand == null)
                     m_RestartCommand =
-                        new RelayCommand(RestartExecute);
+                        new RelayCommand(RestartExecute, RestartCanExecute);
 
                 return m_RestartCommand;
             }
@@ -214,6 +214,10 @@ namespace NergizQuiz.UI.ViewModels
         {
             CurrentSession = new SessionFacade();
             Page = new WelcomePage();
+        }
+        private bool RestartCanExecute()
+        {
+            return (Page is WelcomePage) ? false : true;
         }
 
         private ICommand m_ShowAboutCommand;
