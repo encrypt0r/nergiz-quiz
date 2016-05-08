@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorOccuredServer" xml:space="preserve">
+    <value>An error occured while trying to connect to server:\n</value>
+  </data>
   <data name="NameEmptyError" xml:space="preserve">
     <value>Write your name below, Please.</value>
   </data>
@@ -125,5 +128,8 @@
   </data>
   <data name="NameMinLetters" xml:space="preserve">
     <value>Name should be at least three letters</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>\nYour score could not be uploaded. Pelase try again later.</value>
   </data>
 </root>

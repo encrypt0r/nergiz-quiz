@@ -69,13 +69,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Essential\IntegerToTimeConverter.cs" />
-    <Compile Include="Essential\PercentageToColorConverter.cs" />
-    <Compile Include="Essential\PersonFacade.cs" />
-    <Compile Include="Essential\RankToStringConverter.cs" />
-    <Compile Include="Essential\SessionFacade.cs" />
-    <Compile Include="Essential\IAnimatedUserControl.cs" />
-    <Compile Include="Essential\VisibilityToBooleanConverter.cs" />
+    <Compile Include="Helpers\IntegerToTimeConverter.cs" />
+    <Compile Include="Helpers\PercentageToColorConverter.cs" />
+    <Compile Include="Helpers\PersonFacade.cs" />
+    <Compile Include="Helpers\RankToStringConverter.cs" />
+    <Compile Include="Helpers\SessionFacade.cs" />
+    <Compile Include="Helpers\IAnimatedUserControl.cs" />
+    <Compile Include="Helpers\VisibilityToBooleanConverter.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

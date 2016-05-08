@@ -301,9 +301,9 @@ namespace NergizQuiz.UI.ViewModels
             }
             else
             {
-                string message = "An error occured while trying to connect to server:\n" +
-                                  e.Error.Message +
-                                  "\nYour score could not be uploaded. Pelase try again later.";
+                string message = 
+                    Strings.ErrorOccuredServer + e.Error.Message + Strings.TryAgain;
+
                 System.Windows.MessageBox.Show(message, "Nergiz Quiz");
             }
             Page = new FinishPage();

@@ -61,6 +61,15 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while trying to connect to server:\n.
+        /// </summary>
+        internal static string ErrorOccuredServer {
+            get {
+                return ResourceManager.GetString("ErrorOccuredServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Write your name below, Please..
         /// </summary>
         internal static string NameEmptyError {
@@ -84,6 +93,15 @@ namespace NergizQuiz.UI {
         internal static string NameMinLetters {
             get {
                 return ResourceManager.GetString("NameMinLetters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \nYour score could not be uploaded. Pelase try again later..
+        /// </summary>
+        internal static string TryAgain {
+            get {
+                return ResourceManager.GetString("TryAgain", resourceCulture);
             }
         }
     }
