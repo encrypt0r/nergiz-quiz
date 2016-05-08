@@ -22,9 +22,8 @@ namespace NergizQuiz.UI
         {
             session = new Session();
             Person = new PersonFacade();
-            NumberOfQuestions = 15; // change this to change the number of questions
             CurrentQuestionNumber = 1;
-            Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(NumberOfQuestions));
+            Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(DataLayer.NumberOfQuestions));
             
             FetchNextQuestion();
 
@@ -82,18 +81,6 @@ namespace NergizQuiz.UI
                 }
             }
         }
-        public int NumberOfQuestions
-        {
-            get { return session.NumberOfQuestionsToBeAsked; }
-            set
-            {
-                if (value != session.NumberOfQuestionsToBeAsked)
-                {
-                    session.NumberOfQuestionsToBeAsked = value;
-                    RaisePropertyChanged("NumberOfQuestions");
-                }
-            }
-        }
         public int CurrentQuestionNumber
         {
             get { return session.NumberOfAnswersGiven; }
@@ -104,9 +91,9 @@ namespace NergizQuiz.UI
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
                     if (Person != null)
-                        Person.Accuracy = (float) NumberOfCorrectAnswers / NumberOfQuestions;
+                        Person.Accuracy = (float) NumberOfCorrectAnswers / DataLayer.NumberOfQuestions;
 
-                    if (value == NumberOfQuestions)
+                    if (value == DataLayer.NumberOfQuestions)
                         BtnNextText = "Get Results";
                 }
             }
@@ -181,7 +168,7 @@ namespace NergizQuiz.UI
         #region Private Methods and Event Handlers
         private void FetchNextQuestion()
         {
-            if (CurrentQuestionNumber > NumberOfQuestions)
+            if (CurrentQuestionNumber > DataLayer.NumberOfQuestions)
                 return;
             CurrentQuestion = Questions[CurrentQuestionNumber - 1];
             CurrentQuestion.Index = (CurrentQuestionNumber).ToString("00");

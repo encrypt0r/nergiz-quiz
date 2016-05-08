@@ -24,6 +24,18 @@ namespace NergizQuiz.UI.ViewModels
         #endregion
 
         #region Public Properties
+        public int NumberOfQuestions
+        {
+            get { return DataLayer.NumberOfQuestions; }
+            set
+            {
+                if (value != DataLayer.NumberOfQuestions)
+                {
+                    DataLayer.NumberOfQuestions = value;
+                    RaisePropertyChanged("NumberOfQuestions");
+                }
+            }
+        }
         private SessionFacade m_CurrentSession;
         public SessionFacade CurrentSession
         {
@@ -69,6 +81,7 @@ namespace NergizQuiz.UI.ViewModels
         #endregion
 
         #region Commands
+
         private ICommand m_ShowFormPageCommand;
         private bool welcomePageAnimationIsPlaying = false;
         public ICommand ShowFormPageCommand
@@ -161,7 +174,7 @@ namespace NergizQuiz.UI.ViewModels
         {
 
             // if all of the questions answered, go to finish page
-            if (CurrentSession.CurrentQuestionNumber == CurrentSession.NumberOfQuestions)
+            if (CurrentSession.CurrentQuestionNumber == DataLayer.NumberOfQuestions)
             {
                 CurrentSession.NextQuestion();
                 CurrentSession.StopTimer();
@@ -235,13 +248,34 @@ namespace NergizQuiz.UI.ViewModels
             }
 
         }
-        public void GoToWebsiteExecute()
+
+
+        private ICommand m_ShowSettingsCommand;
+        public ICommand ShowSettingsCommand
         {
-            System.Diagnostics.Process.Start(DataLayer.SITE_URL);
+            get
+            {
+                if (m_ShowSettingsCommand == null)
+                    m_ShowSettingsCommand =
+                        new RelayCommand(ShowSettingsCommandExecute);
+
+                return m_ShowSettingsCommand;
+            }
+
+        }
+        public void ShowSettingsCommandExecute()
+        {
+            var sw = new SettingsWindow();
+            sw.DataContext = this;
+            sw.ShowDialog();
         }
         #endregion
 
-        #region Event Handlers
+        #region Private Methods
+        private void GoToWebsiteExecute()
+        {
+            System.Diagnostics.Process.Start(DataLayer.SITE_URL);
+        }
         private void UploadComplete(object sender, System.Net.UploadValuesCompletedEventArgs e)
         {
 

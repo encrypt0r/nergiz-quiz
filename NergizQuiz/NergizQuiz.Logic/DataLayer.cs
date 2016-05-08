@@ -32,6 +32,7 @@ namespace NergizQuiz.Logic
         #region Construction
         static DataLayer()
         {
+            NumberOfQuestions = 15;
             randomGenerator = new Random();
             listOfQuestions = new List<Question>();
             LoadQuestions();
@@ -135,6 +136,10 @@ namespace NergizQuiz.Logic
         }
         #endregion // Public Methods
 
+        #region Public Properties
+        public static int NumberOfQuestions { get; set; }
+        #endregion
+
         #region Private Methods
         private static void LoadQuestions()
         {
@@ -152,7 +157,6 @@ namespace NergizQuiz.Logic
                 }
             }
         }
-
         private static int GetNewRandNum(int[] oldNums, int max)
         {
             int randomNumber;
@@ -190,7 +194,6 @@ namespace NergizQuiz.Logic
 
             return returnList;
         }
-
         /// <summary>
         /// Shuffles a list pseudo-randomly. 
         /// Credit: Eric J. (http://stackoverflow.com/questions/273313/randomize-a-listt-in-c-sharp)

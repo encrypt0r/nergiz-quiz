@@ -16,6 +16,7 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="About" Command="{Binding ShowAboutCommand}"/>
+            <Button Content="{Binding NumberOfQuestions, FallbackValue=15}" Command="{Binding ShowSettingsCommand}"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid x:Name="grid" >
