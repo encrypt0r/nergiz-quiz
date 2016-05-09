@@ -79,7 +79,7 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write your name below, Please..
+        ///   Looks up a localized string similar to Please write your name below..
         /// </summary>
         internal static string NameEmptyError {
             get {

@@ -32,7 +32,7 @@ namespace NergizQuiz.Logic
         #region Construction
         static DataLayer()
         {
-            NumberOfQuestions = 15;
+            NumberOfQuestions = 10;
             randomGenerator = new Random();
             listOfQuestions = new List<Question>();
             LoadQuestions();

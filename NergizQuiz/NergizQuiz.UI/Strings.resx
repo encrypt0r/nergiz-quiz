@@ -124,7 +124,7 @@
     <value>An error occured while trying to connect to server:</value>
   </data>
   <data name="NameEmptyError" xml:space="preserve">
-    <value>Write your name below, Please.</value>
+    <value>Please write your name below.</value>
   </data>
   <data name="NameInvalidCharacterError" xml:space="preserve">
     <value>Name can only include A-Z</value>
