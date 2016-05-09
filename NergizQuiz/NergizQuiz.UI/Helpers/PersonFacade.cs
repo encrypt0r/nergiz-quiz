@@ -2,6 +2,7 @@
 using NergizQuiz.Logic;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System;
 
 namespace NergizQuiz.UI
 {
@@ -126,15 +127,14 @@ namespace NergizQuiz.UI
         #endregion
 
         #region IDataErrorInfo members
-        private Regex nameRegex = new Regex("^[a-zA-Z\\s]+$");
+        // accept a-z, space and dot(.)
+        private Regex nameRegex = new Regex("^[a-zA-Z\\s.]+$");
         private string error = string.Empty;
         public string Error
         {
             get
             {
-                error = string.Empty;
-
-                return error;
+                throw new NotImplementedException();
             }
         }
 

@@ -13,7 +13,7 @@ namespace NergizQuiz.Logic
     {
         #region Fields
         public static bool IS_DEBUGGING = false;
-       
+
         private static Random randomGenerator;
         private static List<Question> listOfQuestions;
         public const string API_PASSWORD = "HowAreYou?";
@@ -110,19 +110,17 @@ namespace NergizQuiz.Logic
             for (int i = 1; i <= NUMBER_OF_LEVELS; i++)
             {
                 int numQuestionsForThisLevel = max / NUMBER_OF_LEVELS;
-
-                // make sure we return max questions
-                if (i == 1 && max % NUMBER_OF_LEVELS != 0)
+                int extraQuestions = max % NUMBER_OF_LEVELS;
+                if (i <= extraQuestions && max % NUMBER_OF_LEVELS != 0)
                 {
-                    int totalNumQuestions = numQuestionsForThisLevel * NUMBER_OF_LEVELS;
-                    numQuestionsForThisLevel += (max - totalNumQuestions);
+                    numQuestionsForThisLevel++;
                 }
 
                 var list = GetLevel(i, numQuestionsForThisLevel);
                 returnList.AddRange(list);
             }
             returnList.Shuffle();
-            
+
             // reset the questions, because they are passed by reference
             foreach (var q in returnList)
                 foreach (var a in q.AllAnswers)

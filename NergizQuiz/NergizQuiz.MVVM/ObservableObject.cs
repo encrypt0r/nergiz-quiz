@@ -9,15 +9,6 @@ namespace NergizQuiz.MVVM
 {
     public class ObservableObject : INotifyPropertyChanged, IDisposable
     {
-        #region DisplayName
-        /// <summary>
-        /// Determines the user-friendly name of this object
-        /// child classes can set this property to a new value
-        /// or override it to determine the value on demand.
-        /// </summary>
-        public virtual string DisplayName { get; protected set; }
-
-        #endregion // DisplayName
 
         #region Debugging Aides
         /// <summary>
@@ -96,7 +87,7 @@ namespace NergizQuiz.MVVM
         /// </summary>
         ~ObservableObject()
         {
-            string msg = string.Format("{0} ({1}) ({2}) Finalized", this.GetType().Name, this.DisplayName, this.GetHashCode());
+            string msg = string.Format("{0} ({1}) Finalized", this.GetType().Name, this.GetHashCode());
             System.Diagnostics.Debug.WriteLine(msg);
         }
 #endif

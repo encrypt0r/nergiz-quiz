@@ -61,6 +61,15 @@ namespace NergizQuiz.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not fetch leaderboard, please try again later..
+        /// </summary>
+        internal static string CouldNotFetchLeaderboard {
+            get {
+                return ResourceManager.GetString("CouldNotFetchLeaderboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured while trying to connect to server:.
         /// </summary>
         internal static string ErrorOccuredServer {

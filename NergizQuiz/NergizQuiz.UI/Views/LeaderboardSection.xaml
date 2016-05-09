@@ -7,9 +7,18 @@
              xmlns:logic="clr-namespace:NergizQuiz.Logic;assembly=NergizQuiz.Logic"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ValidationError}">
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="5" Background="#F62459" Padding="10,1" Margin="0,0,10,0">
+                    <TextBlock Text="!" Foreground="White"  FontSize="18" FontFamily="Segoe UI" FontWeight="Bold"/>
+                </Border>
+                <TextBlock Text="{Binding ErrorContent}"  FontSize="18" FontFamily="Segoe UI Light"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding Leaderboard}" FontSize="16" BorderBrush="{x:Null}" Background="{x:Null}">
+        <ListView x:Name="lstView" ItemsSource="{Binding Leaderboard, ValidatesOnDataErrors=True}" FontSize="16" BorderBrush="{x:Null}" Background="{x:Null}">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Header="Number" DisplayMemberBinding="{Binding Rank, StringFormat=\{0:00\}}"/>
@@ -19,5 +28,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <ContentPresenter Content="{Binding ElementName=lstView, Path=(Validation.Errors).CurrentItem}"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0"/>
     </Grid>
 </UserControl>

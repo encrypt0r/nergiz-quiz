@@ -8,7 +8,7 @@
         xmlns:ViewModels="clr-namespace:NergizQuiz.UI.ViewModels" x:Class="NergizQuiz.UI.Views.SettingsWindow"
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="Settings" Height="195.205" Width="500" Icon="/Nergiz Quiz;component/icon_small.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Settings" Height="195.205" Width="500" Icon="/Nergiz Quiz;component/icon_small.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" IsCloseButtonEnabled="False" ShowCloseButton="False">
     <Window.DataContext>
         <ViewModels:AboutWindowVM/>
     </Window.DataContext>
@@ -18,12 +18,11 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel  Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-            <Button FontSize="12" Margin="10" MinHeight="30" MinWidth="80" Content="Ok" Click="Button_Click" />
+        <StackPanel  Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button FontSize="12" Margin="10" MinHeight="30" MinWidth="80" Content="Ok" Command="{Binding AcceptSettingsCommand}" Click="Button_Click" IsDefault="True" IsCancel="True" />
         </StackPanel>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Number of questions to ask:" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="textBox" Height="23" Margin="10,10,10,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding NumberOfQuestions}" VerticalAlignment="Top"/>
-
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" Text="Number of questions to ask:" VerticalAlignment="Top" FontSize="16"/>
+        <Controls:NumericUpDown TextAlignment="Center" MinWidth="200" Maximum="25" Minimum="10" VerticalAlignment="Center" HorizontalAlignment="Center" HasDecimals="False" Value="{Binding NumberOfQuestions}" FontSize="18.667" Grid.Row="1" />
 
     </Grid>
 </Controls:MetroWindow>

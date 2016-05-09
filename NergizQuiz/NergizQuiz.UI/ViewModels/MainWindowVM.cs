@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace NergizQuiz.UI.ViewModels
 {
-    class MainWindowVM : ObservableObject
+    class MainWindowVM : ObservableObject, IDataErrorInfo
     {
         #region Constructor
         public MainWindowVM()
@@ -33,7 +33,6 @@ namespace NergizQuiz.UI.ViewModels
                 {
                     DataLayer.NumberOfQuestions = value;
                     RaisePropertyChanged("NumberOfQuestions");
-                    RestartExecute();
                 }
             }
         }
@@ -277,6 +276,19 @@ namespace NergizQuiz.UI.ViewModels
         {
             return (Page is WelcomePage) ? true : false;
         }
+
+        private ICommand m_AcceptSettingsCommand;
+        public ICommand AcceptSettingsCommand
+        {
+            get
+            {
+                if (m_AcceptSettingsCommand == null)
+                    m_AcceptSettingsCommand = new RelayCommand(RestartExecute);
+
+                return m_AcceptSettingsCommand;
+            }
+
+        }
         #endregion
 
         #region Private Methods
@@ -308,6 +320,34 @@ namespace NergizQuiz.UI.ViewModels
                 System.Windows.MessageBox.Show(message, "Nergiz Quiz");
             }
             Page = new FinishPage();
+        }
+        #endregion
+
+        #region IData Error Info
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                if (columnName == "Leaderboard")
+                    error = ValidateLeaderboard();
+                return error;
+            }
+        }
+        private string ValidateLeaderboard()
+        {
+            if (Leaderboard == null)
+                return Strings.CouldNotFetchLeaderboard;
+            else
+                return string.Empty;
         }
         #endregion
     }

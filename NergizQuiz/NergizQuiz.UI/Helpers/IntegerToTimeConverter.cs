@@ -9,7 +9,10 @@ namespace NergizQuiz.UI
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int time = (int)value;
-            return HelperMethods.GetTimeInHumanLanguage(time);
+            if (parameter != null && int.Parse(parameter.ToString()) == 1)
+                return HelperMethods.GetTimeInClockFormat(time);
+            else
+                return HelperMethods.GetTimeInHumanLanguage(time);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

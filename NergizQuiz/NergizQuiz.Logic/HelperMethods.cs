@@ -17,14 +17,26 @@ namespace NergizQuiz.Logic
 
             if (minutes > 0)
             {
-                
+
                 sb.Append(minutes.ToString("0 Minute" + MakeItPlural(minutes) + " and "));
                 sb.Append(remSeconds.ToString("0 Second" + MakeItPlural(remSeconds)));
             }
-           else
+            else
             {
                 sb.Append(remSeconds.ToString("0 Second" + MakeItPlural(remSeconds)));
             }
+
+            return sb.ToString();
+        }
+        public static string GetTimeInClockFormat(int seconds)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            int minutes = (seconds / 60);
+            int remSeconds = seconds - (minutes * 60);
+
+            sb.Append(minutes.ToString("00:"));
+            sb.Append(remSeconds.ToString("00"));
 
             return sb.ToString();
         }
@@ -68,7 +80,7 @@ namespace NergizQuiz.Logic
         }
         public static string ApplyMeaningfulChars(string str)
         {
-           return str.Replace(@"\n", "\n");
+            return str.Replace(@"\n", "\n");
         }
         public static int GetNthDigit(int number, int digit)
         {
