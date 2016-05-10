@@ -17,5 +17,6 @@ namespace NergizQuiz.Logic
         public ObservableCollection <Question> Questions { get; set; }
         public int NumberOfAnswersGiven { get; set; }
         public int NumberOfCorrectAnswers { get; set; }
+        public int SecondsToNextQuestion { get; set; }
     }
 }

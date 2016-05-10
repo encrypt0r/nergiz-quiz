@@ -16,8 +16,9 @@ namespace NergizQuiz.UI
         #region Constructor
         public SessionFacade()
         {
-            session = new Session();
+            _model = new Session();
             Person = new PersonFacade();
+            SecondsToNextQuestion = SECONDS_TO_NEXT_QUESTION;
             CurrentQuestionNumber = 1;
             Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(DataLayer.NumberOfQuestions));
             
@@ -25,15 +26,34 @@ namespace NergizQuiz.UI
 
             m_BtnNextText = "Next Question";
 
-            dTimer = new DispatcherTimer();
-            dTimer.Interval = new TimeSpan(0, 0, 1);
-            dTimer.Tick += dTimer_Tick;
+            sessionTimer = new DispatcherTimer();
+            sessionTimer.Interval = new TimeSpan(0, 0, 1);
+            sessionTimer.Tick += SessionTimer_Tick;
+
+            questionTimer = new DispatcherTimer();
+            questionTimer.Interval = new TimeSpan(0, 0, 1);
+            questionTimer.Tick += QuestionTimer_Tick;
+
+        }
+
+
+
+
+        #endregion
+
+        #region Events
+        public event EventHandler TimeUp;
+        private void OnTimeUp()
+        {
+            TimeUp?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
         #region Fields
-        private Session session = new Session();
-        private DispatcherTimer dTimer;
+        private const int SECONDS_TO_NEXT_QUESTION = 3;
+        private Session _model;
+        private DispatcherTimer sessionTimer;
+        private DispatcherTimer questionTimer;
         #endregion
 
         #region Public Properties
@@ -67,24 +87,24 @@ namespace NergizQuiz.UI
         }
         public Question CurrentQuestion
         {
-            get { return session.CurrentQuestion; }
+            get { return _model.CurrentQuestion; }
             set
             {
-                if (value != session.CurrentQuestion)
+                if (value != _model.CurrentQuestion)
                 {
-                    session.CurrentQuestion = value;
+                    _model.CurrentQuestion = value;
                     RaisePropertyChanged("CurrentQuestion");
                 }
             }
         }
         public int CurrentQuestionNumber
         {
-            get { return session.NumberOfAnswersGiven; }
+            get { return _model.NumberOfAnswersGiven; }
             set
             {
-                if (value != session.NumberOfAnswersGiven)
+                if (value != _model.NumberOfAnswersGiven)
                 {
-                    session.NumberOfAnswersGiven = value;
+                    _model.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
                     if (Person != null)
                         Person.Accuracy = (float) NumberOfCorrectAnswers / DataLayer.NumberOfQuestions;
@@ -96,12 +116,12 @@ namespace NergizQuiz.UI
         }
         public int NumberOfCorrectAnswers
         {
-            get { return session.NumberOfCorrectAnswers; }
+            get { return _model.NumberOfCorrectAnswers; }
             set
             {
-                if (value != session.NumberOfCorrectAnswers)
+                if (value != _model.NumberOfCorrectAnswers)
                 {
-                    session.NumberOfCorrectAnswers = value;
+                    _model.NumberOfCorrectAnswers = value;
                     RaisePropertyChanged("NumberOfCorrectAnswers");
                 }
             }
@@ -119,19 +139,31 @@ namespace NergizQuiz.UI
                 }
             }
         }
-        public ObservableCollection<Question> Questions
+
+        public int SecondsToNextQuestion
         {
-            get { return session.Questions; }
+            get { return _model.SecondsToNextQuestion; }
             set
             {
-                if (value != session.Questions)
+                if (value != _model.SecondsToNextQuestion)
                 {
-                    session.Questions = value;
+                    _model.SecondsToNextQuestion = value;
+                    RaisePropertyChanged("SecondsToNextQuestion");
+                }
+            }
+        }
+        public ObservableCollection<Question> Questions
+        {
+            get { return _model.Questions; }
+            set
+            {
+                if (value != _model.Questions)
+                {
+                    _model.Questions = value;
                     RaisePropertyChanged("Questions");
                 }
             }
         }
-
         #endregion
 
         #region Public Methods
@@ -150,14 +182,18 @@ namespace NergizQuiz.UI
 
             // ask next question
             FetchNextQuestion();
+
+            SecondsToNextQuestion = SECONDS_TO_NEXT_QUESTION;
         }
         public void StartTimer()
         {
-            dTimer.Start();
+            sessionTimer.Start();
+            questionTimer.Start();
         }
         public void StopTimer()
         {
-            dTimer.Stop();
+            sessionTimer.Stop();
+            questionTimer.Stop();
         }
         #endregion
 
@@ -169,9 +205,16 @@ namespace NergizQuiz.UI
             CurrentQuestion = Questions[CurrentQuestionNumber - 1];
             CurrentQuestion.Index = (CurrentQuestionNumber).ToString("00");
         }
-        private void dTimer_Tick(object sender, EventArgs e)
+        private void SessionTimer_Tick(object sender, EventArgs e)
         {
             Person.Time += 1;
+        }
+        private void QuestionTimer_Tick(object sender, EventArgs e)
+        {
+            if (SecondsToNextQuestion > 0)
+                SecondsToNextQuestion--;
+            else
+                OnTimeUp();
         }
         #endregion
     }

@@ -84,7 +84,7 @@
             <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestionNumber, FallbackValue='0'}"  FontSize="24" Foreground="#FF646464"/>
             <TextBlock TextWrapping="Wrap" Text="{Binding NumberOfQuestions, StringFormat=' of {0}', FallbackValue= ' of 15'}"  FontSize="24" Foreground="#FF646464"/>
             <TextBlock TextWrapping="Wrap" Text=" - "  FontSize="24" Foreground="#FF646464" FontWeight="Bold" Margin="10,0"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Time, Converter={StaticResource IntegerToTimeConverter}, ConverterParameter=1, StringFormat='Time: {0}'}"  FontSize="24" Foreground="#FF646464" Grid.Row="2" Margin="0"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.SecondsToNextQuestion, StringFormat='Time: {0}'}"  FontSize="24" Foreground="#FF646464" Grid.Row="2" Margin="0"/>
         </StackPanel>
         
 
