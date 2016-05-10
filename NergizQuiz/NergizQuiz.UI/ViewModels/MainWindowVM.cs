@@ -111,7 +111,6 @@ namespace NergizQuiz.UI.ViewModels
         private void SbShowformPage_Animation_Complete(object sender, EventArgs e)
         {
             Page = new FormPage();
-            CurrentSession.StartTimer();
         }
         private bool ShowFormPageCanExecute()
         {
@@ -155,6 +154,7 @@ namespace NergizQuiz.UI.ViewModels
         private void ShowQuizPageExecute()
         {
             Page = new QuizPage();
+            CurrentSession.StartTimer();
         }
 
         private ICommand m_NextQuestionCommand;
