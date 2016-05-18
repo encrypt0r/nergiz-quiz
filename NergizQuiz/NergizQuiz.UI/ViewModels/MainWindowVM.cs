@@ -178,7 +178,7 @@ namespace NergizQuiz.UI.ViewModels
             {
                 CurrentSession.NextQuestion();
                 CurrentSession.StopTimer();
-               
+
                 Page = new LoadingPage();
                 var handler = new System.Net.UploadValuesCompletedEventHandler(UploadComplete);
                 DataLayer.SendPersonToDatabase(CurrentSession.Person.GetPerson(), handler);
@@ -188,8 +188,7 @@ namespace NergizQuiz.UI.ViewModels
                 CurrentSession.NextQuestion();
 
                 // transition between two questions
-                if (Page is QuizPage)
-                    Page.StartAnimation();
+                Page.StartAnimation();
             }
 
         }
@@ -215,9 +214,7 @@ namespace NergizQuiz.UI.ViewModels
         {
             CurrentSession = new SessionFacade();
             Page = new WelcomePage();
-            CurrentSession.TimeUp += CurrentSession_TimeUp;
         }
-
         private bool RestartCanExecute()
         {
             return (Page is WelcomePage) ? false : true;
@@ -294,7 +291,7 @@ namespace NergizQuiz.UI.ViewModels
         }
         #endregion
 
-        #region Private Methods And EventHandlers
+        #region Private Methods
         private void GoToWebsiteExecute()
         {
             System.Diagnostics.Process.Start(DataLayer.SITE_URL);
@@ -323,10 +320,6 @@ namespace NergizQuiz.UI.ViewModels
                 System.Windows.MessageBox.Show(message, "Nergiz Quiz");
             }
             Page = new FinishPage();
-        }
-        private void CurrentSession_TimeUp(object sender, EventArgs e)
-        {
-            NextQuestionExecute();
         }
         #endregion
 
