@@ -75,6 +75,7 @@
     <Compile Include="Helpers\RankToStringConverter.cs" />
     <Compile Include="Helpers\SessionFacade.cs" />
     <Compile Include="Helpers\IAnimatedUserControl.cs" />
+    <Compile Include="Helpers\TimeToColorConverter.cs" />
     <Compile Include="Helpers\VisibilityToBooleanConverter.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>

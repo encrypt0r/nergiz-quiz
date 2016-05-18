@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NergizQuiz.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="537" d:DesignWidth="794">
+             d:DesignHeight="537" d:DesignWidth="794" DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
-        <local:IntegerToTimeConverter x:Key="IntegerToTimeConverter"/>
+        <local:TimeToPropertyConverter x:Key="TimeToPropertyConverter"/>
         <Storyboard x:Key="DramaticEntrance">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
@@ -25,10 +25,23 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="HeartBeat">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard Storyboard="{StaticResource DramaticEntrance}"/>
+            <BeginStoryboard Storyboard="{StaticResource HeartBeat}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <Grid>
@@ -53,18 +66,18 @@
                     <GradientStop Color="#FF119EDA" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-        <TextBlock x:Name="textBlock"  Margin="30,0" TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestion.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        </Border> 
-            <ItemsControl x:Name="itemsControl" Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding CurrentSession.CurrentQuestion.AllAnswers}" RenderTransformOrigin="0.5,0.5">
+            <TextBlock x:Name="textBlock"  Margin="30,0" TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestion.Title, FallbackValue=The question will be written here}"  VerticalAlignment="Center" FontSize="40" FontWeight="Thin" Foreground="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Border>
+        <ItemsControl x:Name="itemsControl" Margin="50,10,0,0" Grid.Row="1" ItemsSource="{Binding CurrentSession.CurrentQuestion.AllAnswers}" RenderTransformOrigin="0.5,0.5">
             <ItemsControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -80,13 +93,24 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <Button x:Name="button" Command="{Binding NextQuestionCommand}" Content="{Binding CurrentSession.BtnNextText, FallbackValue='Next Question'}" Margin="0,0,30,30" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16" Padding="30,15" Foreground="#FF1F1F1F" IsDefault="True"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,0,0,30" Grid.Row="3" VerticalAlignment="Bottom">
-            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestionNumber, FallbackValue='0'}"  FontSize="24" Foreground="#FF646464"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding NumberOfQuestions, StringFormat=' of {0}', FallbackValue= ' of 15'}"  FontSize="24" Foreground="#FF646464"/>
-            <TextBlock TextWrapping="Wrap" Text=" - "  FontSize="24" Foreground="#FF646464" FontWeight="Bold" Margin="10,0"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.Person.Time, Converter={StaticResource IntegerToTimeConverter}, ConverterParameter=1, StringFormat='Time: {0}'}"  FontSize="24" Foreground="#FF646464" Grid.Row="2" Margin="0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,0,0,30" Grid.Row="2" VerticalAlignment="Bottom" Height="51">
+            <TextBlock TextWrapping="Wrap" Text="{Binding CurrentSession.CurrentQuestionNumber, FallbackValue='0'}"  FontSize="24" Foreground="#FF646464" VerticalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding NumberOfQuestions, StringFormat=' of {0}', FallbackValue= ' of 15'}"  FontSize="24" Foreground="#FF646464" VerticalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text=" - "  FontSize="24" Foreground="#FF646464" FontWeight="Bold" Margin="10,0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock1" Foreground="{Binding CurrentSession.SecondsToNextQuestion, FallbackValue='#FF646464' , Converter={StaticResource TimeToPropertyConverter}}"
+                       TextWrapping="Wrap" Text="{Binding CurrentSession.SecondsToNextQuestion, FallbackValue='30', StringFormat='\{0:00\}'}"
+                       FontSize="24" Grid.Row="2" Margin="0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
         </StackPanel>
-        
+
 
 
     </Grid>

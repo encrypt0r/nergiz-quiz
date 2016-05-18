@@ -9,6 +9,9 @@ namespace NergizQuiz.UI
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (!(value is float))
+                throw new ArgumentException("Value must be of type float.");
+
             float accuracy = (float)value;
             if (Math.Round(accuracy * 100) == 100)
                 return new SolidColorBrush(Colors.Blue);

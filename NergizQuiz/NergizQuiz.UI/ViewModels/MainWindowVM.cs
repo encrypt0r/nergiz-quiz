@@ -10,6 +10,7 @@ using NergizQuiz.UI.Views;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace NergizQuiz.UI.ViewModels
 {
@@ -189,8 +190,12 @@ namespace NergizQuiz.UI.ViewModels
 
                 // transition between two questions
                 Page.StartAnimation();
+
             }
 
+            // a little bit of time is wasted from the user
+            // so, lets make it up for him
+            CurrentSession.Person.Time -= 1;
         }
         private bool NextQuestionCanExecute()
         {
@@ -212,9 +217,17 @@ namespace NergizQuiz.UI.ViewModels
         }
         private void RestartExecute()
         {
+            CurrentSession?.Dispose();
             CurrentSession = new SessionFacade();
             Page = new WelcomePage();
+            CurrentSession.TimeUp += CurrentSession_TimeUp;
         }
+
+        private void CurrentSession_TimeUp(object sender, EventArgs e)
+        {
+            NextQuestionExecute();
+        }
+
         private bool RestartCanExecute()
         {
             return (Page is WelcomePage) ? false : true;

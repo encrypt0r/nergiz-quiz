@@ -3,6 +3,7 @@ using NergizQuiz.Logic;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace NergizQuiz.UI
 {
@@ -20,24 +21,42 @@ namespace NergizQuiz.UI
             Person = new PersonFacade();
             CurrentQuestionNumber = 1;
             Questions = new ObservableCollection<Question>(DataLayer.GetNewListOfQuestions(DataLayer.NumberOfQuestions));
-            
+
             FetchNextQuestion();
 
             m_BtnNextText = "Next Question";
 
-            dTimer = new DispatcherTimer();
-            dTimer.Interval = new TimeSpan(0, 0, 1);
-            dTimer.Tick += dTimer_Tick;
+            sessionTimer = new DispatcherTimer();
+            sessionTimer.Interval = new TimeSpan(0, 0, 1);
+            sessionTimer.Tick += dTimer_Tick;
+
+            questionTimer = new DispatcherTimer();
+            questionTimer.Interval = new TimeSpan(0, 0, 1);
+            questionTimer.Tick += QuestionTimer_Tick;
         }
         #endregion
 
         #region Fields
+        private const int QUESTION_TIMEUP = 30;
         private Session session = new Session();
-        private DispatcherTimer dTimer;
+        private DispatcherTimer sessionTimer;
+        private DispatcherTimer questionTimer;
+        #endregion
+
+        #region Events
+        public event EventHandler TimeUp;
+        public event EventHandler LittleTimeRemaining;
+        private void OnTimeUp()
+        {
+            TimeUp?.Invoke(this, EventArgs.Empty);
+        }
+        private void OnLittleTimeRemaining()
+        {
+            LittleTimeRemaining?.Invoke(this, EventArgs.Empty);
+        }
         #endregion
 
         #region Public Properties
-
         private PersonFacade m_Person;
         public PersonFacade Person
         {
@@ -87,7 +106,7 @@ namespace NergizQuiz.UI
                     session.NumberOfAnswersGiven = value;
                     RaisePropertyChanged("CurrentQuestionNumber");
                     if (Person != null)
-                        Person.Accuracy = (float) NumberOfCorrectAnswers / DataLayer.NumberOfQuestions;
+                        Person.Accuracy = (float)NumberOfCorrectAnswers / DataLayer.NumberOfQuestions;
 
                     if (value == DataLayer.NumberOfQuestions)
                         BtnNextText = "Get Results";
@@ -132,13 +151,25 @@ namespace NergizQuiz.UI
             }
         }
 
+        public int SecondsToNextQuestion
+        {
+            get { return session.SecondsToNextQuestion; }
+            set
+            {
+                if (value != session.SecondsToNextQuestion)
+                {
+                    session.SecondsToNextQuestion = value;
+                    RaisePropertyChanged("SecondsToNextQuestion");
+                }
+            }
+        }
         #endregion
 
         #region Public Methods
         public void NextQuestion()
         {
             // get the user's answer
-            int chosenAnswer = 0;
+            int chosenAnswer = -1;
             foreach (var ans in CurrentQuestion.AllAnswers)
                 if (ans.IsChosenByUser)
                     chosenAnswer = ans.Index;
@@ -153,11 +184,13 @@ namespace NergizQuiz.UI
         }
         public void StartTimer()
         {
-            dTimer.Start();
+            sessionTimer.Start();
+            questionTimer.Start();
         }
         public void StopTimer()
         {
-            dTimer.Stop();
+            sessionTimer.Stop();
+            questionTimer.Stop();
         }
         #endregion
 
@@ -168,10 +201,28 @@ namespace NergizQuiz.UI
                 return;
             CurrentQuestion = Questions[CurrentQuestionNumber - 1];
             CurrentQuestion.Index = (CurrentQuestionNumber).ToString("00");
+            SecondsToNextQuestion = QUESTION_TIMEUP;
         }
         private void dTimer_Tick(object sender, EventArgs e)
         {
             Person.Time += 1;
+        }
+        private void QuestionTimer_Tick(object sender, EventArgs e)
+        {
+            if (SecondsToNextQuestion > 0)
+                SecondsToNextQuestion--;
+            else
+                OnTimeUp();
+
+            if (SecondsToNextQuestion < 6)
+                OnLittleTimeRemaining();
+        }
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+            StopTimer();
+            sessionTimer = null;
+            questionTimer = null;
         }
         #endregion
     }

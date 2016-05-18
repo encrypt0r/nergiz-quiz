@@ -72,6 +72,7 @@ namespace NergizQuiz.UI
             {
                 if (value != person.Time)
                 {
+                    System.Diagnostics.Debug.WriteLine(value);
                     person.Time = value;
                     RaisePropertyChanged("Time");
                     RaisePropertyChanged("TimeForHumans");

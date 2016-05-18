@@ -15,9 +15,8 @@ namespace NergizQuiz.Logic
             int minutes = (seconds / 60);
             int remSeconds = seconds - (minutes * 60);
 
-            if (minutes > 0)
+            if (seconds > 60)
             {
-
                 sb.Append(minutes.ToString("0 Minute" + MakeItPlural(minutes) + " and "));
                 sb.Append(remSeconds.ToString("0 Second" + MakeItPlural(remSeconds)));
             }
