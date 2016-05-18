@@ -73,9 +73,9 @@
   <Question>
     <Title>If I ...... earlier, I wouldn't have been late for work.</Title>
     <Answers>
-      <Answer correct="true">left</Answer>
+      <Answer>left</Answer>
       <Answer>was leaving</Answer>
-      <Answer>had left</Answer>
+      <Answer correct="true">had left</Answer>
       <Answer>have left</Answer>
     </Answers>
   </Question>
