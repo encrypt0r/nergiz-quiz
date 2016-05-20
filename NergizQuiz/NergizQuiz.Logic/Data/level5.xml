@@ -72,16 +72,6 @@
   </Question>
 
   <Question>
-    <Title>There were ...... of people at the football match on Friday.</Title>
-    <Answers>
-      <Answer>great deal</Answer>
-      <Answer>fives</Answer>
-      <Answer correct="true">many</Answer>
-      <Answer>hundreds</Answer>
-    </Answers>
-  </Question>
-
-  <Question>
     <Title>There are so many people off sick we'll have to put the meeting ...... until next week.</Title>
     <Answers>
       <Answer>back</Answer>
