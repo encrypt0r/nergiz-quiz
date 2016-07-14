@@ -1,10 +1,8 @@
 # Nergiz Quiz
 This is a simple quiz app thats being made for [EPU](http://epu.edu.krd) spring festival. Feel free to use it according to the license provided. And yes, I'd be glad to hear your suggestions :octocat:
 
-You can go to the [**Website**](http://nergiz-quiz.ueuo.com/) and you can also 
-[**download the app**](https://github.com/encrypt0r/nergiz-quiz/releases/latest). Have fun :smile:
-
-The server side app is being developed here: [Nergiz Quiz Web](https://github.com/encrypt0r/nergiz-quiz-web) <br>
+You can go to the [**Website**](http://nergiz-quiz.ueuo.com/), Or you can 
+[**download the app**](https://github.com/encrypt0r/nergiz-quiz/releases/latest). Also, the server side app is being developed here: [Nergiz Quiz Web](https://github.com/encrypt0r/nergiz-quiz-web) <br>
 ## Main Features:
 + Chooses a set of questions from a total of 75 questions. And the app makes sure all of the participants get a fair set of questions. Because the questions are devided among 5 levels. So if the user was asked 5 questions, he/she will be asked a question from each level. And if the user was asked 7 questions, he/she will be asked 2 questions for level 1 and 2 and 1 question for level 3, 4 and 5.
 + Ability to change number of questions the app is going to ask (5 to 25)
